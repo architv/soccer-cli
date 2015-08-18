@@ -19,11 +19,14 @@ def get_team_scores(team, time):
 
 	team_id = TEAM_NAMES.get(team, None)
 	if team_id:
-		team_scores = requests.get('{base_url}teams/{team_id}/fixtures/'.format(
-			base_url=BASE_URL, team_id=team_id), headers=headers).json()
-		print_team_scores(team_scores)
+		req = requests.get('{base_url}teams/{team_id}/fixtures/'.format(
+			base_url=BASE_URL, team_id=team_id), headers=headers)
+		if req.status_code == 200:
+			print_team_scores(req.json())
+		else:
+			click.secho("No data for the team. Please check the team code.", fg="red", bold=True)
 	else:
-		print "No data for the team. Please check the team code."
+		click.secho("No data for the team. Please check the team code.", fg="red", bold=True)
 
 def print_team_scores(team_scores):
 	""" Prints the teams scores in a pretty format """
@@ -49,14 +52,39 @@ def get_standings(league):
 	""" Queries the API and gets the standings for a particular league """
 
 	league_id = LEAGUE_IDS[league]
-	league_table = requests.get('{base_url}soccerseasons/{id}/leagueTable'.format(
-			base_url=BASE_URL, id=league_id), headers=headers).json()
-	print_standings(league_table)
+	req = requests.get('{base_url}soccerseasons/{id}/leagueTable'.format(
+			base_url=BASE_URL, id=league_id), headers=headers)
+	if req.status_code == 200:
+		print_standings(req.json())
+	else:
+		click.secho("No data for the team. Please check the team code.", fg="red", bold=True)
 
 def print_standings(league_table):
+	""" Prints the league standings in a pretty way """
+
+	click.secho("{position:6}  {team:30}    {played:10}    {goaldiff:10}    {points:10}".format(
+					position="POS", team="CLUB", played="PLAYED", 
+					goaldiff="GOAL DIFF", points="POINTS"
+			))
 
 	for team in league_table["standing"]:
-		print "{position}. {team_name}".format(position=team["position"], team_name=team["teamName"])
+		if team["position"] <= 4:
+			click.secho("{position:6}  {team:30}    {played:10}    {goaldiff:10}    {points:10}".format(
+					position=str(team["position"]), team=u''.join(team["teamName"]).encode('utf-8'), played=str(team["playedGames"]), 
+					goaldiff=str(team["goalDifference"]), points=str(team["points"])
+				), bold=True, fg="green")
+		elif 5 <= team["position"] <= 17:
+			click.secho("{position:6}  {team:30}    {played:10}    {goaldiff:10}    {points:10}".format(
+					position=str(team["position"]), team=u''.join(team["teamName"]).encode('utf-8'), played=str(team["playedGames"]), 
+					goaldiff=str(team["goalDifference"]), points=str(team["points"])
+				), fg="blue")
+		else:
+			click.secho("{position:6}  {team:30}    {played:10}    {goaldiff:10}    {points:10}".format(
+					position=str(team["position"]), team=u''.join(team["teamName"]).encode('utf-8'), played=str(team["playedGames"]), 
+					goaldiff=str(team["goalDifference"]), points=str(team["points"])
+				), fg="red")
+
+		# print "{position}. {team_name}".format(position=team["position"], team_name=team["teamName"])
 
 def get_scores(league, time):
 	""" Queries the API and fetches the scores for fixtures based upon the league and time parameter """
@@ -106,7 +134,7 @@ def pretty_print(total_data):
 	help= 'The number of days for which you want to see the scores')
 
 def main(league, time, standings, team):
-	""" A CLI for live and past football scores from various leagues """
+	""" A CLI for live and past football scores from various football leagues """
 
 	if standings:
 		get_standings(league)
