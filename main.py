@@ -60,13 +60,23 @@ def get_scores(league, time):
 	fixtures_results = requests.get('{base_url}fixtures?timeFrame=p{time}'.format(
 		base_url=BASE_URL, time=str(time)), headers=headers).json()
 	pretty_print(fixtures_results)
-	return
 
 def pretty_print(total_data):
 	""" Prints the data in a pretty format """
 
 	for data in total_data["fixtures"]:
-		print data["homeTeamName"] + " " + str(data["result"]["goalsHomeTeam"]) + " vs "  + str(data["result"]["goalsAwayTeam"]) + " " + data["awayTeamName"] 
+		# midstring = "vs"
+		if data["result"]["goalsHomeTeam"] > data["result"]["goalsAwayTeam"]:
+			click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]), 
+				bold=True, fg="red", nl=False)
+			click.secho("vs\t", nl=False)
+			click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], data["awayTeamName"]), fg="blue")
+		else:
+			click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]), 
+				 fg="blue", nl=False)
+			click.secho("vs\t", nl=False)
+			click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], data["awayTeamName"]),bold=True, fg="red")
+		click.echo()
 
 
 @click.command()
