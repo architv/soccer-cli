@@ -86,3 +86,14 @@ Demo
 
 ### Live scores
 ![](http://i.imgur.com/EX9GMAM.gif)
+
+Licence
+====
+Open sourced under [MIT License](LICENSE)
+
+Support
+====
+If you like my work, please support the project by donating.
+
+- https://gratipay.com/~architv
+
