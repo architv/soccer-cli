@@ -7,7 +7,7 @@ Soccer CLI
 
 Soccer for Hackers - a CLI for all the football scores. 
 
-![](http://i.imgur.com/NFzF6rA.png)
+![](http://i.imgur.com/9QbcUrj.gif)
 
 Install
 =====
@@ -82,7 +82,7 @@ Demo
 ====
 
 ### Standings
-![standings](http://i.imgur.com/CgyQioB.gif)
+![standings](http://i.imgur.com/NURexbN.gif)
 
 ### Live scores
 ![](http://i.imgur.com/EX9GMAM.gif)
