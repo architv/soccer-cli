@@ -65,6 +65,24 @@ $ soccer soccer --time=10 # scores for all the seven leagues over the past 10 da
 ```bash
 $ soccer --help
 ```
+### List of supported leagues and their league codes
 
+- BL: Bundesliga
+- FL: French Ligue
+- EPL: English Premier League
+- LLIGA: Loga BBVA
+- SA: Seria A
+- PPL: Primeira Liga
+- DED: Eredivisie (Dutch League)
+
+### Team and team codes
+
+For a full list of supported team and team codes [see this](teamcode.json).
 Demo
 ====
+
+### Standings
+![standings](http://i.imgur.com/CgyQioB.gif)
+
+### Live scores
+![](http://i.imgur.com/EX9GMAM.gif)
