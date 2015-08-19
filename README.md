@@ -6,3 +6,22 @@ Soccer CLI
 =====
 
 Soccer for Hackers - a CLI for all the football scores. 
+
+![]http://i.imgur.com/NFzF6rA.jpg[]
+
+Install
+=====
+
+### Using Pip
+
+```bash
+$ pip install soccer-cli
+````
+
+### Build from source
+
+```bash
+$ git clone git@github.com:architv/soccer-cli.git
+$ cd soccer-cli
+$ python setup.py install
+```
