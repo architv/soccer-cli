@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://i.imgur.com/F9zuexe.jpg" width="300px" />
+  <img src="http://i.imgur.com/F9zuexe.jpg" width="500px" />
 </p>
 
 Soccer CLI
