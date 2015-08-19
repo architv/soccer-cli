@@ -5,7 +5,7 @@ import authtoken
 import json
 
 BASE_URL = 'http://api.football-data.org/alpha/'
-LIVE_URL = ''
+LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
 headers = {
 	'X-Auth-Token': authtoken.API_TOKEN
