@@ -77,7 +77,7 @@ $ soccer --help
 
 ### Team and team codes
 
-For a full list of supported team and team codes [see this](teamcode.json).
+For a full list of supported team and team codes [see this](teamcodes.json).
 Demo
 ====
 
