@@ -14,6 +14,35 @@ headers = {
 with open('teamnames.json', 'r') as teamnames:
 	TEAM_NAMES = json.loads(teamnames.read())
 
+def get_live_scores():
+	""" Gets the live scores """
+
+	req = requests.get(LIVE_URL)
+	if req.status_code == 200:
+		print_live_scores(req.json())
+	else:
+		click.secho("There was problem getting live scores", fg="red", bold=True)
+
+def print_live_scores(live_scores):
+	""" Prints the live scores in a pretty format """
+
+	for game in live_scores["games"]:
+		click.echo()
+		click.secho("%s\t" % game["league"], fg="green", nl=False)
+		if game["goalsHomeTeam"] > game["goalsAwayTeam"]:
+			click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]), 
+				bold=True, fg="red", nl=False)
+			click.secho("vs\t", nl=False)
+			click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]), fg="blue", nl=False)
+		else:
+			click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]), 
+				 fg="blue", nl=False)
+			click.secho("vs\t", nl=False)
+			click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]), 
+				bold=True, fg="red", nl=False)
+		click.secho('%s' % game["time"], fg="yellow")
+		click.echo()
+
 def get_team_scores(team, time):
 	""" Queries the API and gets the particular team scores """
 
@@ -51,13 +80,17 @@ def print_team_scores(team_scores):
 def get_standings(league):
 	""" Queries the API and gets the standings for a particular league """
 
+	if not league:
+		click.secho("Please specify a league. Example --standings --league=EPL", fg="red", bold=True)
+		return
+
 	league_id = LEAGUE_IDS[league]
 	req = requests.get('{base_url}soccerseasons/{id}/leagueTable'.format(
 			base_url=BASE_URL, id=league_id), headers=headers)
 	if req.status_code == 200:
 		print_standings(req.json())
 	else:
-		click.secho("No data for the team. Please check the team code.", fg="red", bold=True)
+		click.secho("No data for the league. Please check the league code.", fg="red", bold=True)
 
 def print_standings(league_table):
 	""" Prints the league standings in a pretty way """
@@ -93,14 +126,14 @@ def get_scores(league, time):
 		league_id = LEAGUE_IDS[league]
 		fixtures_results = requests.get('{base_url}soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
 			base_url=BASE_URL, id=league_id, time=str(time)), headers=headers).json()
-		pretty_print(fixtures_results)
+		print_league_scores(fixtures_results)
 		return
 
 	fixtures_results = requests.get('{base_url}fixtures?timeFrame=p{time}'.format(
 		base_url=BASE_URL, time=str(time)), headers=headers).json()
-	pretty_print(fixtures_results)
+	print_league_scores(fixtures_results)
 
-def pretty_print(total_data):
+def print_league_scores(total_data):
 	""" Prints the data in a pretty format """
 
 	for data in total_data["fixtures"]:
@@ -118,6 +151,7 @@ def pretty_print(total_data):
 
 
 @click.command()
+@click.option('--live', is_flag=True, help= 'Shows live scores from various leagues')
 @click.option('--standings', is_flag=True, help= 'Standings for a particular league')
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()), 
 	help= (
@@ -133,8 +167,12 @@ def pretty_print(total_data):
 @click.option('--time', '-t', default=6, 
 	help= 'The number of days for which you want to see the scores')
 
-def main(league, time, standings, team):
+def main(league, time, standings, team, live):
 	""" A CLI for live and past football scores from various football leagues """
+
+	if live:
+		get_live_scores()
+		return
 
 	if standings:
 		get_standings(league)
