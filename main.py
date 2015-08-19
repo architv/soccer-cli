@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+
 import requests
 import click
 import leagueids
 import authtoken
 import json
+import teamnames
 
 BASE_URL = 'http://api.football-data.org/alpha/'
 LIVE_URL = 'http://soccer-cli.appspot.com/'
@@ -10,9 +13,7 @@ LEAGUE_IDS = leagueids.LEAGUE_IDS
 headers = {
 	'X-Auth-Token': authtoken.API_TOKEN
 }
-
-with open('teamnames.json', 'r') as teamnames:
-	TEAM_NAMES = json.loads(teamnames.read())
+TEAM_NAMES = teamnames.team_names
 
 def get_live_scores():
 	""" Gets the live scores """
