@@ -49,8 +49,8 @@ def get_team_scores(team, time):
 
 	team_id = TEAM_NAMES.get(team, None)
 	if team_id:
-		req = requests.get('{base_url}teams/{team_id}/fixtures/'.format(
-			base_url=BASE_URL, team_id=team_id), headers=headers)
+		req = requests.get('{base_url}teams/{team_id}/fixtures?timeFrame=p{time}'.format(
+			base_url=BASE_URL, team_id=team_id, time=time), headers=headers)
 		if req.status_code == 200:
 			print_team_scores(req.json())
 		else:
@@ -165,7 +165,7 @@ def print_league_scores(total_data):
 		"Choose the team whose fixtures you want to see. See the various team codes listed on README')"
 	)
 )
-@click.option('--time', '-t', default=6, 
+@click.option('--time', default=6, 
 	help= 'The number of days for which you want to see the scores')
 
 def main(league, time, standings, team, live):

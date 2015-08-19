@@ -87,6 +87,9 @@ Demo
 ### Live scores
 ![](http://i.imgur.com/EX9GMAM.gif)
 
+### Team scores
+![](http://i.imgur.com/QfvH8QL.png)
+
 Licence
 ====
 Open sourced under [MIT License](LICENSE)

@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
   name='soccer-cli',
-  version='0.0.2.3',
+  version='0.0.2.4',
   description='Soccer for Hackers.',
   author='Archit Verma',
   license='MIT',
