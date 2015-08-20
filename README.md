@@ -70,7 +70,7 @@ $ soccer --help
 - BL: Bundesliga
 - FL: French Ligue
 - EPL: English Premier League
-- LLIGA: Loga BBVA
+- LLIGA: Liga BBVA
 - SA: Seria A
 - PPL: Primeira Liga
 - DED: Eredivisie (Dutch League)
