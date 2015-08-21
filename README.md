@@ -12,7 +12,7 @@ Soccer for Hackers - a CLI for all the football scores.
 Install
 =====
 
-### Using Pip
+### Using `pip`
 
 ```bash
 $ pip install soccer-cli
@@ -89,6 +89,11 @@ Demo
 
 ### Team scores
 ![](http://i.imgur.com/QfvH8QL.png)
+
+Todo
+====
+- [ ] Add fixtures support
+- [ ] Enable cache
 
 Licence
 ====
