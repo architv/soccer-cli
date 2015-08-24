@@ -92,7 +92,6 @@ Demo
 
 Todo
 ====
-- [ ] Add fixtures support
 - [ ] Enable cache
 
 Licence
