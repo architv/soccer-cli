@@ -93,6 +93,7 @@ Demo
 Todo
 ====
 - [ ] Enable cache
+- [ ] Add more test cases
 
 Licence
 ====
