@@ -95,6 +95,7 @@ Todo
 - [ ] Enable cache
 - [ ] Add more test cases
 - [ ] Add fixtures for UEFA Champions League
+- [ ] Add league flag for live scores
 
 Licence
 ====
