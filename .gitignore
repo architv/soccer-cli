@@ -2,6 +2,7 @@
 authtoken.py
 README
 README.txt
+liveapi.py
 
 # Distribution / packaging
 .Python
