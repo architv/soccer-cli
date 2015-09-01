@@ -26,6 +26,9 @@ $ cd soccer-cli
 $ python setup.py install
 ```
 
+#### Note:
+Currently supports Linux and Mac OS X
+
 Usage
 ====
 
@@ -95,7 +98,7 @@ Todo
 - [ ] Enable cache
 - [ ] Add more test cases
 - [ ] Add fixtures for UEFA Champions League
-- [ ] Add league flag for live scores
+- [ ] Add league filter for live scores
 
 Licence
 ====
