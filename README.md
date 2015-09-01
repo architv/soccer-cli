@@ -58,7 +58,7 @@ $ soccer --league=FL --time=15 # get scores for all the French Ligue games over 
 ### Get scores for all seven leagues with a set time period
 
 ```bash
-$ soccer soccer --time=10 # scores for all the seven leagues over the past 10 days
+$ soccer --time=10 # scores for all the seven leagues over the past 10 days
 ```
 
 ### Help
