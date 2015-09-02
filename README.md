@@ -77,6 +77,7 @@ $ soccer --help
 - SA: Serie A  (Italian League)
 - PPL: Primeira Liga (Portuguese League)
 - DED: Eredivisie (Dutch League)
+- CL: Champions League
 
 ### Team and team codes
 
