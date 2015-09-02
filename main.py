@@ -105,7 +105,7 @@ def print_standings(league_table):
 					position="POS", team="CLUB", played="PLAYED", 
 					goaldiff="GOAL DIFF", points="POINTS"
 			))
-	positionlist = (team["position"] for team in league_table["standing"])
+	positionlist = [team["position"] for team in league_table["standing"]]
 	for team in league_table["standing"]:
 		if team["position"] <= 4:
 			click.secho("{position:6}  {team:30}    {played:10}    {goaldiff:10}    {points:10}".format(
