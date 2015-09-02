@@ -27,7 +27,7 @@ $ python setup.py install
 ```
 
 #### Note:
-Currently supports Linux and Mac OS X
+Currently supports Linux, Mac OS X, NetBSD and FreeBSD.
 
 Usage
 ====
