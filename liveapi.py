@@ -1,1 +1,0 @@
-LIVE_API = 'http://soccer-cli.appspot.com/'
