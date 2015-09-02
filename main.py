@@ -96,7 +96,7 @@ def get_standings(league):
 	if req.status_code == 200:
 		print_standings(req.json())
 	else:
-		click.secho("No data for the league. Please check the league code.", fg="red", bold=True)
+		click.secho("No standings availble for {league}.".format(league=league), fg="red", bold=True)
 
 def print_standings(league_table):
 	""" Prints the league standings in a pretty way """
