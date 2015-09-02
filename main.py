@@ -132,6 +132,12 @@ def get_scores(league, time):
 		league_id = LEAGUE_IDS[league]
 		fixtures_results = requests.get('{base_url}soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
 			base_url=BASE_URL, id=league_id, time=str(time)), headers=headers).json()
+		
+		# no fixtures in the past wee. display a help message and return
+		if len(fixtures_results["fixtures"]) == 0:
+			click.secho("No Champions League matches in the past week.", fg="red", bold=True)
+			return
+
 		print_league_scores(fixtures_results)
 		return
 
@@ -162,7 +168,7 @@ def print_league_scores(total_data):
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()), 
 	help= (
 		"Choose the league whose fixtures you want to see. Bundesliga(BL), Premier League(EPL), La Liga (LLIGA)," 
-	 	"Serie A(SL), Ligue 1(FL), Eredivisie(DED), Primeira Liga(PPL)')"
+	 	"Serie A(SL), Ligue 1(FL), Eredivisie(DED), Primeira Liga(PPL), Champions League(CL)')"
 	)
 )
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()), 

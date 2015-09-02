@@ -5,5 +5,6 @@ LEAGUE_IDS = {
 	"LLIGA": 399,
 	"SA": 401,
 	"PPL": 402,
-	"DED": 404
+	"DED": 404,
+	"CL": 405
 }
