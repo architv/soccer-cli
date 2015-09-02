@@ -70,8 +70,8 @@ $ soccer --help
 ```
 ### List of supported leagues and their league codes
 
-- BL: Bundesliga
-- FL: Ligue One
+- BL: Bundesliga (German League)
+- FL: Ligue One (French League)
 - EPL: English Premier League
 - LLIGA: Liga BBVA (Spanish League)
 - SA: Serie A  (Italian League)
