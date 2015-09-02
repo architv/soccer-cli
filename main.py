@@ -21,7 +21,11 @@ def get_live_scores():
 
 	req = requests.get(LIVE_URL)
 	if req.status_code == 200:
-		print_live_scores(req.json())
+		scores = req.json()
+		if len(scores["games"]) == 0:
+			click.secho("No live action currently", fg="red", bold=True)
+			return
+		print_live_scores(scores)
 	else:
 		click.secho("There was problem getting live scores", fg="red", bold=True)
 
