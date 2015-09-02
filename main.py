@@ -105,14 +105,14 @@ def print_standings(league_table):
 					position="POS", team="CLUB", played="PLAYED", 
 					goaldiff="GOAL DIFF", points="POINTS"
 			))
-
+	positionlist = (team["position"] for team in league_table["standing"])
 	for team in league_table["standing"]:
 		if team["position"] <= 4:
 			click.secho("{position:6}  {team:30}    {played:10}    {goaldiff:10}    {points:10}".format(
 					position=str(team["position"]), team=u''.join(team["teamName"]).encode('utf-8'), played=str(team["playedGames"]), 
 					goaldiff=str(team["goalDifference"]), points=str(team["points"])
 				), bold=True, fg="green")
-		elif 5 <= team["position"] <= 17:
+		elif 5 <= team["position"] <= (len(positionlist) - 3):  # 5-15 in BL, 5-17 in others
 			click.secho("{position:6}  {team:30}    {played:10}    {goaldiff:10}    {points:10}".format(
 					position=str(team["position"]), team=u''.join(team["teamName"]).encode('utf-8'), played=str(team["playedGames"]), 
 					goaldiff=str(team["goalDifference"]), points=str(team["points"])
