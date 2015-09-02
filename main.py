@@ -135,7 +135,7 @@ def get_scores(league, time):
 		
 		# no fixtures in the past wee. display a help message and return
 		if len(fixtures_results["fixtures"]) == 0:
-			click.secho("No Champions League matches in the past week.", fg="red", bold=True)
+			click.secho("No {league} matches in the past week.".format(league=league), fg="red", bold=True)
 			return
 
 		print_league_scores(fixtures_results)
