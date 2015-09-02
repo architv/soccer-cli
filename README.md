@@ -99,6 +99,7 @@ Todo
 - [ ] Add more test cases
 - [ ] Add fixtures for UEFA Champions League
 - [ ] Add league filter for live scores
+- [ ] Color coding for Europa league and differentiation between straight CL and CL playoff spots, and the same for EL spots
 
 Licence
 ====
