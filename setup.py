@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from setuptools import setup
+import sys
 
 setup(
   name='soccer-cli',
@@ -35,7 +36,7 @@ setup(
   install_requires=[
     "click==5.0",
     "requests==2.7.0",
-  ],
+  ] + ["colorama==0.3.3"] if "win" in sys.platform else [],
   entry_points = {
     'console_scripts': [
         'soccer = main:main'
