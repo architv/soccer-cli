@@ -35,8 +35,8 @@ setup(
   scripts=['main.py', 'leagueids.py', 'authtoken.py', 'teamnames.py', 'liveapi.py'],
   install_requires=[
     "click==5.0",
-    "requests==2.7.0",
-  ] + ["colorama==0.3.3"] if "win" in sys.platform else [],
+    "requests==2.7.0"
+  ] + (["colorama==0.3.3"] if "win" in sys.platform else []),
   entry_points = {
     'console_scripts': [
         'soccer = main:main'
