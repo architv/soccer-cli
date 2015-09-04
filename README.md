@@ -20,7 +20,10 @@ $ pip install soccer-cli
 
 ### Build from source
 
-For building from source, you'll need to get your API key from [here](http://api.football-data.org/register) and replace `'X-Auth-Token': authtoken.API_TOKEN` with `'X-Auth-Token': <YOUR_API_KEY>`.
+For building from source, you'll need to get your API key from [here](http://api.football-data.org/register) and create a file `authtoken.py` in the source directory with the single line
+```
+API_TOKEN = "<YOUR_API_KEY>"
+```
 
 ```bash
 $ git clone git@github.com:architv/soccer-cli.git
