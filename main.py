@@ -177,7 +177,7 @@ def print_league_scores(total_data):
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()), 
 	help= (
 		"Choose the league whose fixtures you want to see. Bundesliga(BL), Premier League(EPL), La Liga (LLIGA)," 
-	 	"Serie A(SL), Ligue 1(FL), Eredivisie(DED), Primeira Liga(PPL), Champions League(CL)')"
+	 	"Serie A(SA), Ligue 1(FL), Eredivisie(DED), Primeira Liga(PPL), Champions League(CL)')"
 	)
 )
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()), 
