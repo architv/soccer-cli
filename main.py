@@ -6,7 +6,6 @@ import leagueids
 import authtoken
 import json
 import teamnames
-import liveapi
 
 BASE_URL = 'http://api.football-data.org/alpha/'
 LIVE_URL = 'http://soccer-cli.appspot.com/'
