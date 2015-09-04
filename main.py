@@ -75,11 +75,16 @@ def print_team_scores(team_scores):
 					bold=True, fg="red", nl=False)
 				click.secho("vs\t", nl=False)
 				click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"], score["awayTeamName"]), fg="blue")
-			else:
+			elif score["result"]["goalsHomeTeam"] < score["result"]["goalsAwayTeam"]:
 				click.secho('%-20s %-5d' % (score["homeTeamName"], score["result"]["goalsHomeTeam"]), 
 					 fg="blue", nl=False)
 				click.secho("vs\t", nl=False)
 				click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"], score["awayTeamName"]), bold=True, fg="red")
+			else:
+				click.secho('%-20s %-5d' % (score["homeTeamName"], score["result"]["goalsHomeTeam"]),
+					 bold=True, fg="yellow", nl=False)
+				click.secho("vs\t", nl=False)
+				click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"], score["awayTeamName"]), bold=True, fg="yellow")
 			click.echo()
 
 
@@ -154,11 +159,16 @@ def print_league_scores(total_data):
 				bold=True, fg="red", nl=False)
 			click.secho("vs\t", nl=False)
 			click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], data["awayTeamName"]), fg="blue")
-		else:
-			click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]), 
+		elif data["result"]["goalsHomeTeam"] < data["result"]["goalsAwayTeam"]:
+			click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]),
 				 fg="blue", nl=False)
 			click.secho("vs\t", nl=False)
 			click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], data["awayTeamName"]), bold=True, fg="red")
+		else:
+			click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]),
+				 bold=True, fg="yellow", nl=False)
+			click.secho("vs\t", nl=False)
+			click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], data["awayTeamName"]), bold=True, fg="yellow")
 		click.echo()
 
 
