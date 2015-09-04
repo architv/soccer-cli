@@ -9,7 +9,7 @@ import teamnames
 import liveapi
 
 BASE_URL = 'http://api.football-data.org/alpha/'
-LIVE_URL = liveapi.LIVE_API
+LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
 headers = {
 	'X-Auth-Token': authtoken.API_TOKEN
