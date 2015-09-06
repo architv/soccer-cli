@@ -6,6 +6,7 @@ import leagueids
 import authtoken
 import json
 import teamnames
+import leagueproperties
 
 BASE_URL = 'http://api.football-data.org/alpha/'
 LIVE_URL = 'http://soccer-cli.appspot.com/'
@@ -14,6 +15,7 @@ headers = {
 	'X-Auth-Token': authtoken.API_TOKEN
 }
 TEAM_NAMES = teamnames.team_names
+LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 
 def get_live_scores():
 	""" Gets the live scores """
@@ -102,33 +104,32 @@ def get_standings(league):
 	req = requests.get('{base_url}soccerseasons/{id}/leagueTable'.format(
 			base_url=BASE_URL, id=league_id), headers=headers)
 	if req.status_code == 200:
-		print_standings(req.json())
+		print_standings(req.json(), league)
 	else:
 		click.secho("No standings availble for {league}.".format(league=league), fg="red", bold=True)
 
-def print_standings(league_table):
+def print_standings(league_table, league):
 	""" Prints the league standings in a pretty way """
+
 	click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
 				( "POS", "CLUB", "PLAYED", "GOAL DIFF", "POINTS"))
 	positionlist = [team["position"] for team in league_table["standing"]]
 	for team in league_table["standing"]:
-		if team["position"] <= 4:
+		if LEAGUE_PROPERTIES[league]["cl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["cl"][1]:
 			click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
 				(str(team["position"]), team["teamName"],
 				str(team["playedGames"]), str(team["goalDifference"]),str(team["points"])),
 				bold=True, fg="green")
-		elif 5 <= team["position"] <= (len(positionlist) - 3):  # 5-15 in BL, 5-17 in others
-			click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
-				(str(team["position"]), team["teamName"],
-				str(team["playedGames"]), str(team["goalDifference"]),str(team["points"])),
-				fg="blue")
-		else:
+		elif LEAGUE_PROPERTIES[league]["rl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["rl"][1]:  # 5-15 in BL, 5-17 in others
 			click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
 				(str(team["position"]), team["teamName"],
 				str(team["playedGames"]), str(team["goalDifference"]),str(team["points"])),
 				fg="red")
-
-		# print "{position}. {team_name}".format(position=team["position"], team_name=team["teamName"])
+		else:
+			click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
+				(str(team["position"]), team["teamName"],
+				str(team["playedGames"]), str(team["goalDifference"]),str(team["points"])),
+				fg="blue")
 
 
 def get_scores(league, time):

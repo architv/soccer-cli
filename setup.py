@@ -5,7 +5,7 @@ import sys
 
 setup(
   name='soccer-cli',
-  version='0.0.3.2',
+  version='0.0.3.3',
   description='Soccer for Hackers.',
   author='Archit Verma',
   license='MIT',
@@ -32,7 +32,7 @@ setup(
   keywords = "soccer football espn scores live tool cli",
   author_email='architv07@gmail.com',
   url='https://github.com/architv/soccer-cli',
-  py_modules=['main', 'leagueids', 'authtoken', 'teamnames'],
+  py_modules=['main', 'leagueids', 'authtoken', 'teamnames', 'leagueproperties'],
   install_requires=[
     "click>=5.0",
     "requests==2.7.0"
