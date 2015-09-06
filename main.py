@@ -56,7 +56,11 @@ def get_team_scores(team, time):
 		req = requests.get('{base_url}teams/{team_id}/fixtures?timeFrame=p{time}'.format(
 			base_url=BASE_URL, team_id=team_id, time=time), headers=headers)
 		if req.status_code == 200:
-			print_team_scores(req.json())
+			team_scores = req.json()
+			if len(team_scores["fixtures"]) == 0:
+				click.secho("No action during past week. Change the time parameter to get more fixtures.", fg="red", bold=True)
+			else:
+				print_team_scores(team_scores)
 		else:
 			click.secho("No data for the team. Please check the team code.", fg="red", bold=True)
 	else:
