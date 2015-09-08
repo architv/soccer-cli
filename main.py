@@ -42,7 +42,8 @@ def print_live_scores(live_scores):
             click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]),
                 bold=True, fg="red", nl=False)
             click.secho("vs\t", nl=False)
-            click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]), fg="blue", nl=False)
+            click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]),
+                fg="blue", nl=False)
         else:
             click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]),
                 fg="blue", nl=False)
@@ -63,13 +64,16 @@ def get_team_scores(team, time):
         if req.status_code == 200:
             team_scores = req.json()
             if len(team_scores["fixtures"]) == 0:
-                click.secho("No action during past week. Change the time parameter to get more fixtures.", fg="red", bold=True)
+                click.secho("No action during past week. Change the time \
+                    parameter to get more fixtures.", fg="red", bold=True)
             else:
                 print_team_scores(team_scores)
         else:
-            click.secho("No data for the team. Please check the team code.", fg="red", bold=True)
+            click.secho("No data for the team. Please check the team code.",
+                fg="red", bold=True)
     else:
-        click.secho("No data for the team. Please check the team code.", fg="red", bold=True)
+        click.secho("No data for the team. Please check the team code.",
+            fg="red", bold=True)
 
 
 def print_team_scores(team_scores):
@@ -80,7 +84,7 @@ def print_team_scores(team_scores):
             click.echo()
             click.secho("%s\t" % score["date"].split('T')[0], fg="green", nl=False)
             if score["result"]["goalsHomeTeam"] > score["result"]["goalsAwayTeam"]:
-                click.secho('%-20s %-5d' % (score["homeTeamName"], score["result"]["goalsHomeTeam"]),
+                click.secho('%-20s %-5d' % (score["homeTeamName"],score["result"]["goalsHomeTeam"]),
                     bold=True, fg="red", nl=False)
                 click.secho("vs\t", nl=False)
                 click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"], score["awayTeamName"]), fg="blue")
@@ -101,7 +105,8 @@ def get_standings(league):
     """ Queries the API and gets the standings for a particular league """
 
     if not league:
-        click.secho("Please specify a league. Example --standings --league=EPL", fg="red", bold=True)
+        click.secho("Please specify a league. Example --standings --league=EPL",
+            fg="red", bold=True)
         return
 
     league_id = LEAGUE_IDS[league]
@@ -110,7 +115,8 @@ def get_standings(league):
     if req.status_code == 200:
         print_standings(req.json(), league)
     else:
-        click.secho("No standings availble for {league}.".format(league=league), fg="red", bold=True)
+        click.secho("No standings availble for {league}.".format(league=league),
+            fg="red", bold=True)
 
 
 def print_standings(league_table, league):
@@ -138,7 +144,8 @@ def print_standings(league_table, league):
 
 
 def get_scores(league, time):
-    """ Queries the API and fetches the scores for fixtures based upon the league and time parameter """
+    """ Queries the API and fetches the scores for fixtures
+    based upon the league and time parameter """
 
     if league:
         league_id = LEAGUE_IDS[league]
@@ -147,7 +154,8 @@ def get_scores(league, time):
 
         # no fixtures in the past wee. display a help message and return
         if len(fixtures_results["fixtures"]) == 0:
-            click.secho("No {league} matches in the past week.".format(league=league), fg="red", bold=True)
+            click.secho("No {league} matches in the past week.".format(league=league),
+                fg="red", bold=True)
             return
 
         print_league_scores(fixtures_results)
