@@ -45,7 +45,7 @@ def print_live_scores(live_scores):
             click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]), fg="blue", nl=False)
         else:
             click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]),
-                 fg="blue", nl=False)
+                fg="blue", nl=False)
             click.secho("vs\t", nl=False)
             click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]),
                 bold=True, fg="red", nl=False)
@@ -117,7 +117,7 @@ def print_standings(league_table, league):
     """ Prints the league standings in a pretty way """
 
     click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
-                ( "POS", "CLUB", "PLAYED", "GOAL DIFF", "POINTS"))
+                ("POS", "CLUB", "PLAYED", "GOAL DIFF", "POINTS"))
     positionlist = [team["position"] for team in league_table["standing"]]
     for team in league_table["standing"]:
         if LEAGUE_PROPERTIES[league]["cl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["cl"][1]:
