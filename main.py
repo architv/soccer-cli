@@ -123,24 +123,27 @@ def print_standings(league_table, league):
     """ Prints the league standings in a pretty way """
 
     click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
-                ("POS", "CLUB", "PLAYED", "GOAL DIFF", "POINTS"))
+                ( "POS", "CLUB", "PLAYED", "GOAL DIFF", "POINTS"))
     positionlist = [team["position"] for team in league_table["standing"]]
     for team in league_table["standing"]:
+        if team["goalDifference"] >= 0:
+            team["goalDifference"] = ' ' + str(team["goalDifference"])
         if LEAGUE_PROPERTIES[league]["cl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["cl"][1]:
-            click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
+            click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                 (str(team["position"]), team["teamName"],
-                str(team["playedGames"]), str(team["goalDifference"]), str(team["points"])),
+                str(team["playedGames"]), team["goalDifference"],str(team["points"])),
                 bold=True, fg="green")
         elif LEAGUE_PROPERTIES[league]["rl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["rl"][1]:  # 5-15 in BL, 5-17 in others
-            click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
+            click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                 (str(team["position"]), team["teamName"],
-                str(team["playedGames"]), str(team["goalDifference"]), str(team["points"])),
+                str(team["playedGames"]), team["goalDifference"],str(team["points"])),
                 fg="red")
         else:
-            click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
+            click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                 (str(team["position"]), team["teamName"],
-                str(team["playedGames"]), str(team["goalDifference"]), str(team["points"])),
+                str(team["playedGames"]), team["goalDifference"],str(team["points"])),
                 fg="blue")
+
 
 
 def get_scores(league, time):
