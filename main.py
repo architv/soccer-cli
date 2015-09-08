@@ -123,7 +123,7 @@ def print_standings(league_table, league):
     """ Prints the league standings in a pretty way """
 
     click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
-                ( "POS", "CLUB", "PLAYED", "GOAL DIFF", "POINTS"))
+                ("POS", "CLUB", "PLAYED", "GOAL DIFF", "POINTS"))
     positionlist = [team["position"] for team in league_table["standing"]]
     for team in league_table["standing"]:
         if team["goalDifference"] >= 0:
