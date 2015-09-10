@@ -59,8 +59,8 @@ $ soccer --live
 ### Get scores for a particular league
 
 ```bash
-$ soccer --league=BL # BL is the lague code for Bundesliga
-$ soccer --league=FL --time=15 # get scores for all the French Ligue games over the apst 15 days
+$ soccer --league=BL # BL is the league code for Bundesliga
+$ soccer --league=FL --time=15 # get scores for all the French Ligue games over the past 15 days
 ```
 
 ### Get scores for all seven leagues with a set time period
