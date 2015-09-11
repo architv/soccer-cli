@@ -156,21 +156,26 @@ def get_scores(league, time):
 
     if league:
         league_id = LEAGUE_IDS[league]
-        fixtures_results = requests.get('{base_url}soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
-            base_url=BASE_URL, id=league_id, time=str(time)), headers=headers).json()
-
-        # no fixtures in the past wee. display a help message and return
-        if len(fixtures_results["fixtures"]) == 0:
-            click.secho("No {league} matches in the past week.".format(league=league),
+        req = requests.get('{base_url}soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
+            base_url=BASE_URL, id=league_id, time=str(time)), headers=headers)
+        if req.status_code == requests.codes.ok:
+            fixtures_results = req.json()
+            # no fixtures in the past wee. display a help message and return
+            if len(fixtures_results["fixtures"]) == 0:
+                click.secho("No {league} matches in the past week.".format(league=league),
+                    fg="red", bold=True)
+            else:
+                print_league_scores(fixtures_results)
+        else:
+            click.secho("No data for the given league",
                 fg="red", bold=True)
-            return
-
-        print_league_scores(fixtures_results)
         return
 
-    fixtures_results = requests.get('{base_url}fixtures?timeFrame=p{time}'.format(
-        base_url=BASE_URL, time=str(time)), headers=headers).json()
-    print_league_scores(fixtures_results)
+    req = requests.get('{base_url}fixtures?timeFrame=p{time}'.format(
+        base_url=BASE_URL, time=str(time)), headers=headers)
+    if req.status_code == requests.codes.ok:
+            fixtures_results = req.json()
+            print_league_scores(fixtures_results)
 
 
 def print_league_scores(total_data):
