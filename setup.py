@@ -32,7 +32,7 @@ setup(
     keywords = "soccer football espn scores live tool cli",
     author_email='architv07@gmail.com',
     url='https://github.com/architv/soccer-cli',
-    py_modules=['main', 'leagueids', 'authtoken', 'teamnames', 'leagueproperties'],
+    py_modules=['main', 'leagueids', 'teamnames', 'leagueproperties'],
     install_requires=[
         "click>=5.0",
         "requests==2.7.0"

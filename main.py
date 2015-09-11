@@ -2,9 +2,9 @@
 
 import click
 import json
+import os
 import requests
 
-import authtoken
 import leagueids
 import leagueproperties
 import teamnames
@@ -15,8 +15,15 @@ LEAGUE_IDS = leagueids.LEAGUE_IDS
 TEAM_NAMES = teamnames.team_names
 LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 
+class APITokenException(Exception):
+    pass
+
+auth_token = os.environ.get('API_TOKEN')
+if not auth_token:
+    raise APITokenException('No API Token found.')
+
 headers = {
-    'X-Auth-Token': authtoken.API_TOKEN
+    'X-Auth-Token': auth_token
 }
 
 
