@@ -25,8 +25,7 @@ headers = {
 
 
 def get_live_scores(output):
-    """ Gets the live scores """
-
+    """Gets the live scores"""
     req = requests.get(LIVE_URL)
     if req.status_code == requests.codes.ok:
         scores = req.json()
@@ -39,8 +38,7 @@ def get_live_scores(output):
 
 
 def stdout_live_scores(live_scores):
-    """ Prints the live scores in a pretty format """
-
+    """Prints the live scores in a pretty format"""
     for game in live_scores["games"]:
         click.echo()
         click.secho("%s\t" % game["league"], fg="green", nl=False)
@@ -60,7 +58,7 @@ def stdout_live_scores(live_scores):
         click.echo()
 
 def csv_live_scores(live_scores):
-    """ Store output of live scores to a CSV file"""
+    """Store output of live scores to a CSV file"""
     today_datetime = datetime.datetime.now()
     today_date = '_'.join([str(today_datetime.year), str(today_datetime.month),
                            str(today_datetime.day)])
@@ -85,7 +83,6 @@ def json_live_scores(live_scores):
 
 def get_team_scores(team, time, output):
     """ Queries the API and gets the particular team scores """
-
     team_id = TEAM_NAMES.get(team, None)
     if team_id:
         req = requests.get('{base_url}teams/{team_id}/fixtures?timeFrame=p{time}'.format(
@@ -93,10 +90,10 @@ def get_team_scores(team, time, output):
         if req.status_code == requests.codes.ok:
             team_scores = req.json()
             if len(team_scores["fixtures"]) == 0:
-                click.secho("No action during past week. Change the time \
-                    parameter to get more fixtures.", fg="red", bold=True)
+                click.secho("No action during past week. Change the time "
+                            "parameter to get more fixtures.", fg="red", bold=True)
             else:
-                print_team_scores(team_scores)
+                globals()[output + '_team_scores'](team_scores, time)
         else:
             click.secho("No data for the team. Please check the team code.",
                 fg="red", bold=True)
@@ -105,9 +102,8 @@ def get_team_scores(team, time, output):
             fg="red", bold=True)
 
 
-def print_team_scores(team_scores):
+def stdout_team_scores(team_scores, time=None):
     """ Prints the teams scores in a pretty format """
-
     for score in team_scores["fixtures"]:
         if score["status"] == "FINISHED":
             click.echo()
@@ -132,6 +128,35 @@ def print_team_scores(team_scores):
                     score["awayTeamName"]), bold=True, fg="yellow")
             click.echo()
 
+def csv_team_scores(team_scores, time):
+    """Store output of team scores to a CSV file"""
+    output_filename = 'team_scores_' + str(time) + '.csv'
+    headers = ['Date', 'Home Team Name', 'Home Team Goals', 'Away Team Goals',
+               'Away Team Name']
+    with open(output_filename, 'w') as csv_file:
+         writer = csv.writer(csv_file)
+         writer.writerow(headers)
+         for score in team_scores['fixtures']:
+            if score['status'] == 'FINISHED':
+                writer.writerow([score["date"].split('T')[0], score['homeTeamName'],
+                                 score['result']['goalsHomeTeam'],
+                                 score['result']['goalsAwayTeam'],
+                                 score['awayTeamName']])
+
+def json_team_scores(team_scores, time):
+    """Store output of team scores to a JSON file"""
+    output_filename = 'team_scores_' + str(time) + '.json'
+    data = []
+    for score in team_scores['fixtures']:
+        if score['status'] == 'FINISHED':
+            item = {'date': score["date"].split('T')[0], 
+                    'homeTeamName' : score['homeTeamName'],
+                    'goalsHomeTeam' : score['result']['goalsHomeTeam'],
+                    'goalsAwayTeam' : score['result']['goalsAwayTeam'],
+                    'awayTeamName' : score['awayTeamName']}
+            data.append(item)
+    with open(output_filename, 'w') as json_file:
+        json.dump({'team_scores' : data}, json_file)
 
 def get_standings(league, output):
     """ Queries the API and gets the standings for a particular league """
