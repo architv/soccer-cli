@@ -31,7 +31,12 @@ def get_live_scores():
         if len(scores["games"]) == 0:
             click.secho("No live action currently", fg="red", bold=True)
             return
-        print_live_scores(scores)
+
+        # This should be sorted by the API, but we need to be sure
+        scores = sorted(scores["games"], key=lambda x: x["league"])
+        for league, games in groupby(scores, key=lambda x: x["league"]):
+            print_league_header(league)
+            print_live_scores(games)
     else:
         click.secho("There was problem getting live scores", fg="red", bold=True)
 
@@ -39,9 +44,7 @@ def get_live_scores():
 def print_live_scores(live_scores):
     """ Prints the live scores in a pretty format """
 
-    for game in live_scores["games"]:
-        click.echo()
-        click.secho("%s\t" % game["league"], fg="green", nl=False)
+    for game in live_scores:
         if game["goalsHomeTeam"] > game["goalsAwayTeam"]:
             click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]),
                 bold=True, fg="red", nl=False)
@@ -197,13 +200,7 @@ def supported_leagues(total_data):
     # Sort the scores by league to make it easier to read
     fixtures = sorted(fixtures, key=get_league_id)
     for league, scores in groupby(fixtures, key=get_league_id):
-        
-        # Print league header
-        league_name = " {0} ".format(supported_leagues[league])
-        click.echo()
-        click.secho("{:=^56}".format(league_name), fg="green")
-        click.echo()
-
+        print_league_header(supported_leagues[league])
         for score in scores:
             yield score
 
@@ -232,6 +229,15 @@ def print_league_scores(total_data):
             click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], 
                 data["awayTeamName"]), bold=True, fg="yellow")
         click.echo()
+
+
+def print_league_header(league_name):
+    """ Print the league name in a pretty format """
+    
+    league_name = " {0} ".format(league_name)
+    click.echo()
+    click.secho("{:=^56}".format(league_name), fg="green")
+    click.echo()
 
 
 @click.command()
