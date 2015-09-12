@@ -1,28 +1,30 @@
 #!/usr/bin/env python
 
-import requests
 import click
-import leagueids
-import authtoken
 import json
-import teamnames
+import requests
+
+import authtoken
+import leagueids
 import leagueproperties
+import teamnames
 
 BASE_URL = 'http://api.football-data.org/alpha/'
 LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
+TEAM_NAMES = teamnames.team_names
+LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
+
 headers = {
     'X-Auth-Token': authtoken.API_TOKEN
 }
-TEAM_NAMES = teamnames.team_names
-LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 
 
 def get_live_scores():
     """ Gets the live scores """
 
     req = requests.get(LIVE_URL)
-    if req.status_code == 200:
+    if req.status_code == requests.codes.ok:
         scores = req.json()
         if len(scores["games"]) == 0:
             click.secho("No live action currently", fg="red", bold=True)
@@ -61,7 +63,7 @@ def get_team_scores(team, time):
     if team_id:
         req = requests.get('{base_url}teams/{team_id}/fixtures?timeFrame=p{time}'.format(
             base_url=BASE_URL, team_id=team_id, time=time), headers=headers)
-        if req.status_code == 200:
+        if req.status_code == requests.codes.ok:
             team_scores = req.json()
             if len(team_scores["fixtures"]) == 0:
                 click.secho("No action during past week. Change the time \
@@ -115,7 +117,7 @@ def get_standings(league):
     league_id = LEAGUE_IDS[league]
     req = requests.get('{base_url}soccerseasons/{id}/leagueTable'.format(
             base_url=BASE_URL, id=league_id), headers=headers)
-    if req.status_code == 200:
+    if req.status_code == requests.codes.ok:
         print_standings(req.json(), league)
     else:
         click.secho("No standings availble for {league}.".format(league=league),
