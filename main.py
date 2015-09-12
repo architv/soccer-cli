@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import click
+import csv
+import datetime
 import json
 import requests
 
@@ -22,7 +24,7 @@ headers = {
 }
 
 
-def get_live_scores():
+def get_live_scores(output):
     """ Gets the live scores """
 
     req = requests.get(LIVE_URL)
@@ -31,12 +33,12 @@ def get_live_scores():
         if len(scores["games"]) == 0:
             click.secho("No live action currently", fg="red", bold=True)
             return
-        print_live_scores(scores)
+        globals()[output + '_live_scores'](scores)
     else:
         click.secho("There was problem getting live scores", fg="red", bold=True)
 
 
-def print_live_scores(live_scores):
+def stdout_live_scores(live_scores):
     """ Prints the live scores in a pretty format """
 
     for game in live_scores["games"]:
@@ -57,8 +59,31 @@ def print_live_scores(live_scores):
         click.secho('%s' % game["time"], fg="yellow")
         click.echo()
 
+def csv_live_scores(live_scores):
+    """ Store output of live scores to a CSV file"""
+    today_datetime = datetime.datetime.now()
+    today_date = '_'.join([str(today_datetime.year), str(today_datetime.month),
+                           str(today_datetime.day)])
+    output_filename = 'live_scores_' + today_date + '.csv'
+    headers = ['League', 'Home Team Name', 'Home Team Goals', 'Away Team Goals', 'Away Team Name']
+    with open(output_filename, 'w') as csv_file:
+         writer = csv.writer(csv_file)
+         writer.writerow(headers)
+         for game in live_scores['games']:
+            writer.writerow([game['league'], game['homeTeamName'],
+                             game['goalsHomeTeam'], game['goalsAwayTeam'],
+                             game['awayTeamName']])
 
-def get_team_scores(team, time):
+def json_live_scores(live_scores):
+    """Store output of live scores to a JSON file"""
+    today_datetime = datetime.datetime.now()
+    today_date = '_'.join([str(today_datetime.year), str(today_datetime.month),
+                           str(today_datetime.day)])
+    output_filename = 'live_scores_' + today_date + '.json'
+    with open(output_filename, 'w') as json_file:
+        json.dump(live_scores['games'], json_file)
+
+def get_team_scores(team, time, output):
     """ Queries the API and gets the particular team scores """
 
     team_id = TEAM_NAMES.get(team, None)
@@ -108,7 +133,7 @@ def print_team_scores(team_scores):
             click.echo()
 
 
-def get_standings(league):
+def get_standings(league, output):
     """ Queries the API and gets the standings for a particular league """
 
     if not league:
@@ -157,7 +182,7 @@ def print_standings(league_table, league):
                 fg="blue")
 
 
-def get_scores(league, time):
+def get_scores(league, time, output):
     """ Queries the API and fetches the scores for fixtures
     based upon the league and time parameter """
 
@@ -250,22 +275,23 @@ def print_league_scores(total_data):
 )
 @click.option('--time', default=6,
     help='The number of days in the past for which you want to see the scores')
-def main(league, time, standings, team, live):
+@click.option('-o', '--output', type=click.Choice(['stdout', 'csv', 'json']), default='stdout',
+    help='Print output in stdout, CSV or JSON format')
+def main(league, time, standings, team, live, output):
     """ A CLI for live and past football scores from various football leagues """
-
     if live:
-        get_live_scores()
+        get_live_scores(output)
         return
 
     if standings:
-        get_standings(league)
+        get_standings(league, output)
         return
 
     if team:
-        get_team_scores(team, time)
+        get_team_scores(team, time, output)
         return
 
-    get_scores(league, time)
+    get_scores(league, time, output)
 
 if __name__ == '__main__':
     main()
