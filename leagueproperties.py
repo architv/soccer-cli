@@ -32,6 +32,6 @@ LEAGUE_PROPERTIES = {
     "DED": {
         "rl": [16, 18],
         "cl": [1, 2],
-        "el": [3, 4]
+        "el": [3, 3]
     }
 }
