@@ -9,6 +9,8 @@ import leagueids
 import leagueproperties
 import teamnames
 
+from itertools import groupby
+
 BASE_URL = 'http://api.football-data.org/alpha/'
 LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
@@ -173,10 +175,33 @@ def get_scores(league, time):
     print_league_scores(fixtures_results)
 
 
+def supported_leagues(total_data):
+    """ Filters out scores of unsupported leagues """
+
+    supported_leagues = {val: key for key, val in LEAGUE_IDS.items()}
+
+    get_league_id = lambda x: int(x["_links"]["soccerseason"]["href"].split("/")[-1])
+    fixtures = (fixture for fixture in total_data["fixtures"]
+                if get_league_id(fixture) in supported_leagues)
+
+    # Sort the scores by league to make it easier to read
+    fixtures = sorted(fixtures, key=get_league_id)
+    for league, scores in groupby(fixtures, key=get_league_id):
+        
+        # Print league header
+        league_name = " {0} ".format(supported_leagues[league])
+        click.echo()
+        click.secho("{:=^56}".format(league_name), fg="green")
+        click.echo()
+
+        for score in scores:
+            yield score
+
+
 def print_league_scores(total_data):
     """ Prints the data in a pretty format """
 
-    for data in total_data["fixtures"]:
+    for data in supported_leagues(total_data):
         if data["result"]["goalsHomeTeam"] > data["result"]["goalsAwayTeam"]:
             click.secho('%-20s %-5d' % (data["homeTeamName"], 
                 data["result"]["goalsHomeTeam"]),
@@ -214,7 +239,7 @@ def print_league_scores(total_data):
     )
 )
 @click.option('--time', default=6,
-    help='The number of days for which you want to see the scores')
+    help='The number of days in the past for which you want to see the scores')
 def main(league, time, standings, team, live):
     """ A CLI for live and past football scores from various football leagues """
 
