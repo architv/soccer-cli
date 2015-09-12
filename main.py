@@ -140,6 +140,11 @@ def print_standings(league_table, league):
                 (str(team["position"]), team["teamName"],
                 str(team["playedGames"]), team["goalDifference"],str(team["points"])),
                 bold=True, fg="green")
+        elif LEAGUE_PROPERTIES[league]["el"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["el"][1]:
+            click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
+                (str(team["position"]), team["teamName"],
+                str(team["playedGames"]), team["goalDifference"],str(team["points"])),
+                fg="yellow")
         elif LEAGUE_PROPERTIES[league]["rl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["rl"][1]:  # 5-15 in BL, 5-17 in others
             click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                 (str(team["position"]), team["teamName"],
