@@ -4,9 +4,10 @@ import click
 import csv
 import datetime
 import json
+import os
 import requests
+import sys
 
-import authtoken
 import leagueids
 import leagueproperties
 import teamnames
@@ -19,8 +20,20 @@ LEAGUE_IDS = leagueids.LEAGUE_IDS
 TEAM_NAMES = teamnames.team_names
 LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 
+try:
+    api_token = os.environ.get('SOCCER_CLI_API_TOKEN')
+except:
+    import config
+    api_token = config.footballdata.get('SOCCER_CLI_API_TOKEN')
+
+if not api_token:
+    print ('No API Token detected. Please visit {0} and get an API Token, '
+           'which will be used by the Soccer CLI to get access to the data'
+           .format(BASE_URL))
+    sys.exit(1)
+
 headers = {
-    'X-Auth-Token': authtoken.API_TOKEN
+    'X-Auth-Token': api_token
 }
 
 
