@@ -21,8 +21,8 @@ TEAM_NAMES = teamnames.team_names
 LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 
 try:
-    api_token = os.environ.get('SOCCER_CLI_API_TOKEN')
-except:
+    api_token = os.environ['SOCCER_CLI_API_TOKEN']
+except KeyError:
     from config import config
     api_token = config.get('SOCCER_CLI_API_TOKEN')
 
