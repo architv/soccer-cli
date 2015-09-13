@@ -23,8 +23,8 @@ LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 try:
     api_token = os.environ.get('SOCCER_CLI_API_TOKEN')
 except:
-    import config
-    api_token = config.footballdata.get('SOCCER_CLI_API_TOKEN')
+    from config import config
+    api_token = config.get('SOCCER_CLI_API_TOKEN')
 
 if not api_token:
     print ('No API Token detected. Please visit {0} and get an API Token, '
