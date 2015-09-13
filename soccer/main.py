@@ -44,18 +44,19 @@ def stdout_live_scores(live_scores):
         click.secho("%s\t" % game["league"], fg="green", nl=False)
         if game["goalsHomeTeam"] > game["goalsAwayTeam"]:
             click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]),
-                bold=True, fg="red", nl=False)
+                        bold=True, fg="red", nl=False)
             click.secho("vs\t", nl=False)
             click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]),
-                fg="blue", nl=False)
+                        fg="blue", nl=False)
         else:
             click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]),
-                fg="blue", nl=False)
+                        fg="blue", nl=False)
             click.secho("vs\t", nl=False)
             click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]),
-                bold=True, fg="red", nl=False)
+                        bold=True, fg="red", nl=False)
         click.secho('%s' % game["time"], fg="yellow")
         click.echo()
+
 
 def csv_live_scores(live_scores):
     """Store output of live scores to a CSV file"""
@@ -65,12 +66,13 @@ def csv_live_scores(live_scores):
     output_filename = 'live_scores_{0}.csv'.format(today_date)
     headers = ['League', 'Home Team Name', 'Home Team Goals', 'Away Team Goals', 'Away Team Name']
     with open(output_filename, 'w') as csv_file:
-         writer = csv.writer(csv_file)
-         writer.writerow(headers)
-         for game in live_scores['games']:
+        writer = csv.writer(csv_file)
+        writer.writerow(headers)
+        for game in live_scores['games']:
             writer.writerow([game['league'], game['homeTeamName'],
-                             game['goalsHomeTeam'], game['goalsAwayTeam'],
-                             game['awayTeamName']])
+                            game['goalsHomeTeam'], game['goalsAwayTeam'],
+                            game['awayTeamName']])
+
 
 def json_live_scores(live_scores):
     """Store output of live scores to a JSON file"""
@@ -80,6 +82,7 @@ def json_live_scores(live_scores):
     output_filename = 'live_scores_{0}.json'.format(today_date)
     with open(output_filename, 'w') as json_file:
         json.dump(live_scores['games'], json_file)
+
 
 def get_team_scores(team, time, output):
     """ Queries the API and gets the particular team scores """
@@ -96,10 +99,10 @@ def get_team_scores(team, time, output):
                 globals()[output + '_team_scores'](team_scores, time)
         else:
             click.secho("No data for the team. Please check the team code.",
-                fg="red", bold=True)
+                        fg="red", bold=True)
     else:
         click.secho("No data for the team. Please check the team code.",
-            fg="red", bold=True)
+                    fg="red", bold=True)
 
 
 def stdout_team_scores(team_scores, time):
@@ -109,24 +112,25 @@ def stdout_team_scores(team_scores, time):
             click.echo()
             click.secho("%s\t" % score["date"].split('T')[0], fg="green", nl=False)
             if score["result"]["goalsHomeTeam"] > score["result"]["goalsAwayTeam"]:
-                click.secho('%-20s %-5d' % (score["homeTeamName"], 
+                click.secho('%-20s %-5d' % (score["homeTeamName"],
                     score["result"]["goalsHomeTeam"]), bold=True, fg="red", nl=False)
                 click.secho("vs\t", nl=False)
-                click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"], 
+                click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"],
                     score["awayTeamName"]), fg="blue")
             elif score["result"]["goalsHomeTeam"] < score["result"]["goalsAwayTeam"]:
-                click.secho('%-20s %-5d' % (score["homeTeamName"], 
+                click.secho('%-20s %-5d' % (score["homeTeamName"],
                     score["result"]["goalsHomeTeam"]), fg="blue", nl=False)
                 click.secho("vs\t", nl=False)
-                click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"], 
+                click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"],
                     score["awayTeamName"]), bold=True, fg="red")
             else:
-                click.secho('%-20s %-5d' % (score["homeTeamName"], 
+                click.secho('%-20s %-5d' % (score["homeTeamName"],
                     score["result"]["goalsHomeTeam"]), bold=True, fg="yellow", nl=False)
                 click.secho("vs\t", nl=False)
-                click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"], 
+                click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"],
                     score["awayTeamName"]), bold=True, fg="yellow")
             click.echo()
+
 
 def csv_team_scores(team_scores, time):
     """Store output of team scores to a CSV file"""
@@ -134,14 +138,15 @@ def csv_team_scores(team_scores, time):
     headers = ['Date', 'Home Team Name', 'Home Team Goals', 'Away Team Goals',
                'Away Team Name']
     with open(output_filename, 'w') as csv_file:
-         writer = csv.writer(csv_file)
-         writer.writerow(headers)
-         for score in team_scores['fixtures']:
+        writer = csv.writer(csv_file)
+        writer.writerow(headers)
+        for score in team_scores['fixtures']:
             if score['status'] == 'FINISHED':
                 writer.writerow([score["date"].split('T')[0], score['homeTeamName'],
                                  score['result']['goalsHomeTeam'],
                                  score['result']['goalsAwayTeam'],
                                  score['awayTeamName']])
+
 
 def json_team_scores(team_scores, time):
     """Store output of team scores to a JSON file"""
@@ -149,20 +154,21 @@ def json_team_scores(team_scores, time):
     data = []
     for score in team_scores['fixtures']:
         if score['status'] == 'FINISHED':
-            item = {'date': score["date"].split('T')[0], 
-                    'homeTeamName' : score['homeTeamName'],
-                    'goalsHomeTeam' : score['result']['goalsHomeTeam'],
-                    'goalsAwayTeam' : score['result']['goalsAwayTeam'],
-                    'awayTeamName' : score['awayTeamName']}
+            item = {'date': score["date"].split('T')[0],
+                    'homeTeamName': score['homeTeamName'],
+                    'goalsHomeTeam': score['result']['goalsHomeTeam'],
+                    'goalsAwayTeam': score['result']['goalsAwayTeam'],
+                    'awayTeamName': score['awayTeamName']}
             data.append(item)
     with open(output_filename, 'w') as json_file:
-        json.dump({'team_scores' : data}, json_file)
+        json.dump({'team_scores': data}, json_file)
+
 
 def get_standings(league, output):
     """ Queries the API and gets the standings for a particular league """
     if not league:
         click.secho("Please specify a league. Example --standings --league=EPL",
-            fg="red", bold=True)
+                    fg="red", bold=True)
         return
     league_id = LEAGUE_IDS[league]
     req = requests.get('{base_url}soccerseasons/{id}/leagueTable'.format(
@@ -171,7 +177,8 @@ def get_standings(league, output):
         globals()[output + '_standings'](req.json(), league)
     else:
         click.secho("No standings availble for {league}.".format(league=league),
-            fg="red", bold=True)
+                    fg="red", bold=True)
+
 
 def stdout_standings(league_table, league):
     """ Prints the league standings in a pretty way """
@@ -202,6 +209,7 @@ def stdout_standings(league_table, league):
                 str(team["playedGames"]), team["goalDifference"],str(team["points"])),
                 fg="blue")
 
+
 def csv_standings(league_table, league):
     """Store output of league standings to a CSV file"""
     output_filename = '{0}_standings.csv'.format(league)
@@ -216,18 +224,20 @@ def csv_standings(league_table, league):
                              team['goalsAgainst'], team['goalDifference'],
                              team['points']])
 
+
 def json_standings(league_table, league):
     """Store output of league standings to a JSON file"""
     output_filename = '{0}_standings.json'.format(league)
     data = []
     for team in league_table['standing']:
-        item = {'position' : team['position'], 'teamName' : team['teamName'],
-                'playedGames' : team['playedGames'], 'goalsFor' : team['goals'],
-                'goalsAgainst' : team['goalsAgainst'], 'goalDifference' : team['goalDifference'],
-                'points' : team['points']}
+        item = {'position': team['position'], 'teamName': team['teamName'],
+                'playedGames': team['playedGames'], 'goalsFor': team['goals'],
+                'goalsAgainst': team['goalsAgainst'], 'goalDifference': team['goalDifference'],
+                'points': team['points']}
         data.append(item)
     with open(output_filename, 'w') as json_file:
-        json.dump({'standings' : data}, json_file)
+        json.dump({'standings': data}, json_file)
+
 
 def get_league_scores(league, time, output):
     """Queries the API and fetches the scores for fixtures
@@ -241,12 +251,12 @@ def get_league_scores(league, time, output):
             # no fixtures in the past wee. display a help message and return
             if len(fixtures_results["fixtures"]) == 0:
                 click.secho("No {league} matches in the past week.".format(league=league),
-                    fg="red", bold=True)
+                            fg="red", bold=True)
             else:
                 globals()[output + '_league_scores'](fixtures_results, time)
         else:
             click.secho("No data for the given league",
-                fg="red", bold=True)
+                        fg="red", bold=True)
         return
 
     req = requests.get('{base_url}fixtures?timeFrame=p{time}'.format(
@@ -279,25 +289,25 @@ def stdout_league_scores(total_data, time):
     """Prints the data in a pretty format"""
     for _, data in supported_leagues(total_data):
         if data["result"]["goalsHomeTeam"] > data["result"]["goalsAwayTeam"]:
-            click.secho('%-20s %-5d' % (data["homeTeamName"], 
-                data["result"]["goalsHomeTeam"]),
-                bold=True, fg="red", nl=False)
+            click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]),
+                        bold=True, fg="red", nl=False)
             click.secho("vs\t", nl=False)
-            click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], 
-                data["awayTeamName"]), fg="blue")
+            click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"],
+                        data["awayTeamName"]), fg="blue")
         elif data["result"]["goalsHomeTeam"] < data["result"]["goalsAwayTeam"]:
             click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]),
-                fg="blue", nl=False)
+                        fg="blue", nl=False)
             click.secho("vs\t", nl=False)
-            click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], 
-                data["awayTeamName"]), bold=True, fg="red")
+            click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"],
+                        data["awayTeamName"]), bold=True, fg="red")
         else:
             click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]),
-                bold=True, fg="yellow", nl=False)
+                        bold=True, fg="yellow", nl=False)
             click.secho("vs\t", nl=False)
-            click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"], 
-                data["awayTeamName"]), bold=True, fg="yellow")
+            click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"],
+                        data["awayTeamName"]), bold=True, fg="yellow")
         click.echo()
+
 
 def csv_league_scores(total_data, time):
     """Store output of fixtures based on league and time to a CSV file"""
@@ -314,37 +324,39 @@ def csv_league_scores(total_data, time):
                              score['result']['goalsAwayTeam'],
                              score['awayTeamName']])
 
+
 def json_league_scores(total_data, time):
     """Store output of fixtures based on league and time to a JSON file"""
     output_filename = 'league_scores_{0}.json'.format(time)
     data = []
     for league, score in supported_leagues(total_data, stdout=False):
-        item = {'league': league, 'homeTeamName' : score['homeTeamName'],
-                'goalsHomeTeam' : score['result']['goalsHomeTeam'],
-                'goalsAwayTeam' : score['result']['goalsAwayTeam'],
-                'awayTeamName' : score['awayTeamName']}
+        item = {'league': league, 'homeTeamName': score['homeTeamName'],
+                'goalsHomeTeam': score['result']['goalsHomeTeam'],
+                'goalsAwayTeam': score['result']['goalsAwayTeam'],
+                'awayTeamName': score['awayTeamName']}
         data.append(item)
     with open(output_filename, 'w') as json_file:
-        json.dump({'league_scores' : data, 'time' : time}, json_file)
+        json.dump({'league_scores': data, 'time': time}, json_file)
+
 
 @click.command()
-@click.option('--live', is_flag=True, help= 'Shows live scores from various leagues')
-@click.option('--standings', is_flag=True, help= 'Standings for a particular league')
+@click.option('--live', is_flag=True, help='Shows live scores from various leagues')
+@click.option('--standings', is_flag=True, help='Standings for a particular league')
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()),
-    help= (
+    help=(
         "Choose the league whose fixtures you want to see. Bundesliga(BL), Premier League(EPL), La Liga (LLIGA),"
         "Serie A(SA), Ligue 1(FL), Eredivisie(DED), Primeira Liga(PPL), Champions League(CL)')"
     )
 )
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
-    help= (
+    help=(
         "Choose the team whose fixtures you want to see. See the various team codes listed on README')"
     )
 )
 @click.option('--time', default=6,
-    help='The number of days in the past for which you want to see the scores')
+            help='The number of days in the past for which you want to see the scores')
 @click.option('-o', '--output', type=click.Choice(['stdout', 'csv', 'json']), default='stdout',
-    help='Print output in stdout, CSV or JSON format')
+            help='Print output in stdout, CSV or JSON format')
 def main(league, time, standings, team, live, output):
     """ A CLI for live and past football scores from various football leagues """
     if live:
