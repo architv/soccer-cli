@@ -350,23 +350,27 @@ def json_league_scores(total_data, time):
 
 
 @click.command()
-@click.option('--live', is_flag=True, help='Shows live scores from various leagues')
-@click.option('--standings', is_flag=True, help='Standings for a particular league')
+@click.option('--live', is_flag=True, help="Shows live scores from various leagues")
+@click.option('--standings', is_flag=True, help="Standings for a particular league")
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()),
-    help=(
-        "Choose the league whose fixtures you want to see. Bundesliga(BL), Premier League(EPL), La Liga (LLIGA),"
-        "Serie A(SA), Ligue 1(FL), Eredivisie(DED), Primeira Liga(PPL), Champions League(CL)')"
-    )
-)
+              help=(
+                  "Choose the league whose fixtures you want to see. "
+                  "Bundesliga(BL), Premier League(EPL), La Liga(LLIGA), "
+                  "Serie A(SA), Ligue 1(FL), Eredivisie(DED), "
+                  "Primeira Liga(PPL), Champions League(CL))"
+              )
+            )
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
-    help=(
-        "Choose the team whose fixtures you want to see. See the various team codes listed on README')"
-    )
-)
+              help=(
+        "Choose the team whose fixtures you want to see. "
+        "See the various team codes listed on README')"
+              )
+              )
 @click.option('--time', default=6,
-            help='The number of days in the past for which you want to see the scores')
-@click.option('-o', '--output', type=click.Choice(['stdout', 'csv', 'json']), default='stdout',
-            help='Print output in stdout, CSV or JSON format')
+              help="The number of days in the past for which you want to see the scores")
+@click.option('-o', '--output', type=click.Choice(['stdout', 'csv', 'json']),
+              default='stdout',
+              help="Print output in stdout, CSV or JSON format")
 def main(league, time, standings, team, live, output):
     """ A CLI for live and past football scores from various football leagues """
     if live:
