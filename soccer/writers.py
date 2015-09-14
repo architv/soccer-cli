@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import click
 import csv
 import datetime
@@ -8,6 +6,7 @@ import json
 import leagueids
 import leagueproperties
 
+from abc import ABCMeta, abstractmethod
 from itertools import groupby
 
 LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
@@ -15,47 +14,43 @@ LEAGUE_IDS = leagueids.LEAGUE_IDS
 
 
 def get_writer(output):
-    if output == 'stdout':
-        return Console()
-    elif output == 'json':
-        return JSON()
-    elif output == 'csv':
-        return CSV()
-
-
-def supported_leagues(total_data, writer):
-    """Filters out scores of unsupported leagues"""
-    supported_leagues = {val: key for key, val in LEAGUE_IDS.items()}
-    get_league_id = lambda x: int(x["_links"]["soccerseason"]["href"].split("/")[-1])
-    fixtures = (fixture for fixture in total_data["fixtures"]
-                if get_league_id(fixture) in supported_leagues)
-
-    # Sort the scores by league to make it easier to read
-    fixtures = sorted(fixtures, key=get_league_id)
-    for league, scores in groupby(fixtures, key=get_league_id):
-        writer.league_header(supported_leagues[league])
-        for score in scores:
-            yield supported_leagues[league].strip(), score
-
+    return globals()[output.capitalize()]()
 
 class BaseWriter(object):
+
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
     def live_scores(self, live_scores):
         pass
 
+    @abstractmethod
     def team_scores(self, team_scores, time):
         pass
 
+    @abstractmethod
     def standings(self, league_table, league):
         pass
 
+    @abstractmethod
     def league_scores(self, total_data, time):
         pass
 
-    def league_header(self, league_name):
-        pass
+    def supported_leagues(self, total_data):
+        """Filters out scores of unsupported leagues"""
+        supported_leagues = {val: key for key, val in LEAGUE_IDS.items()}
+        get_league_id = lambda x: int(x["_links"]["soccerseason"]["href"].split("/")[-1])
+        fixtures = (fixture for fixture in total_data["fixtures"]
+                    if get_league_id(fixture) in supported_leagues)
+
+        # Sort the scores by league to make it easier to read
+        fixtures = sorted(fixtures, key=get_league_id)
+        for league, scores in groupby(fixtures, key=get_league_id):
+            for score in scores:
+                yield supported_leagues[league], score
  
 
-class Console(BaseWriter):
+class Stdout(BaseWriter):
     def live_scores(self, live_scores):
         """Prints the live scores in a pretty format"""
         for game in live_scores["games"]:
@@ -77,7 +72,7 @@ class Console(BaseWriter):
             click.echo()
 
     def team_scores(self, team_scores, time):
-        """ Prints the teams scores in a pretty format """
+        """Prints the teams scores in a pretty format"""
         for score in team_scores["fixtures"]:
             if score["status"] == "FINISHED":
                 click.echo()
@@ -133,7 +128,7 @@ class Console(BaseWriter):
 
     def league_scores(self, total_data, time):
         """Prints the data in a pretty format"""
-        for _, data in supported_leagues(total_data, self):
+        for _, data in self.supported_leagues(total_data):
             if data["result"]["goalsHomeTeam"] > data["result"]["goalsAwayTeam"]:
                 click.secho('%-20s %-5d' % (data["homeTeamName"],
                             data["result"]["goalsHomeTeam"]),
@@ -155,6 +150,21 @@ class Console(BaseWriter):
                             data["awayTeamName"]), bold=True, fg="yellow")
             click.echo()
 
+    def supported_leagues(self, total_data):
+        """Filters out scores of unsupported leagues"""
+        supported_leagues = {val: key for key, val in LEAGUE_IDS.items()}
+        get_league_id = lambda x: int(x["_links"]["soccerseason"]["href"].split("/")[-1])
+        fixtures = (fixture for fixture in total_data["fixtures"]
+                    if get_league_id(fixture) in supported_leagues)
+
+        # Sort the scores by league to make it easier to read
+        fixtures = sorted(fixtures, key=get_league_id)
+        for league, scores in groupby(fixtures, key=get_league_id):
+            league = supported_leagues[league]
+            self.league_header(league)
+            for score in scores:
+                yield league, score
+
     def league_header(self, league_name):
         """Prints the league header"""
         click.echo()
@@ -163,7 +173,7 @@ class Console(BaseWriter):
         click.echo()
 
 
-class CSV(BaseWriter):
+class Csv(BaseWriter):
     def live_scores(self, live_scores):
         """Store output of live scores to a CSV file"""
         today_datetime = datetime.datetime.now()
@@ -216,15 +226,14 @@ class CSV(BaseWriter):
         with open(output_filename, 'w') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(headers)
-            for league, score in supported_leagues(total_data, self):
-                print score
+            for league, score in self.supported_leagues(total_data, self):
                 writer.writerow([league, score['homeTeamName'],
                                  score['result']['goalsHomeTeam'],
                                  score['result']['goalsAwayTeam'],
                                  score['awayTeamName']])
 
 
-class JSON(BaseWriter):
+class Json(BaseWriter):
     def live_scores(self, live_scores):
         """Store output of live scores to a JSON file"""
         today_datetime = datetime.datetime.now()
@@ -266,7 +275,7 @@ class JSON(BaseWriter):
         """Store output of fixtures based on league and time to a JSON file"""
         output_filename = 'league_scores_{0}.json'.format(time)
         data = []
-        for league, score in supported_leagues(total_data, self):
+        for league, score in self.supported_leagues(total_data, self):
             item = {'league': league, 'homeTeamName': score['homeTeamName'],
                     'goalsHomeTeam': score['result']['goalsHomeTeam'],
                     'goalsAwayTeam': score['result']['goalsAwayTeam'],

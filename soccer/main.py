@@ -7,7 +7,7 @@ import sys
 
 import leagueids
 import teamnames
-import writers
+from writers import get_writer
 
 
 BASE_URL = 'http://api.football-data.org/alpha/'
@@ -46,7 +46,7 @@ def get_live_scores(writer):
 
 
 def get_team_scores(team, time, writer):
-    """ Queries the API and gets the particular team scores """
+    """Queries the API and gets the particular team scores"""
     team_id = TEAM_NAMES.get(team, None)
     if team_id:
         req = requests.get('{base_url}teams/{team_id}/fixtures?timeFrame=p{time}'.format(
@@ -67,7 +67,7 @@ def get_team_scores(team, time, writer):
 
 
 def get_standings(league, writer):
-    """ Queries the API and gets the standings for a particular league """
+    """Queries the API and gets the standings for a particular league"""
     if not league:
         click.secho("Please specify a league. Example --standings --league=EPL",
                     fg="red", bold=True)
@@ -83,8 +83,10 @@ def get_standings(league, writer):
 
 
 def get_league_scores(league, time, writer):
-    """Queries the API and fetches the scores for fixtures
-    based upon the league and time parameter"""
+    """
+    Queries the API and fetches the scores for fixtures
+    based upon the league and time parameter
+    """
     if league:
         league_id = LEAGUE_IDS[league]
         req = requests.get('{base_url}soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
@@ -126,9 +128,8 @@ def get_league_scores(league, time, writer):
               default='stdout',
               help="Print output in stdout, CSV or JSON format")
 def main(league, time, standings, team, live, output):
-    """ A CLI for live and past football scores from various football leagues """
-
-    writer = writers.get_writer(output)
+    """A CLI for live and past football scores from various football leagues"""
+    writer = get_writer(output)
 
     if live:
         get_live_scores(writer)
