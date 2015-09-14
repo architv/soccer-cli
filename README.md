@@ -6,6 +6,7 @@ Soccer CLI
 =====
 
 [![PyPI version](https://badge.fury.io/py/soccer-cli.svg)](http://badge.fury.io/py/soccer-cli)
+
 Soccer for Hackers - a CLI for all the football scores. 
 
 ![](http://i.imgur.com/9QbcUrj.gif)
