@@ -38,7 +38,24 @@ def supported_leagues(total_data, writer):
             yield supported_leagues[league].strip(), score
 
 
-class Console(object):
+class BaseWriter(object):
+    def live_scores(self, live_scores):
+        pass
+
+    def team_scores(self, team_scores, time):
+        pass
+
+    def standings(self, league_table, league):
+        pass
+
+    def league_scores(self, total_data, time):
+        pass
+
+    def league_header(self, league_name):
+        pass
+ 
+
+class Console(BaseWriter):
     def live_scores(self, live_scores):
         """Prints the live scores in a pretty format"""
         for game in live_scores["games"]:
@@ -146,7 +163,7 @@ class Console(object):
         click.echo()
 
 
-class CSV(object):
+class CSV(BaseWriter):
     def live_scores(self, live_scores):
         """Store output of live scores to a CSV file"""
         today_datetime = datetime.datetime.now()
@@ -206,11 +223,8 @@ class CSV(object):
                                  score['result']['goalsAwayTeam'],
                                  score['awayTeamName']])
 
-    def league_header(self, league_name):
-        pass
 
-
-class JSON(object):
+class JSON(BaseWriter):
     def live_scores(self, live_scores):
         """Store output of live scores to a JSON file"""
         today_datetime = datetime.datetime.now()
@@ -260,6 +274,3 @@ class JSON(object):
             data.append(item)
         with open(output_filename, 'w') as json_file:
             json.dump({'league_scores': data, 'time': time}, json_file)
-
-    def league_header(self, league_name):
-        pass
