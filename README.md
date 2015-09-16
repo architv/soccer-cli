@@ -87,7 +87,6 @@ $ soccer --help
 - PPL: Primeira Liga (Portuguese League)
 - DED: Eredivisie (Dutch League)
 - CL: Champions League
-
 ### Team and team codes
 
 For a full list of supported team and team codes [see this](teamcodes.json).
