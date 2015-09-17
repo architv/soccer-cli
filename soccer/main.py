@@ -7,7 +7,9 @@ import sys
 
 import leagueids
 import teamnames
-import writers
+
+from exceptions import IncorrectParametersException
+from writers import get_writer
 
 
 BASE_URL = 'http://api.football-data.org/alpha/'
@@ -46,7 +48,7 @@ def get_live_scores(writer):
 
 
 def get_team_scores(team, time, writer):
-    """ Queries the API and gets the particular team scores """
+    """Queries the API and gets the particular team scores"""
     team_id = TEAM_NAMES.get(team, None)
     if team_id:
         req = requests.get('{base_url}teams/{team_id}/fixtures?timeFrame=p{time}'.format(
@@ -67,11 +69,7 @@ def get_team_scores(team, time, writer):
 
 
 def get_standings(league, writer):
-    """ Queries the API and gets the standings for a particular league """
-    if not league:
-        click.secho("Please specify a league. Example --standings --league=EPL",
-                    fg="red", bold=True)
-        return
+    """Queries the API and gets the standings for a particular league"""
     league_id = LEAGUE_IDS[league]
     req = requests.get('{base_url}soccerseasons/{id}/leagueTable'.format(
         base_url=BASE_URL, id=league_id), headers=headers)
@@ -83,8 +81,10 @@ def get_standings(league, writer):
 
 
 def get_league_scores(league, time, writer):
-    """Queries the API and fetches the scores for fixtures
-    based upon the league and time parameter"""
+    """
+    Queries the API and fetches the scores for fixtures
+    based upon the league and time parameter
+    """
     if league:
         league_id = LEAGUE_IDS[league]
         req = requests.get('{base_url}soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
@@ -122,27 +122,40 @@ def get_league_scores(league, time, writer):
                 "See the various team codes listed on README')"))
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
-@click.option('-o', '--output', type=click.Choice(['stdout', 'csv', 'json']),
-              default='stdout',
-              help="Print output in stdout, CSV or JSON format")
-def main(league, time, standings, team, live, output):
-    """ A CLI for live and past football scores from various football leagues """
+@click.option('--stdout', 'output_format', flag_value='stdout',
+              default=True, help="Print to stdout")
+@click.option('--csv', 'output_format', flag_value='csv',
+               help='Output in CSV format')
+@click.option('--json', 'output_format', flag_value='json',
+              help='Output in JSON format')
+@click.option('-o', '--output-file', default=None,
+              help="Save output to a file (only if csv or json option is provided)")
+def main(league, time, standings, team, live, output_format, output_file):
+    """A CLI for live and past football scores from various football leagues"""
+    try:
+        if output_format == 'stdout' and output_file:
+            raise IncorrectParametersException('Printing output to stdout and '
+                                               'saving to a file are mutually exclusive')
+        writer = get_writer(output_format, output_file)
 
-    writer = writers.get_writer(output)
+        if live:
+            get_live_scores(writer)
+            return
 
-    if live:
-        get_live_scores(writer)
-        return
+        if standings:
+            if not league:
+                raise IncorrectParametersException('Please specify a league. '
+                                                   'Example --standings --league=EPL')
+            get_standings(league, writer)
+            return
 
-    if standings:
-        get_standings(league, writer)
-        return
+        if team:
+            get_team_scores(team, time, writer)
+            return
 
-    if team:
-        get_team_scores(team, time, writer)
-        return
-
-    get_league_scores(league, time, writer)
+        get_league_scores(league, time, writer)
+    except IncorrectParametersException as e:
+        click.secho(e.message, fg="red", bold=True)
 
 if __name__ == '__main__':
     main()

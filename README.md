@@ -25,8 +25,13 @@ $ pip install soccer-cli
 For building from source, you'll need to get your API key from [here](http://api.football-data.org/register) and create a file `config.py` in the soccer package directory (`soccer/config.py`) with the single line
 ```
 config = {
-    "SOCCER_CLI_API_TOKEN": "<YOUR-API-TOKEN>",
+    "SOCCER_CLI_API_TOKEN": "<YOUR_API_TOKEN>",
 }
+```
+
+An alternate option of storing your API key is to store it as an environment variable. For Linux and Mac OS X, you can do the following:
+```
+export SOCCER_CLI_API_TOKEN="<YOUR_API_TOKEN>"
 ```
 
 ```bash
@@ -44,13 +49,13 @@ Usage
 ### Get standings for a league
 
 ```bash
-$ soccer --standings --league=EPL #EPL is the league code for English Premier League
+$ soccer --standings --league=EPL # EPL is the league code for English Premier League
 ```
 
 ### Get scores for a particular team
 
 ```bash
-$ soccer --team=MUFC #MUFC is the team code for Manchester United
+$ soccer --team=MUFC # MUFC is the team code for Manchester United
 $ soccer --team=PSG --time=10 # scores for all the Paris Saint-Germain games over the past 10 days
 ```
 
@@ -121,4 +126,3 @@ Support
 If you like my work, please support the project by donating.
 
 - https://gratipay.com/~architv
-
