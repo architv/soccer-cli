@@ -172,8 +172,7 @@ class Csv(BaseWriter):
             with open(self.output_filename, 'w') as csv_file:
                 writer = csv.writer(csv_file)
                 for row in result:
-                    row = [unicode(s) for s in row]
-                    row = [s.encode('utf-8') for s in row]
+                    row = [unicode(s).encode('utf-8') for s in row]
                     writer.writerow(row)
 
     def live_scores(self, live_scores):
