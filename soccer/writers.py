@@ -8,20 +8,22 @@ import leagueproperties
 
 from abc import ABCMeta, abstractmethod
 from itertools import groupby
+from collections import namedtuple
 
 LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 LEAGUE_IDS = leagueids.LEAGUE_IDS
 
 
-def get_writer(output_format='stdout',output_file=None):
+def get_writer(output_format='stdout', output_file=None):
     return globals()[output_format.capitalize()](output_file)
+
 
 class BaseWriter(object):
 
     __metaclass__ = ABCMeta
 
     def __init__(self, output_file):
-        self.output_filename = output_file 
+        self.output_filename = output_file
 
     @abstractmethod
     def live_scores(self, live_scores):
@@ -52,54 +54,44 @@ class BaseWriter(object):
             league = supported_leagues[league]
             for score in scores:
                 yield league, score
- 
+
 
 class Stdout(BaseWriter):
+
+    def __init__(self, output_file):
+        self.Result = namedtuple("Result", "homeTeam, goalsHomeTeam, awayTeam, goalsAwayTeam")
+
+        enums = dict(
+            WIN="red",
+            LOSE="blue",
+            TIE="yellow",
+            MISC="green",
+            TIME="yellow",
+            CL_POSITION="green",
+            EL_POSITION="yellow",
+            RL_POSITION="red",
+            POSITION="blue"
+        )
+        self.colors = type('Enum', (), enums)
+
     def live_scores(self, live_scores):
         """Prints the live scores in a pretty format"""
-        for game in live_scores["games"]:
-            click.echo()
-            click.secho("%s\t" % game["league"], fg="green", nl=False)
-            if game["goalsHomeTeam"] > game["goalsAwayTeam"]:
-                click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]),
-                            bold=True, fg="red", nl=False)
-                click.secho("vs\t", nl=False)
-                click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]),
-                            fg="blue", nl=False)
-            else:
-                click.secho('%-20s %-5d' % (game["homeTeamName"], game["goalsHomeTeam"]),
-                            fg="blue", nl=False)
-                click.secho("vs\t", nl=False)
-                click.secho('%d %-10s\t' % (game["goalsAwayTeam"], game["awayTeamName"]),
-                            bold=True, fg="red", nl=False)
-            click.secho('%s' % game["time"], fg="yellow")
-            click.echo()
+        scores = sorted(live_scores["games"], key=lambda x: x["league"])
+        for league, games in groupby(scores, key=lambda x: x["league"]):
+            self.league_header(league)
+            for game in games:
+                self.scores(self.parse_result(game), add_new_line=False)
+                click.secho('   %s' % game["time"], fg=self.colors.TIME)
+                click.echo()
 
     def team_scores(self, team_scores, time):
         """Prints the teams scores in a pretty format"""
         for score in team_scores["fixtures"]:
             if score["status"] == "FINISHED":
                 click.echo()
-                click.secho("%s\t" % score["date"].split('T')[0], fg="green", nl=False)
-                if score["result"]["goalsHomeTeam"] > score["result"]["goalsAwayTeam"]:
-                    click.secho('%-20s %-5d' % (score["homeTeamName"],
-                                score["result"]["goalsHomeTeam"]), bold=True, fg="red", nl=False)
-                    click.secho("vs\t", nl=False)
-                    click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"],
-                                score["awayTeamName"]), fg="blue")
-                elif score["result"]["goalsHomeTeam"] < score["result"]["goalsAwayTeam"]:
-                    click.secho('%-20s %-5d' % (score["homeTeamName"],
-                                score["result"]["goalsHomeTeam"]), fg="blue", nl=False)
-                    click.secho("vs\t", nl=False)
-                    click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"],
-                                score["awayTeamName"]), bold=True, fg="red")
-                else:
-                    click.secho('%-20s %-5d' % (score["homeTeamName"],
-                                score["result"]["goalsHomeTeam"]), bold=True, fg="yellow", nl=False)
-                    click.secho("vs\t", nl=False)
-                    click.secho('%d %-10s\t' % (score["result"]["goalsAwayTeam"],
-                                score["awayTeamName"]), bold=True, fg="yellow")
-                click.echo()
+                click.secho("%s\t" % score["date"].split('T')[0],
+                            fg=self.colors.TIME, nl=False)
+                self.scores(self.parse_result(score))
 
     def standings(self, league_table, league):
         """ Prints the league standings in a pretty way """
@@ -113,52 +105,73 @@ class Stdout(BaseWriter):
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                             (str(team["position"]), team["teamName"],
                              str(team["playedGames"]), team["goalDifference"], str(team["points"])),
-                            bold=True, fg="green")
+                            bold=True, fg=self.colors.CL_POSITION)
             elif LEAGUE_PROPERTIES[league]["el"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["el"][1]:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                             (str(team["position"]), team["teamName"],
                              str(team["playedGames"]), team["goalDifference"], str(team["points"])),
-                            fg="yellow")
+                            fg=self.colors.EL_POSITION)
             elif LEAGUE_PROPERTIES[league]["rl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["rl"][1]:  # 5-15 in BL, 5-17 in others
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                             (str(team["position"]), team["teamName"],
                              str(team["playedGames"]), team["goalDifference"], str(team["points"])),
-                            fg="red")
+                            fg=self.colors.RL_POSITION)
             else:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                             (str(team["position"]), team["teamName"],
                              str(team["playedGames"]), team["goalDifference"], str(team["points"])),
-                            fg="blue")
+                            fg=self.colors.POSITION)
 
     def league_scores(self, total_data, time):
         """Prints the data in a pretty format"""
         seen = set()
         for league, data in self.supported_leagues(total_data):
             if league not in seen:
-                seen.add(league) 
-                league_name = " {0} ".format(league)
-                click.secho("{:=^56}".format(league_name), fg="green")
-                click.echo()
-            if data["result"]["goalsHomeTeam"] > data["result"]["goalsAwayTeam"]:
-                click.secho('%-20s %-5d' % (data["homeTeamName"],
-                            data["result"]["goalsHomeTeam"]),
-                            bold=True, fg="red", nl=False)
-                click.secho("vs\t", nl=False)
-                click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"],
-                            data["awayTeamName"]), fg="blue")
-            elif data["result"]["goalsHomeTeam"] < data["result"]["goalsAwayTeam"]:
-                click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]),
-                            fg="blue", nl=False)
-                click.secho("vs\t", nl=False)
-                click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"],
-                            data["awayTeamName"]), bold=True, fg="red")
-            else:
-                click.secho('%-20s %-5d' % (data["homeTeamName"], data["result"]["goalsHomeTeam"]),
-                            bold=True, fg="yellow", nl=False)
-                click.secho("vs\t", nl=False)
-                click.secho('%d %-10s\t' % (data["result"]["goalsAwayTeam"],
-                            data["awayTeamName"]), bold=True, fg="yellow")
+                seen.add(league)
+                self.league_header(league)
+            self.scores(self.parse_result(data))
             click.echo()
+
+    def league_header(self, league):
+        """Prints the league header"""
+        league_name = " {0} ".format(league)
+        click.secho("{:=^62}".format(league_name), fg=self.colors.MISC)
+        click.echo()
+
+    def scores(self, result, add_new_line=True):
+        """Prints out the scores in a pretty format"""
+        if result.goalsHomeTeam > result.goalsAwayTeam:
+            homeColor, awayColor = (self.colors.WIN, self.colors.LOSE)
+        elif result.goalsHomeTeam < result.goalsAwayTeam:
+            homeColor, awayColor = (self.colors.LOSE, self.colors.WIN)
+        else:
+            homeColor = awayColor = self.colors.TIE
+
+        click.secho('%-25s %2s' % (result.homeTeam, result.goalsHomeTeam),
+                    bold=True, fg=homeColor, nl=False)
+        click.secho("  vs ", nl=False)
+        click.secho('%2s %s' % (result.goalsAwayTeam, result.awayTeam.rjust(25)),
+                    fg=awayColor, nl=add_new_line)
+
+    def parse_result(self, data):
+        """Parses the results and returns a Result namedtuple"""
+        def valid_score(score):
+            return "-" if score == -1 else score
+
+        if "result" in data:
+            result = self.Result(
+                data["homeTeamName"],
+                valid_score(data["result"]["goalsHomeTeam"]),
+                data["awayTeamName"],
+                valid_score(data["result"]["goalsAwayTeam"]))
+        else:
+            result = self.Result(
+                data["homeTeamName"],
+                valid_score(data["goalsHomeTeam"]),
+                data["awayTeamName"],
+                valid_score(data["goalsAwayTeam"]))
+
+        return result
 
 
 class Csv(BaseWriter):
