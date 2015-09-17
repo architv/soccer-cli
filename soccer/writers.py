@@ -13,12 +13,15 @@ LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 LEAGUE_IDS = leagueids.LEAGUE_IDS
 
 
-def get_writer(output):
-    return globals()[output.capitalize()]()
+def get_writer(output_format='stdout',output_file=None):
+    return globals()[output_format.capitalize()](output_file)
 
 class BaseWriter(object):
 
     __metaclass__ = ABCMeta
+
+    def __init__(self, output_file):
+        self.output_filename = output_file 
 
     @abstractmethod
     def live_scores(self, live_scores):
@@ -36,7 +39,7 @@ class BaseWriter(object):
     def league_scores(self, total_data, time):
         pass
 
-    def supported_leagues(self, total_data, stdout=True):
+    def supported_leagues(self, total_data):
         """Filters out scores of unsupported leagues"""
         supported_leagues = {val: key for key, val in LEAGUE_IDS.items()}
         get_league_id = lambda x: int(x["_links"]["soccerseason"]["href"].split("/")[-1])
@@ -47,10 +50,6 @@ class BaseWriter(object):
         fixtures = sorted(fixtures, key=get_league_id)
         for league, scores in groupby(fixtures, key=get_league_id):
             league = supported_leagues[league]
-            if stdout:
-                league_name = " {0} ".format(league)
-                click.secho("{:=^56}".format(league_name), fg="green")
-                click.echo()
             for score in scores:
                 yield league, score
  
@@ -133,7 +132,13 @@ class Stdout(BaseWriter):
 
     def league_scores(self, total_data, time):
         """Prints the data in a pretty format"""
-        for _, data in self.supported_leagues(total_data):
+        seen = set()
+        for league, data in self.supported_leagues(total_data):
+            if league not in seen:
+                seen.add(league) 
+                league_name = " {0} ".format(league)
+                click.secho("{:=^56}".format(league_name), fg="green")
+                click.echo()
             if data["result"]["goalsHomeTeam"] > data["result"]["goalsAwayTeam"]:
                 click.secho('%-20s %-5d' % (data["homeTeamName"],
                             data["result"]["goalsHomeTeam"]),
@@ -157,78 +162,81 @@ class Stdout(BaseWriter):
 
 
 class Csv(BaseWriter):
+
+    def generate_output(self, result):
+        if not self.output_filename:
+            for row in result:
+                click.echo(','.join(str(item) for item in row))
+        else:
+            with open(self.output_filename, 'w') as csv_file:
+                writer = csv.writer(csv_file)
+                for row in result:
+                    writer.writerow(row)
+
     def live_scores(self, live_scores):
         """Store output of live scores to a CSV file"""
         today_datetime = datetime.datetime.now()
         today_date = '_'.join([str(today_datetime.year), str(today_datetime.month),
                                str(today_datetime.day)])
-        output_filename = 'live_scores_{0}.csv'.format(today_date)
         headers = ['League', 'Home Team Name', 'Home Team Goals', 'Away Team Goals', 'Away Team Name']
-        with open(output_filename, 'w') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(headers)
-            for game in live_scores['games']:
-                writer.writerow([game['league'], game['homeTeamName'],
-                                game['goalsHomeTeam'], game['goalsAwayTeam'],
-                                game['awayTeamName']])
+        result = [headers]
+        result.extend([game['league'], game['homeTeamName'], game['goalsHomeTeam'],
+                       game['goalsAwayTeam'], game['awayTeamName']]
+                      for game in live_scores['games'])
+        self.generate_output(result)
 
     def team_scores(self, team_scores, time):
         """Store output of team scores to a CSV file"""
-        output_filename = 'team_scores_{0}.csv'.format(time)
         headers = ['Date', 'Home Team Name', 'Home Team Goals', 'Away Team Goals',
                    'Away Team Name']
-        with open(output_filename, 'w') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(headers)
-            for score in team_scores['fixtures']:
-                if score['status'] == 'FINISHED':
-                    writer.writerow([score["date"].split('T')[0], score['homeTeamName'],
-                                    score['result']['goalsHomeTeam'],
-                                    score['result']['goalsAwayTeam'],
-                                    score['awayTeamName']])
+        result =[headers]
+        result.extend([score["date"].split('T')[0], score['homeTeamName'],
+                       score['result']['goalsHomeTeam'],
+                       score['result']['goalsAwayTeam'],score['awayTeamName']]
+                      for score in team_scores['fixtures']
+                      if score['status'] == 'FINISHED')
+        self.generate_output(result)
 
     def standings(self, league_table, league):
         """Store output of league standings to a CSV file"""
-        output_filename = '{0}_standings.csv'.format(league)
         headers = ['Position', 'Team Name', 'Games Played', 'Goal For',
                    'Goals Against', 'Goal Difference', 'Points']
-        with open(output_filename, 'w') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(headers)
-            for team in league_table['standing']:
-                writer.writerow([team['position'], team['teamName'],
-                                 team['playedGames'], team['goals'],
-                                 team['goalsAgainst'], team['goalDifference'],
-                                 team['points']])
+        result = [headers]
+        result.extend([team['position'], team['teamName'], team['playedGames'],
+                       team['goals'], team['goalsAgainst'],
+                       team['goalDifference'], team['points']] 
+                      for team in league_table['standing'])
+        self.generate_output(result)
 
     def league_scores(self, total_data, time):
         """Store output of fixtures based on league and time to a CSV file"""
-        output_filename = 'league_scores_{0}.csv'.format(time)
         headers = ['League', 'Home Team Name', 'Home Team Goals', 'Away Team Goals',
                    'Away Team Name']
-        with open(output_filename, 'w') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(headers)
-            for league, score in self.supported_leagues(total_data, stdout=False):
-                writer.writerow([league, score['homeTeamName'],
-                                 score['result']['goalsHomeTeam'],
-                                 score['result']['goalsAwayTeam'],
-                                 score['awayTeamName']])
-
+        result = [headers]
+        result.extend([league, score['homeTeamName'],
+                       score['result']['goalsHomeTeam'],
+                       score['result']['goalsAwayTeam'], score['awayTeamName']] 
+                      for league, score in self.supported_leagues(total_data))
+        self.generate_output(result)
 
 class Json(BaseWriter):
+
+    def generate_output(self, result):
+        if not self.output_filename:
+            click.echo(json.dumps(result, indent=4, separators=(',', ': ')))
+        else:
+            with open(self.output_filename, 'w') as json_file:
+                json.dump(result, json_file, indent=4, separators=(',', ': '))
+
     def live_scores(self, live_scores):
         """Store output of live scores to a JSON file"""
         today_datetime = datetime.datetime.now()
         today_date = '_'.join([str(today_datetime.year), str(today_datetime.month),
                                str(today_datetime.day)])
-        output_filename = 'live_scores_{0}.json'.format(today_date)
-        with open(output_filename, 'w') as json_file:
-            json.dump(live_scores['games'], json_file)
+        self.generate_output(live_scores['games'])
 
     def team_scores(self, team_scores, time):
         """Store output of team scores to a JSON file"""
-        output_filename = 'team_scores_{0}.json'.format(time)
         data = []
         for score in team_scores['fixtures']:
             if score['status'] == 'FINISHED':
@@ -238,12 +246,10 @@ class Json(BaseWriter):
                         'goalsAwayTeam': score['result']['goalsAwayTeam'],
                         'awayTeamName': score['awayTeamName']}
                 data.append(item)
-        with open(output_filename, 'w') as json_file:
-            json.dump({'team_scores': data}, json_file)
+        self.generate_output({'team_scores': data})
 
     def standings(self, league_table, league):
         """Store output of league standings to a JSON file"""
-        output_filename = '{0}_standings.json'.format(league)
         data = []
         for team in league_table['standing']:
             item = {'position': team['position'], 'teamName': team['teamName'],
@@ -251,18 +257,15 @@ class Json(BaseWriter):
                     'goalsAgainst': team['goalsAgainst'], 'goalDifference': team['goalDifference'],
                     'points': team['points']}
             data.append(item)
-        with open(output_filename, 'w') as json_file:
-            json.dump({'standings': data}, json_file)
+        self.generate_output({'standings': data})
 
     def league_scores(self, total_data, time):
         """Store output of fixtures based on league and time to a JSON file"""
-        output_filename = 'league_scores_{0}.json'.format(time)
         data = []
-        for league, score in self.supported_leagues(total_data, stdout=False):
+        for league, score in self.supported_leagues(total_data):
             item = {'league': league, 'homeTeamName': score['homeTeamName'],
                     'goalsHomeTeam': score['result']['goalsHomeTeam'],
                     'goalsAwayTeam': score['result']['goalsAwayTeam'],
                     'awayTeamName': score['awayTeamName']}
             data.append(item)
-        with open(output_filename, 'w') as json_file:
-            json.dump({'league_scores': data, 'time': time}, json_file)
+        self.generate_output({'league_scores': data, 'time': time})
