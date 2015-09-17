@@ -2,6 +2,7 @@ import click
 import csv
 import datetime
 import json
+import io
 
 import leagueids
 import leagueproperties
@@ -223,10 +224,11 @@ class Json(BaseWriter):
 
     def generate_output(self, result):
         if not self.output_filename:
-            click.echo(json.dumps(result, indent=4, separators=(',', ': ')))
+            click.echo(json.dumps(result, indent=4, separators=(',', ': '), ensure_ascii=False))
         else:
-            with open(self.output_filename, 'w') as json_file:
-                json.dump(result, json_file, indent=4, separators=(',', ': '))
+            with io.open(self.output_filename, 'w', encoding='utf-8') as json_file:
+                data = json.dumps(result, json_file, indent=4, separators=(',', ': '), ensure_ascii=False)
+                json_file.write(data)
 
     def live_scores(self, live_scores):
         """Store output of live scores to a JSON file"""
