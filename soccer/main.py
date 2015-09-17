@@ -7,6 +7,8 @@ import sys
 
 import leagueids
 import teamnames
+
+from exceptions import IncorrectParametersException
 from writers import get_writer
 
 
@@ -124,12 +126,20 @@ def get_league_scores(league, time, writer):
                 "See the various team codes listed on README')"))
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
-@click.option('-o', '--output', type=click.Choice(['stdout', 'csv', 'json']),
-              default='stdout',
-              help="Print output in stdout, CSV or JSON format")
-def main(league, time, standings, team, live, output):
+@click.option('--stdout', 'output_format', flag_value='stdout',
+              default=True, help="Print to stdout")
+@click.option('--csv', 'output_format', flag_value='csv',
+               help='Output in CSV format')
+@click.option('--json', 'output_format', flag_value='json',
+              help='Output in JSON format')
+@click.option('-o', '--output-file', default=None,
+              help="Save output to a file (only if csv or json option is provided)")
+def main(league, time, standings, team, live, output_format, output_file):
     """A CLI for live and past football scores from various football leagues"""
-    writer = get_writer(output)
+    if output_format == 'stdout' and output_file:
+        raise IncorrectParametersException('Printing output to stdout and '
+                                           'saving to a file are mutually exclusive')
+    writer = get_writer(output_format, output_file)
 
     if live:
         get_live_scores(writer)
