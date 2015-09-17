@@ -8,7 +8,7 @@ import sys
 import leagueids
 import teamnames
 
-from exceptions import IncorrectParametersException
+from soccer.exceptions import IncorrectParametersException
 from writers import get_writer
 
 
