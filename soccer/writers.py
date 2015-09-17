@@ -167,11 +167,13 @@ class Csv(BaseWriter):
     def generate_output(self, result):
         if not self.output_filename:
             for row in result:
-                click.echo(','.join(str(item) for item in row))
+                click.echo(u','.join(unicode(item) for item in row))
         else:
             with open(self.output_filename, 'w') as csv_file:
                 writer = csv.writer(csv_file)
                 for row in result:
+                    row = [unicode(s) for s in row]
+                    row = [s.encode('utf-8') for s in row]
                     writer.writerow(row)
 
     def live_scores(self, live_scores):
