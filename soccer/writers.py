@@ -35,6 +35,10 @@ class BaseWriter(object):
         pass
 
     @abstractmethod
+    def team_players(self, team):
+        pass
+
+    @abstractmethod
     def standings(self, league_table, league):
         pass
 
@@ -93,6 +97,17 @@ class Stdout(BaseWriter):
                 click.secho("%s\t" % score["date"].split('T')[0],
                             fg=self.colors.TIME, nl=False)
                 self.scores(self.parse_result(score))
+
+    def team_players(self, team):
+        """Prints the team players in a pretty format"""
+        players = sorted(team['players'], key=lambda d: (d['jerseyNumber']))
+        for player in players:
+            click.echo()
+            click.secho("%-30s    %-20s    %-20s    %-15s    %-10s" % 
+                        (str(player["jerseyNumber"]) + "." + player["name"].encode('utf-8'), player["position"].encode('utf-8'), 
+                            player["nationality"].encode('utf-8'), player["dateOfBirth"].encode('utf-8'), 
+                            str(player["marketValue"].encode('utf-8'))), bold=True)
+
 
     def standings(self, league_table, league):
         """ Prints the league standings in a pretty way """
@@ -212,6 +227,18 @@ class Csv(BaseWriter):
                       if score['status'] == 'FINISHED')
         self.generate_output(result)
 
+    def team_players(self, team):
+        """Store output of team players to a CSV file"""
+        headers = ['Jersey Number', 'Name', 'Position', 'Nationality',
+                   'Date of Birth', 'Market Value']
+        result = [headers]
+
+        result.extend([player['jerseyNumber'], player['name'],
+                       player['position'], player['nationality'],
+                       player['dateOfBirth'], player['marketValue']]
+                      for player in team['players'])
+        self.generate_output(result)
+
     def standings(self, league_table, league):
         """Store output of league standings to a CSV file"""
         headers = ['Position', 'Team Name', 'Games Played', 'Goal For',
@@ -274,6 +301,16 @@ class Json(BaseWriter):
                     'points': team['points']}
             data.append(item)
         self.generate_output({'standings': data})
+
+    def team_players(self, team):
+        """Store output of team players to a JSON file"""
+        data = []
+        for player in team['players']:
+            item = {'jerseyNumber': player['jerseyNumber'], 'name': player['name'],
+                    'position': player['position'], 'nationality': player['nationality'],
+                    'dateOfBirth': player['dateOfBirth'], 'marketValue': player['marketValue']}
+            data.append(item)
+        self.generate_output({'players': data})
 
     def league_scores(self, total_data, time):
         """Store output of fixtures based on league and time to a JSON file"""

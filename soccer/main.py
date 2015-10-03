@@ -107,6 +107,28 @@ def get_league_scores(league, time, writer):
         writer.league_scores(fixtures_results, time)
 
 
+def get_team_players(team, writer):
+    """
+    Queries the API and fetches the players
+    for a particular team
+    """
+    team_id = TEAM_NAMES.get(team, None)
+    if team_id:
+        req = requests.get('{base_url}teams/{team_id}/players'.format(
+            base_url=BASE_URL, team_id=team_id), headers=headers)
+        if req.status_code == requests.codes.ok:
+            team_players = req.json()
+            if int(team_players["count"]) == 0:
+                click.secho("No players found for this team", fg="red", bold=True)
+            else:
+                writer.team_players(team_players)
+        else:
+            click.secho("No data for the team. Please check the team code.",
+                        fg="red", bold=True)
+    else:
+        click.secho("No data for the team. Please check the team code.",
+                    fg="red", bold=True)
+
 @click.command()
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
 @click.option('--standings', is_flag=True, help="Standings for a particular league")
@@ -115,6 +137,7 @@ def get_league_scores(league, time, writer):
                 "Bundesliga(BL), Premier League(EPL), La Liga(LLIGA), "
                 "Serie A(SA), Ligue 1(FL), Eredivisie(DED), "
                 "Primeira Liga(PPL), Champions League(CL))"))
+@click.option('--players', is_flag=True, help="Shows players for a particular team")
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
               help=("Choose the team whose fixtures you want to see. "
                 "See the various team codes listed on README')"))
@@ -128,7 +151,7 @@ def get_league_scores(league, time, writer):
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, output_format, output_file):
+def main(league, time, standings, team, live, players, output_format, output_file):
     """A CLI for live and past football scores from various football leagues"""
     try:
         if output_format == 'stdout' and output_file:
@@ -148,8 +171,12 @@ def main(league, time, standings, team, live, output_format, output_file):
             return
 
         if team:
-            get_team_scores(team, time, writer)
-            return
+            if players:
+                get_team_players(team, writer)
+                return
+            else:
+                get_team_scores(team, time, writer)
+                return
 
         get_league_scores(league, time, writer)
     except IncorrectParametersException as e:
