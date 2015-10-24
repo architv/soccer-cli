@@ -138,7 +138,7 @@ def get_team_players(team, writer):
                 "Serie A(SA), Ligue 1(FL), Eredivisie(DED), "
                 "Primeira Liga(PPL), Champions League(CL))"))
 @click.option('--players', is_flag=True, help="Shows players for a particular team")
-@click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
+@click.option('--team', type=click.Choice(["TEAM_CODE"]),
               help=("Choose the team whose fixtures you want to see. "
                 "See the various team codes listed on README')"))
 @click.option('--time', default=6,
