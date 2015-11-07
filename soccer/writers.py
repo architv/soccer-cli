@@ -102,14 +102,18 @@ class Stdout(BaseWriter):
         """Prints the team players in a pretty format"""
         players = sorted(team['players'], key=lambda d: (d['jerseyNumber']))
         click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" %
-                    ("N.",  "NAME", "POSITION", "NATIONALITY", "BIRTHDAY", "MARKET VALUE"), bold=True, fg=self.colors.MISC)
+                    ("N.",  "NAME", "POSITION", "NATIONALITY", "BIRTHDAY",
+                     "MARKET VALUE"), bold=True, fg=self.colors.MISC)
         for player in players:
             click.echo()
-            click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" % 
-                        (str(player["jerseyNumber"]), player["name"].encode('utf-8'), player["position"].encode('utf-8'), 
-                            player["nationality"].encode('utf-8'), player["dateOfBirth"].encode('utf-8'), 
-                            str(player["marketValue"].encode('utf-8'))), bold=True)
-
+            click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" %
+                        (str(player["jerseyNumber"]),
+                         player["name"].encode('utf-8'),
+                         player["position"].encode('utf-8'),
+                         player["nationality"].encode('utf-8'),
+                         player["dateOfBirth"].encode('utf-8'),
+                         str(player["marketValue"].encode('utf-8'))),
+                        bold=True)
 
     def standings(self, league_table, league):
         """ Prints the league standings in a pretty way """
@@ -119,26 +123,31 @@ class Stdout(BaseWriter):
         for team in league_table["standing"]:
             if team["goalDifference"] >= 0:
                 team["goalDifference"] = ' ' + str(team["goalDifference"])
-            if LEAGUE_PROPERTIES[league]["cl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["cl"][1]:
+            if (LEAGUE_PROPERTIES[league]["cl"][0] <= team["position"]
+                    <= LEAGUE_PROPERTIES[league]["cl"][1]):
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                             (str(team["position"]), team["teamName"],
-                             str(team["playedGames"]), team["goalDifference"], str(team["points"])),
-                            bold=True, fg=self.colors.CL_POSITION)
-            elif LEAGUE_PROPERTIES[league]["el"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["el"][1]:
+                             str(team["playedGames"]), team["goalDifference"],
+                             str(team["points"])), bold=True,
+                            fg=self.colors.CL_POSITION)
+            elif (LEAGUE_PROPERTIES[league]["el"][0] <= team["position"]
+                    <= LEAGUE_PROPERTIES[league]["el"][1]):
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                             (str(team["position"]), team["teamName"],
-                             str(team["playedGames"]), team["goalDifference"], str(team["points"])),
-                            fg=self.colors.EL_POSITION)
-            elif LEAGUE_PROPERTIES[league]["rl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["rl"][1]:  # 5-15 in BL, 5-17 in others
+                             str(team["playedGames"]), team["goalDifference"],
+                             str(team["points"])), fg=self.colors.EL_POSITION)
+            elif (LEAGUE_PROPERTIES[league]["rl"][0] <= team["position"]
+                    <= LEAGUE_PROPERTIES[league]["rl"][1]):
+                        # 5-15 in BL, 5-17 in others
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                             (str(team["position"]), team["teamName"],
-                             str(team["playedGames"]), team["goalDifference"], str(team["points"])),
-                            fg=self.colors.RL_POSITION)
+                             str(team["playedGames"]), team["goalDifference"],
+                             str(team["points"])), fg=self.colors.RL_POSITION)
             else:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
                             (str(team["position"]), team["teamName"],
-                             str(team["playedGames"]), team["goalDifference"], str(team["points"])),
-                            fg=self.colors.POSITION)
+                             str(team["playedGames"]), team["goalDifference"],
+                             str(team["points"])), fg=self.colors.POSITION)
 
     def league_scores(self, total_data, time):
         """Prints the data in a pretty format"""
@@ -168,8 +177,9 @@ class Stdout(BaseWriter):
         click.secho('%-25s %2s' % (result.homeTeam, result.goalsHomeTeam),
                     bold=True, fg=homeColor, nl=False)
         click.secho("  vs ", nl=False)
-        click.secho('%2s %s' % (result.goalsAwayTeam, result.awayTeam.rjust(25)),
-                    fg=awayColor, nl=add_new_line)
+        click.secho('%2s %s' % (result.goalsAwayTeam,
+                                result.awayTeam.rjust(25)), fg=awayColor,
+                    nl=add_new_line)
 
     def parse_result(self, data):
         """Parses the results and returns a Result namedtuple"""
@@ -208,23 +218,25 @@ class Csv(BaseWriter):
     def live_scores(self, live_scores):
         """Store output of live scores to a CSV file"""
         today_datetime = datetime.datetime.now()
-        today_date = '_'.join([str(today_datetime.year), str(today_datetime.month),
+        today_date = '_'.join([str(today_datetime.year),
+                               str(today_datetime.month),
                                str(today_datetime.day)])
-        headers = ['League', 'Home Team Name', 'Home Team Goals', 'Away Team Goals', 'Away Team Name']
+        headers = ['League', 'Home Team Name', 'Home Team Goals',
+                   'Away Team Goals', 'Away Team Name']
         result = [headers]
-        result.extend([game['league'], game['homeTeamName'], game['goalsHomeTeam'],
-                       game['goalsAwayTeam'], game['awayTeamName']]
-                      for game in live_scores['games'])
+        result.extend([game['league'], game['homeTeamName'],
+                       game['goalsHomeTeam'], game['goalsAwayTeam'],
+                       game['awayTeamName']] for game in live_scores['games'])
         self.generate_output(result)
 
     def team_scores(self, team_scores, time):
         """Store output of team scores to a CSV file"""
-        headers = ['Date', 'Home Team Name', 'Home Team Goals', 'Away Team Goals',
-                   'Away Team Name']
-        result =[headers]
+        headers = ['Date', 'Home Team Name', 'Home Team Goals',
+                   'Away Team Goals', 'Away Team Name']
+        result = [headers]
         result.extend([score["date"].split('T')[0], score['homeTeamName'],
                        score['result']['goalsHomeTeam'],
-                       score['result']['goalsAwayTeam'],score['awayTeamName']]
+                       score['result']['goalsAwayTeam'], score['awayTeamName']]
                       for score in team_scores['fixtures']
                       if score['status'] == 'FINISHED')
         self.generate_output(result)
@@ -248,36 +260,40 @@ class Csv(BaseWriter):
         result = [headers]
         result.extend([team['position'], team['teamName'], team['playedGames'],
                        team['goals'], team['goalsAgainst'],
-                       team['goalDifference'], team['points']] 
+                       team['goalDifference'], team['points']]
                       for team in league_table['standing'])
         self.generate_output(result)
 
     def league_scores(self, total_data, time):
         """Store output of fixtures based on league and time to a CSV file"""
-        headers = ['League', 'Home Team Name', 'Home Team Goals', 'Away Team Goals',
-                   'Away Team Name']
+        headers = ['League', 'Home Team Name', 'Home Team Goals',
+                   'Away Team Goals', 'Away Team Name']
         result = [headers]
         result.extend([league, score['homeTeamName'],
                        score['result']['goalsHomeTeam'],
-                       score['result']['goalsAwayTeam'], score['awayTeamName']] 
+                       score['result']['goalsAwayTeam'], score['awayTeamName']]
                       for league, score in self.supported_leagues(total_data))
         self.generate_output(result)
+
 
 class Json(BaseWriter):
 
     def generate_output(self, result):
         if not self.output_filename:
-            click.echo(json.dumps(result, indent=4, separators=(',', ': '), ensure_ascii=False))
+            click.echo(json.dumps(result, indent=4, separators=(',', ': '),
+                       ensure_ascii=False))
         else:
             with io.open(self.output_filename, 'w', encoding='utf-8') as json_file:
-                data = json.dumps(result, json_file, indent=4, separators=(',', ': '), ensure_ascii=False)
+                data = json.dumps(result, json_file, indent=4,
+                                  separators=(',', ': '), ensure_ascii=False)
                 json_file.write(data)
 
     def live_scores(self, live_scores):
         """Store output of live scores to a JSON file"""
         today_datetime = datetime.datetime.now()
-        today_date = '_'.join([str(today_datetime.year), str(today_datetime.month),
-                               str(today_datetime.day)])
+        today_date = '_'.join([str(today_datetime.year),
+                              str(today_datetime.month),
+                              str(today_datetime.day)])
         self.generate_output(live_scores['games'])
 
     def team_scores(self, team_scores, time):
@@ -297,9 +313,12 @@ class Json(BaseWriter):
         """Store output of league standings to a JSON file"""
         data = []
         for team in league_table['standing']:
-            item = {'position': team['position'], 'teamName': team['teamName'],
-                    'playedGames': team['playedGames'], 'goalsFor': team['goals'],
-                    'goalsAgainst': team['goalsAgainst'], 'goalDifference': team['goalDifference'],
+            item = {'position': team['position'],
+                    'teamName': team['teamName'],
+                    'playedGames': team['playedGames'],
+                    'goalsFor': team['goals'],
+                    'goalsAgainst': team['goalsAgainst'],
+                    'goalDifference': team['goalDifference'],
                     'points': team['points']}
             data.append(item)
         self.generate_output({'standings': data})
@@ -308,9 +327,12 @@ class Json(BaseWriter):
         """Store output of team players to a JSON file"""
         data = []
         for player in team['players']:
-            item = {'jerseyNumber': player['jerseyNumber'], 'name': player['name'],
-                    'position': player['position'], 'nationality': player['nationality'],
-                    'dateOfBirth': player['dateOfBirth'], 'marketValue': player['marketValue']}
+            item = {'jerseyNumber': player['jerseyNumber'],
+                    'name': player['name'],
+                    'position': player['position'],
+                    'nationality': player['nationality'],
+                    'dateOfBirth': player['dateOfBirth'],
+                    'marketValue': player['marketValue']}
             data.append(item)
         self.generate_output({'players': data})
 

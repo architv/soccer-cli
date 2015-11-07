@@ -42,7 +42,8 @@ def get_live_scores(writer):
             return
         writer.live_scores(scores)
     else:
-        click.secho("There was problem getting live scores", fg="red", bold=True)
+        click.secho("There was problem getting live scores",
+                    fg="red", bold=True)
 
 
 def get_team_scores(team, time, writer):
@@ -55,7 +56,8 @@ def get_team_scores(team, time, writer):
             team_scores = req.json()
             if len(team_scores["fixtures"]) == 0:
                 click.secho("No action during past week. Change the time "
-                            "parameter to get more fixtures.", fg="red", bold=True)
+                            "parameter to get more fixtures.", fg="red",
+                            bold=True)
             else:
                 writer.team_scores(team_scores, time)
         else:
@@ -74,8 +76,8 @@ def get_standings(league, writer):
     if req.status_code == requests.codes.ok:
         writer.standings(req.json(), league)
     else:
-        click.secho("No standings availble for {league}.".format(league=league),
-                    fg="red", bold=True)
+        click.secho("No standings availble for {league}.".format(
+                    league=league), fg="red", bold=True)
 
 
 def get_league_scores(league, time, writer):
@@ -91,8 +93,8 @@ def get_league_scores(league, time, writer):
             fixtures_results = req.json()
             # no fixtures in the past wee. display a help message and return
             if len(fixtures_results["fixtures"]) == 0:
-                click.secho("No {league} matches in the past week.".format(league=league),
-                            fg="red", bold=True)
+                click.secho("No {league} matches in the past week.".format(
+                            league=league), fg="red", bold=True)
             else:
                 writer.league_scores(fixtures_results, time)
         else:
@@ -119,7 +121,8 @@ def get_team_players(team, writer):
         if req.status_code == requests.codes.ok:
             team_players = req.json()
             if int(team_players["count"]) == 0:
-                click.secho("No players found for this team", fg="red", bold=True)
+                click.secho("No players found for this team", fg="red",
+                            bold=True)
             else:
                 writer.team_players(team_players)
         else:
@@ -129,32 +132,38 @@ def get_team_players(team, writer):
         click.secho("No data for the team. Please check the team code.",
                     fg="red", bold=True)
 
+
 @click.command()
-@click.option('--live', is_flag=True, help="Shows live scores from various leagues")
-@click.option('--standings', is_flag=True, help="Standings for a particular league")
+@click.option('--live', is_flag=True,
+              help="Shows live scores from various leagues")
+@click.option('--standings', is_flag=True,
+              help="Standings for a particular league")
 @click.option('--league', '-league', type=click.Choice(["LEAGUE"]),
               help=("Choose the league whose fixtures you want to see. "
-                "See league codes listed in README."))
-@click.option('--players', is_flag=True, help="Shows players for a particular team")
+              "See league codes listed in README."))
+@click.option('--players', is_flag=True,
+              help="Shows players for a particular team")
 @click.option('--team', type=click.Choice(["TEAM"]),
               help=("Choose the team whose fixtures you want to see. "
-                "See team codes listed in README."))
+              "See team codes listed in README."))
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
 @click.option('--stdout', 'output_format', flag_value='stdout',
               default=True, help="Print to stdout")
 @click.option('--csv', 'output_format', flag_value='csv',
-               help='Output in CSV format')
+              help='Output in CSV format')
 @click.option('--json', 'output_format', flag_value='json',
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, players, output_format, output_file):
+def main(league, time, standings, team, live, players, output_format,
+         output_file):
     """A CLI for live and past football scores from various football leagues"""
     try:
         if output_format == 'stdout' and output_file:
             raise IncorrectParametersException('Printing output to stdout and '
-                                               'saving to a file are mutually exclusive')
+                                               'saving to a file are mutually '
+                                               'exclusive')
         writer = get_writer(output_format, output_file)
 
         if live:
@@ -164,7 +173,8 @@ def main(league, time, standings, team, live, players, output_format, output_fil
         if standings:
             if not league:
                 raise IncorrectParametersException('Please specify a league. '
-                                                   'Example --standings --league=EPL')
+                                                   'Example --standings '
+                                                   '--league=EPL')
             get_standings(league, writer)
             return
 

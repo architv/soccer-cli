@@ -1,3 +1,2 @@
 class IncorrectParametersException(Exception):
-	pass
-	
+    pass
