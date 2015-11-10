@@ -20,9 +20,17 @@ Install
 $ pip install soccer-cli
 ````
 
+After installing, you'll need to get your API key from [here](http://api.football-data.org/register).
+
+Then set the environment variable `SOCCER_CLI_API_TOKEN` to the key:
+
+```
+export SOCCER_CLI_API_TOKEN="<YOUR_API_TOKEN>"
+```
+
 ### Build from source
 
-For building from source, you'll need to get your API key from [here](http://api.football-data.org/register) and create a file `config.py` in the soccer package directory (`soccer/config.py`) with the single line
+For building from source, you'll also need to get your API key from [here](http://api.football-data.org/register) and create a file `config.py` in the soccer package directory (`soccer/config.py`) with the single line
 ```
 config = {
     "SOCCER_CLI_API_TOKEN": "<YOUR_API_TOKEN>",
