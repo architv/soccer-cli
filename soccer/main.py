@@ -132,13 +132,15 @@ def get_team_players(team, writer):
 @click.command()
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
 @click.option('--standings', is_flag=True, help="Standings for a particular league")
-@click.option('--league', '-league', type=click.Choice(["LEAGUE"]),
+@click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()),
               help=("Choose the league whose fixtures you want to see. "
                 "See league codes listed in README."))
 @click.option('--players', is_flag=True, help="Shows players for a particular team")
-@click.option('--team', type=click.Choice(["TEAM"]),
+@click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
               help=("Choose the team whose fixtures you want to see. "
-                "See team codes listed in README."))
+                    "Bundesliga(BL), Premier League(EPL), La Liga(LLIGA), "
+                    "Serie A(SA), Ligue 1(FL), Eredivisie(DED), "
+                    "Primeira Liga(PPL), Champions League(CL))"))
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
 @click.option('--stdout', 'output_format', flag_value='stdout',
