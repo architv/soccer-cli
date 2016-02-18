@@ -138,9 +138,7 @@ def get_team_players(team, writer):
 @click.option('--players', is_flag=True, help="Shows players for a particular team")
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
               help=("Choose the team whose fixtures you want to see. "
-                    "Bundesliga(BL), Premier League(EPL), La Liga(LLIGA), "
-                    "Serie A(SA), Ligue 1(FL), Eredivisie(DED), "
-                    "Primeira Liga(PPL), Champions League(CL))"))
+                "See team codes listed in README."))
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
 @click.option('--stdout', 'output_format', flag_value='stdout',
