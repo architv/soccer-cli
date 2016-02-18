@@ -14,38 +14,36 @@ Soccer for Hackers - a CLI for all the football scores.
 Install
 =====
 
+An API key from [football-data.org](http://api.football-data.org/) will be required and you can register for one [here](http://api.football-data.org/register).
+
 ### Using `pip`
 
 ```bash
 $ pip install soccer-cli
 ```
 
-After installing, you'll need to get your API key from [here](http://api.football-data.org/register).
+Set your API key in an environment variable `SOCCER_CLI_API_TOKEN`
 
-Then set the environment variable `SOCCER_CLI_API_TOKEN` to the key:
+For example:
 
-```
+```bash
 export SOCCER_CLI_API_TOKEN="<YOUR_API_TOKEN>"
 ```
 
 ### Build from source
 
-For building from source, you'll also need to get your API key from [here](http://api.football-data.org/register) and create a file `config.py` in the soccer package directory (`soccer/config.py`) with the single line
-```
-config = {
-    "SOCCER_CLI_API_TOKEN": "<YOUR_API_TOKEN>",
-}
-```
-
-An alternate option of storing your API key is to store it as an environment variable. For Linux and Mac OS X, you can do the following:
-```
-export SOCCER_CLI_API_TOKEN="<YOUR_API_TOKEN>"
-```
-
 ```bash
 $ git clone git@github.com:architv/soccer-cli.git
 $ cd soccer-cli
 $ python setup.py install
+```
+
+You can set the API key using an environment variable as shown above or create a file `config.py` in the soccer package directory (`soccer/config.py`) with the single line
+
+```python
+config = {
+    "SOCCER_CLI_API_TOKEN": "<YOUR_API_TOKEN>",
+}
 ```
 
 #### Note:
