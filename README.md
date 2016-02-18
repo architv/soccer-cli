@@ -18,7 +18,7 @@ Install
 
 ```bash
 $ pip install soccer-cli
-````
+```
 
 After installing, you'll need to get your API key from [here](http://api.football-data.org/register).
 
