@@ -3,9 +3,9 @@ import os
 import requests
 import sys
 
-from . import leagueids, teamnames
-from .exceptions import IncorrectParametersException
-from .writers import get_writer
+from soccer import leagueids, teamnames
+from soccer.exceptions import IncorrectParametersException
+from soccer.writers import get_writer
 
 
 BASE_URL = 'http://api.football-data.org/alpha/'
@@ -16,7 +16,7 @@ TEAM_NAMES = teamnames.team_names
 try:
     api_token = os.environ['SOCCER_CLI_API_TOKEN']
 except KeyError:
-    from .config import config
+    from soccer.config import config
     api_token = config.get('SOCCER_CLI_API_TOKEN')
 
 if not api_token:

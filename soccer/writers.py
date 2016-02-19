@@ -8,7 +8,7 @@ from abc import ABCMeta, abstractmethod
 from itertools import groupby
 from collections import namedtuple
 
-from . import leagueids, leagueproperties
+from soccer import leagueids, leagueproperties
 
 LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
 LEAGUE_IDS = leagueids.LEAGUE_IDS
