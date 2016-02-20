@@ -126,23 +126,43 @@ class Stdout(BaseWriter):
                 team["goalDifference"] = ' ' + str(team["goalDifference"])
             if LEAGUE_PROPERTIES[league]["cl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["cl"][1]:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
-                            (str(team["position"]), team["teamName"],
-                             str(team["playedGames"]), team["goalDifference"], str(team["points"])),
+                            (
+                            team["position"],
+                            team["teamName"],
+                            team["playedGames"],
+                            team["goalDifference"],
+                            team["points"]
+                            ),
                             bold=True, fg=self.colors.CL_POSITION)
             elif LEAGUE_PROPERTIES[league]["el"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["el"][1]:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
-                            (str(team["position"]), team["teamName"],
-                             str(team["playedGames"]), team["goalDifference"], str(team["points"])),
+                            (
+                            team["position"],
+                            team["teamName"],
+                            team["playedGames"],
+                            team["goalDifference"],
+                            team["points"]
+                            ),
                             fg=self.colors.EL_POSITION)
             elif LEAGUE_PROPERTIES[league]["rl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["rl"][1]:  # 5-15 in BL, 5-17 in others
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
-                            (str(team["position"]), team["teamName"],
-                             str(team["playedGames"]), team["goalDifference"], str(team["points"])),
+                            (
+                            team["position"],
+                            team["teamName"],
+                            team["playedGames"],
+                            team["goalDifference"],
+                            team["points"]
+                            ),
                             fg=self.colors.RL_POSITION)
             else:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" %
-                            (str(team["position"]), team["teamName"],
-                             str(team["playedGames"]), team["goalDifference"], str(team["points"])),
+                            (
+                            team["position"],
+                            team["teamName"],
+                            team["playedGames"],
+                            team["goalDifference"],
+                            team["points"]
+                            ),
                             fg=self.colors.POSITION)
 
     def league_scores(self, total_data, time):
