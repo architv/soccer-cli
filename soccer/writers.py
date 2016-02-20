@@ -106,9 +106,14 @@ class Stdout(BaseWriter):
         for player in players:
             click.echo()
             click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" % 
-                        (str(player["jerseyNumber"]), player["name"].encode('utf-8'), player["position"].encode('utf-8'), 
-                            player["nationality"].encode('utf-8'), player["dateOfBirth"].encode('utf-8'), 
-                            str(player["marketValue"].encode('utf-8'))), bold=True)
+                        (player["jerseyNumber"],
+                            player["name"],
+                            player["position"],
+                            player["nationality"],
+                            player["dateOfBirth"],
+                            player["marketValue"]),
+                            bold=True
+                            )
 
 
     def standings(self, league_table, league):
