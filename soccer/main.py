@@ -72,7 +72,7 @@ def get_standings(league, writer):
     if req.status_code == requests.codes.ok:
         writer.standings(req.json(), league)
     else:
-        click.secho("No standings availble for {league}.".format(league=league),
+        click.secho("No standings available for {league}.".format(league=league),
                     fg="red", bold=True)
 
 
