@@ -4,7 +4,7 @@ import requests
 import sys
 
 from soccer import leagueids, teamnames
-from soccer.exceptions import IncorrectParametersException
+from soccer.exceptions import IncorrectParametersException, APIErrorException
 from soccer.writers import get_writer
 
 
@@ -30,6 +30,26 @@ headers = {
 }
 
 
+def _get(url):
+    """Handles api.football-data.org requests"""
+    req = requests.get(BASE_URL+url, headers=headers)
+
+    if req.status_code == requests.codes.ok:
+        return req
+
+    if req.status_code == requests.codes.bad:
+        raise APIErrorException('Invalid request. Check parameters.')
+
+    if req.status_code == requests.codes.forbidden:
+        raise APIErrorException('This resource is restricted')
+
+    if req.status_code == requests.codes.not_found:
+        raise APIErrorException('This resource does not exist. Check parameters')
+
+    if req.status_codes == requests.codes.too_many_requests:
+        raise APIErrorException('You have exceeded your allowed requests per minute/day')
+
+
 def get_live_scores(writer):
     """Gets the live scores"""
     req = requests.get(LIVE_URL)
@@ -47,32 +67,34 @@ def get_team_scores(team, time, writer):
     """Queries the API and gets the particular team scores"""
     team_id = TEAM_NAMES.get(team, None)
     if team_id:
-        req = requests.get('{base_url}teams/{team_id}/fixtures?timeFrame=p{time}'.format(
-            base_url=BASE_URL, team_id=team_id, time=time), headers=headers)
-        if req.status_code == requests.codes.ok:
+        try:
+            req = _get('teams/{team_id}/fixtures?timeFrame=p{time}'.format(
+                        team_id=team_id, time=time))
             team_scores = req.json()
             if len(team_scores["fixtures"]) == 0:
                 click.secho("No action during past week. Change the time "
                             "parameter to get more fixtures.", fg="red", bold=True)
             else:
                 writer.team_scores(team_scores, time)
-        else:
-            click.secho("No data for the team. Please check the team code.",
+        except APIErrorException as e:
+            click.secho(e.args[0],
                         fg="red", bold=True)
     else:
-        click.secho("No data for the team. Please check the team code.",
+        click.secho("Team code is not correct.",
                     fg="red", bold=True)
 
 
 def get_standings(league, writer):
     """Queries the API and gets the standings for a particular league"""
     league_id = LEAGUE_IDS[league]
-    req = requests.get('{base_url}soccerseasons/{id}/leagueTable'.format(
-        base_url=BASE_URL, id=league_id), headers=headers)
-    if req.status_code == requests.codes.ok:
+    try:
+        req = _get('soccerseasons/{id}/leagueTable'.format(
+                    id=league_id))
         writer.standings(req.json(), league)
-    else:
-        click.secho("No standings available for {league}.".format(league=league),
+    except APIErrorException:
+        # Click handles incorrect League codes so this will only come up
+        # if that league does not have standings available. ie. Champions League
+        click.secho("No standings availble for {league}.".format(league=league),
                     fg="red", bold=True)
 
 
@@ -82,27 +104,28 @@ def get_league_scores(league, time, writer):
     based upon the league and time parameter
     """
     if league:
-        league_id = LEAGUE_IDS[league]
-        req = requests.get('{base_url}soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
-            base_url=BASE_URL, id=league_id, time=str(time)), headers=headers)
-        if req.status_code == requests.codes.ok:
+        try:
+            league_id = LEAGUE_IDS[league]
+            req = _get('soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
+                 id=league_id, time=str(time)))
             fixtures_results = req.json()
-            # no fixtures in the past wee. display a help message and return
+            # no fixtures in the past week. display a help message and return
             if len(fixtures_results["fixtures"]) == 0:
                 click.secho("No {league} matches in the past week.".format(league=league),
                             fg="red", bold=True)
-            else:
-                writer.league_scores(fixtures_results, time)
-        else:
-            click.secho("No data for the given league",
-                        fg="red", bold=True)
-        return
-
-    req = requests.get('{base_url}fixtures?timeFrame=p{time}'.format(
-        base_url=BASE_URL, time=str(time)), headers=headers)
-    if req.status_code == requests.codes.ok:
-        fixtures_results = req.json()
-        writer.league_scores(fixtures_results, time)
+                return
+            writer.league_scores(fixtures_results, time)
+        except APIErrorException:
+            click.secho("No data for the given league.", fg="red", bold=True)
+    else:
+        # When no league specified. Print all available in time frame.
+        try:
+            req = _get('fixtures?timeFrame=p{time}'.format(
+                 time=str(time)))
+            fixtures_results = req.json()
+            writer.league_scores(fixtures_results, time)
+        except APIErrorException:
+            click.secho("No data available.", fg="red", bold=True)
 
 
 def get_team_players(team, writer):
@@ -111,21 +134,18 @@ def get_team_players(team, writer):
     for a particular team
     """
     team_id = TEAM_NAMES.get(team, None)
-    if team_id:
-        req = requests.get('{base_url}teams/{team_id}/players'.format(
-            base_url=BASE_URL, team_id=team_id), headers=headers)
-        if req.status_code == requests.codes.ok:
-            team_players = req.json()
-            if int(team_players["count"]) == 0:
-                click.secho("No players found for this team", fg="red", bold=True)
-            else:
-                writer.team_players(team_players)
+    try:
+        req = _get('teams/{team_id}/players'.format(
+                   team_id=team_id))
+        team_players = req.json()
+        if int(team_players["count"]) == 0:
+            click.secho("No players found for this team", fg="red", bold=True)
         else:
-            click.secho("No data for the team. Please check the team code.",
-                        fg="red", bold=True)
-    else:
+            writer.team_players(team_players)
+    except APIErrorException:
         click.secho("No data for the team. Please check the team code.",
                     fg="red", bold=True)
+
 
 @click.command()
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
