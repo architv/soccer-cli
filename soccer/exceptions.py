@@ -1,3 +1,6 @@
 class IncorrectParametersException(Exception):
-	pass
-	
+    pass
+
+
+class APIErrorException(Exception):
+    pass
