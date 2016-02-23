@@ -105,15 +105,15 @@ class Stdout(BaseWriter):
                      "MARKET VALUE"), bold=True, fg=self.colors.MISC)
         for player in players:
             click.echo()
-            click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" % 
-                        (player["jerseyNumber"],
-                            player["name"],
-                            player["position"],
-                            player["nationality"],
-                            player["dateOfBirth"],
-                            player["marketValue"]),
-                            bold=True
-                            )
+            click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" % (
+                        player["jerseyNumber"],
+                        player["name"],
+                        player["position"],
+                        player["nationality"],
+                        player["dateOfBirth"],
+                        player["marketValue"]),
+                        bold=True
+                        )
 
     def standings(self, league_table, league):
         """ Prints the league standings in a pretty way """
