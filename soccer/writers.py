@@ -197,7 +197,7 @@ class Stdout(BaseWriter):
             homeColor = awayColor = self.colors.TIE
 
         click.secho('%-25s %2s' % (result.homeTeam, result.goalsHomeTeam),
-                    bold=True, fg=homeColor, nl=False)
+                    fg=homeColor, nl=False)
         click.secho("  vs ", nl=False)
         click.secho('%2s %s' % (result.goalsAwayTeam,
                                 result.awayTeam.rjust(25)), fg=awayColor,
