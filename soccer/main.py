@@ -152,17 +152,17 @@ def get_team_players(team, writer):
 @click.option('--standings', is_flag=True, help="Standings for a particular league")
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()),
               help=("Choose the league whose fixtures you want to see. "
-                "See league codes listed in README."))
+                    "See league codes listed in README."))
 @click.option('--players', is_flag=True, help="Shows players for a particular team")
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
               help=("Choose the team whose fixtures you want to see. "
-                "See team codes listed in README."))
+                    "See team codes listed in README."))
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
 @click.option('--stdout', 'output_format', flag_value='stdout',
               default=True, help="Print to stdout")
 @click.option('--csv', 'output_format', flag_value='csv',
-               help='Output in CSV format')
+              help='Output in CSV format')
 @click.option('--json', 'output_format', flag_value='json',
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,

@@ -105,15 +105,15 @@ class Stdout(BaseWriter):
                      "MARKET VALUE"), bold=True, fg=self.colors.MISC)
         for player in players:
             click.echo()
-            click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" % 
-                        (player["jerseyNumber"],
-                            player["name"],
-                            player["position"],
-                            player["nationality"],
-                            player["dateOfBirth"],
-                            player["marketValue"]),
-                            bold=True
-                            )
+            click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" % (
+                        player["jerseyNumber"],
+                        player["name"],
+                        player["position"],
+                        player["nationality"],
+                        player["dateOfBirth"],
+                        player["marketValue"]),
+                        bold=True
+                        )
 
     def standings(self, league_table, league):
         """ Prints the league standings in a pretty way """
@@ -123,7 +123,18 @@ class Stdout(BaseWriter):
         for team in league_table["standing"]:
             if team["goalDifference"] >= 0:
                 team["goalDifference"] = ' ' + str(team["goalDifference"])
-            if LEAGUE_PROPERTIES[league]["cl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["cl"][1]:
+
+            # Define the upper and lower bounds for Champions League,
+            # Europa League and Relegation places.
+            # This is so we can highlight them appropriately.
+            cl_upper = LEAGUE_PROPERTIES[league]['cl'][0]
+            cl_lower = LEAGUE_PROPERTIES[league]['cl'][1]
+            el_upper = LEAGUE_PROPERTIES[league]['el'][0]
+            el_lower = LEAGUE_PROPERTIES[league]['el'][1]
+            rl_upper = LEAGUE_PROPERTIES[league]['rl'][0]
+            rl_lower = LEAGUE_PROPERTIES[league]['rl'][1]
+
+            if cl_upper <= team["position"] <= cl_lower:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" % (
                             team["position"],
                             team["teamName"],
@@ -132,7 +143,7 @@ class Stdout(BaseWriter):
                             team["points"]
                             ),
                             bold=True, fg=self.colors.CL_POSITION)
-            elif LEAGUE_PROPERTIES[league]["el"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["el"][1]:
+            elif el_upper <= team["position"] <= el_lower:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" % (
                             team["position"],
                             team["teamName"],
@@ -141,7 +152,7 @@ class Stdout(BaseWriter):
                             team["points"]
                             ),
                             fg=self.colors.EL_POSITION)
-            elif LEAGUE_PROPERTIES[league]["rl"][0] <= team["position"] <= LEAGUE_PROPERTIES[league]["rl"][1]:  # 5-15 in BL, 5-17 in others
+            elif rl_upper <= team["position"] <= rl_lower:
                 click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" % (
                             team["position"],
                             team["teamName"],
