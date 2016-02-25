@@ -85,7 +85,7 @@ class Stdout(BaseWriter):
             self.league_header(league)
             for game in games:
                 self.scores(self.parse_result(game), add_new_line=False)
-                click.secho('   %s' % self.convert_utc_to_local_time(game["time"]), fg=self.colors.TIME)
+                click.secho('   %s' % Stdout.convert_utc_to_local_time(game["time"]), fg=self.colors.TIME)
                 click.echo()
 
     def team_scores(self, team_scores, time):
@@ -212,7 +212,8 @@ class Stdout(BaseWriter):
 
         return result
 
-    def convert_utc_to_local_time(self, time_str):
+    @staticmethod
+    def convert_utc_to_local_time(time_str):
         """Converts the API UTC time string to the local user time."""
         if not time_str.endswith(" UTC"):
            return time_str
