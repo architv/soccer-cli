@@ -50,7 +50,7 @@ def _get(url):
         raise APIErrorException('You have exceeded your allowed requests per minute/day')
 
 
-def get_live_scores(writer):
+def get_live_scores(writer, use_12_hour_format):
     """Gets the live scores"""
     req = requests.get(LIVE_URL)
     if req.status_code == requests.codes.ok:
@@ -58,7 +58,7 @@ def get_live_scores(writer):
         if len(scores["games"]) == 0:
             click.secho("No live action currently", fg="red", bold=True)
             return
-        writer.live_scores(scores)
+        writer.live_scores(scores, use_12_hour_format)
     else:
         click.secho("There was problem getting live scores", fg="red", bold=True)
 
@@ -149,6 +149,7 @@ def get_team_players(team, writer):
 
 @click.command()
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
+@click.option('--use12hour', is_flag=True, default=False, help="Displays the time using 12 hour format instead of 24 (default).")
 @click.option('--standings', is_flag=True, help="Standings for a particular league")
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()),
               help=("Choose the league whose fixtures you want to see. "
@@ -167,7 +168,7 @@ def get_team_players(team, writer):
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, players, output_format, output_file):
+def main(league, time, standings, team, live, use12hour, players, output_format, output_file):
     """A CLI for live and past football scores from various football leagues"""
     try:
         if output_format == 'stdout' and output_file:
@@ -176,7 +177,7 @@ def main(league, time, standings, team, live, players, output_format, output_fil
         writer = get_writer(output_format, output_file)
 
         if live:
-            get_live_scores(writer)
+            get_live_scores(writer, use12hour)
             return
 
         if standings:
