@@ -78,14 +78,15 @@ class Stdout(BaseWriter):
         )
         self.colors = type('Enum', (), enums)
 
-    def live_scores(self, live_scores):
+    def live_scores(self, live_scores, use_12_hour_format):
         """Prints the live scores in a pretty format"""
         scores = sorted(live_scores["games"], key=lambda x: x["league"])
         for league, games in groupby(scores, key=lambda x: x["league"]):
             self.league_header(league)
             for game in games:
                 self.scores(self.parse_result(game), add_new_line=False)
-                click.secho('   %s' % game["time"], fg=self.colors.TIME)
+                click.secho('   %s' % Stdout.convert_utc_to_local_time(game["time"], use_12_hour_format),
+                            fg=self.colors.TIME)
                 click.echo()
 
     def team_scores(self, team_scores, time):
@@ -222,6 +223,26 @@ class Stdout(BaseWriter):
                 valid_score(data["goalsAwayTeam"]))
 
         return result
+
+    @staticmethod
+    def convert_utc_to_local_time(time_str, use_12_hour_format):
+        """Converts the API UTC time string to the local user time."""
+        if not time_str.endswith(" UTC"):
+           return time_str
+
+        today_utc = datetime.datetime.utcnow()
+        utc_local_diff = today_utc - datetime.datetime.now()
+        
+        time_str, _ = time_str.split(" UTC")
+        utc_time = datetime.datetime.strptime(time_str,'%I:%M %p')
+        utc_datetime = datetime.datetime(today_utc.year, today_utc.month, today_utc.day,
+                                         utc_time.hour, utc_time.minute)
+        local_time = utc_datetime - utc_local_diff
+        
+        if use_12_hour_format:
+            return datetime.datetime.strftime(local_time,'%I:%M %p')
+        else:
+            return datetime.datetime.strftime(local_time,'%H:%M')
 
 
 class Csv(BaseWriter):
