@@ -63,19 +63,20 @@ def get_live_scores(writer, use_12_hour_format):
         click.secho("There was problem getting live scores", fg="red", bold=True)
 
 
-def get_team_scores(team, time, writer):
+def get_team_scores(team, time, writer, show_upcoming, use_12_hour_format):
     """Queries the API and gets the particular team scores"""
     team_id = TEAM_NAMES.get(team, None)
+    time_frame = 'n' if show_upcoming else 'p'
     if team_id:
         try:
-            req = _get('teams/{team_id}/fixtures?timeFrame=p{time}'.format(
-                        team_id=team_id, time=time))
+            req = _get('teams/{team_id}/fixtures?timeFrame={time_frame}{time}'.format(
+                        team_id=team_id, time_frame=time_frame, time=time))
             team_scores = req.json()
             if len(team_scores["fixtures"]) == 0:
                 click.secho("No action during past week. Change the time "
                             "parameter to get more fixtures.", fg="red", bold=True)
             else:
-                writer.team_scores(team_scores, time)
+                writer.team_scores(team_scores, time, show_upcoming, use_12_hour_format)
         except APIErrorException as e:
             click.secho(e.args[0],
                         fg="red", bold=True)
@@ -98,32 +99,34 @@ def get_standings(league, writer):
                     fg="red", bold=True)
 
 
-def get_league_scores(league, time, writer):
+def get_league_scores(league, time, writer, show_upcoming, use_12_hour_format):
+
     """
     Queries the API and fetches the scores for fixtures
     based upon the league and time parameter
     """
+    time_frame = 'n' if show_upcoming else 'p'
     if league:
         try:
             league_id = LEAGUE_IDS[league]
-            req = _get('soccerseasons/{id}/fixtures?timeFrame=p{time}'.format(
-                 id=league_id, time=str(time)))
+            req = _get('soccerseasons/{id}/fixtures?timeFrame={time_frame}{time}'.format(
+                 id=league_id, time_frame=time_frame, time=str(time)))
             fixtures_results = req.json()
             # no fixtures in the past week. display a help message and return
             if len(fixtures_results["fixtures"]) == 0:
                 click.secho("No {league} matches in the past week.".format(league=league),
                             fg="red", bold=True)
                 return
-            writer.league_scores(fixtures_results, time)
+            writer.league_scores(fixtures_results, time, show_upcoming, use_12_hour_format)
         except APIErrorException:
             click.secho("No data for the given league.", fg="red", bold=True)
     else:
         # When no league specified. Print all available in time frame.
         try:
-            req = _get('fixtures?timeFrame=p{time}'.format(
-                 time=str(time)))
+            req = _get('fixtures?timeFrame={time_frame}{time}'.format(
+                 time_frame=time_frame, time=str(time)))
             fixtures_results = req.json()
-            writer.league_scores(fixtures_results, time)
+            writer.league_scores(fixtures_results, time, show_upcoming, use_12_hour_format)
         except APIErrorException:
             click.secho("No data available.", fg="red", bold=True)
 
@@ -160,6 +163,7 @@ def get_team_players(team, writer):
                     "See team codes listed in README."))
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
+@click.option('--upcoming', is_flag=True, default=False, help="Displays upcoming games when used with --time command.")
 @click.option('--stdout', 'output_format', flag_value='stdout',
               default=True, help="Print to stdout")
 @click.option('--csv', 'output_format', flag_value='csv',
@@ -168,7 +172,7 @@ def get_team_players(team, writer):
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, use12hour, players, output_format, output_file):
+def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming):
     """A CLI for live and past football scores from various football leagues"""
     try:
         if output_format == 'stdout' and output_file:
@@ -192,10 +196,10 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
                 get_team_players(team, writer)
                 return
             else:
-                get_team_scores(team, time, writer)
+                get_team_scores(team, time, writer, upcoming, use12hour)
                 return
 
-        get_league_scores(league, time, writer)
+        get_league_scores(league, time, writer, upcoming, use12hour)
     except IncorrectParametersException as e:
         click.secho(e.message, fg="red", bold=True)
 
