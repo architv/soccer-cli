@@ -5,7 +5,7 @@ import sys
 
 setup(
     name='soccer-cli',
-    version='0.0.5.0',
+    version='0.1.0.0',
     description='Soccer for Hackers.',
     author='Archit Verma',
     license='MIT',
