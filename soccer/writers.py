@@ -89,7 +89,7 @@ class Stdout(BaseWriter):
                             fg=self.colors.TIME)
                 click.echo()
 
-    def team_scores(self, team_scores, time):
+    def team_scores(self, team_scores, time, show_datetime, use_12_hour_format):
         """Prints the teams scores in a pretty format"""
         for score in team_scores["fixtures"]:
             if score["status"] == "FINISHED":
@@ -97,6 +97,13 @@ class Stdout(BaseWriter):
                 click.secho("%s\t" % score["date"].split('T')[0],
                             fg=self.colors.TIME, nl=False)
                 self.scores(self.parse_result(score))
+            elif show_datetime:
+                click.echo()
+                self.scores(self.parse_result(score), add_new_line=False)
+                click.secho('   %s' % Stdout.convert_utc_to_local_time(score["date"], 
+                                        use_12_hour_format, show_datetime),
+                                fg=self.colors.TIME)
+                
 
     def team_players(self, team):
         """Prints the team players in a pretty format"""
@@ -172,14 +179,18 @@ class Stdout(BaseWriter):
                            ),
                            fg=self.colors.POSITION)
 
-    def league_scores(self, total_data, time):
+    def league_scores(self, total_data, time, show_datetime, use_12_hour_format):
         """Prints the data in a pretty format"""
         seen = set()
         for league, data in self.supported_leagues(total_data):
             if league not in seen:
                 seen.add(league)
                 self.league_header(league)
-            self.scores(self.parse_result(data))
+            self.scores(self.parse_result(data), add_new_line=not show_datetime)
+            if show_datetime:
+                click.secho('   %s' % Stdout.convert_utc_to_local_time(data["date"], 
+                                        use_12_hour_format, show_datetime),
+                                fg=self.colors.TIME)
             click.echo()
 
     def league_header(self, league):
@@ -225,24 +236,30 @@ class Stdout(BaseWriter):
         return result
 
     @staticmethod
-    def convert_utc_to_local_time(time_str, use_12_hour_format):
+    def convert_utc_to_local_time(time_str, use_12_hour_format, show_datetime=False):
         """Converts the API UTC time string to the local user time."""
-        if not time_str.endswith(" UTC"):
+        if not (time_str.endswith(" UTC") or time_str.endswith("Z")):
            return time_str
 
         today_utc = datetime.datetime.utcnow()
         utc_local_diff = today_utc - datetime.datetime.now()
         
-        time_str, _ = time_str.split(" UTC")
-        utc_time = datetime.datetime.strptime(time_str,'%I:%M %p')
-        utc_datetime = datetime.datetime(today_utc.year, today_utc.month, today_utc.day,
-                                         utc_time.hour, utc_time.minute)
+        if time_str.endswith(" UTC"):
+            time_str, _ = time_str.split(" UTC")
+            utc_time = datetime.datetime.strptime(time_str, '%I:%M %p')
+            utc_datetime = datetime.datetime(today_utc.year, today_utc.month, today_utc.day,
+                                             utc_time.hour, utc_time.minute)
+        else:
+            utc_datetime = datetime.datetime.strptime(time_str, '%Y-%m-%dT%H:%M:%SZ')
+            
         local_time = utc_datetime - utc_local_diff
         
         if use_12_hour_format:
-            return datetime.datetime.strftime(local_time,'%I:%M %p')
+            date_format = '%I:%M %p' if not show_datetime else '%a %d, %I:%M %p'
         else:
-            return datetime.datetime.strftime(local_time,'%H:%M')
+            date_format = '%H:%M' if not show_datetime else '%a %d, %H:%M'
+            
+        return datetime.datetime.strftime(local_time, date_format)
 
 
 class Csv(BaseWriter):
