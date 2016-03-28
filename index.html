@@ -17,7 +17,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Soccer-cli</h1>
-        <p class="header">:soccer: Football scores for hackers. :computer: A command line interface for all the football scores.</p>
+        <p class="header">Football scores for hackers. A command line interface for all the football scores.</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/architv/soccer-cli/zipball/master">Download ZIP</a></li>
@@ -30,30 +30,151 @@
 
       </header>
       <section>
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <p align="center">
+  <img src="http://i.imgur.com/F9zuexe.jpg" width="500px">
+</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
+<h1>
+<a id="soccer-cli" class="anchor" href="#soccer-cli" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Soccer CLI</h1>
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p><a href="http://badge.fury.io/py/soccer-cli"><img src="https://badge.fury.io/py/soccer-cli.svg" alt="PyPI version"></a></p>
 
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
+<p>Soccer for Hackers - a CLI for all the football scores. </p>
 
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
+<p><img src="http://i.imgur.com/9QbcUrj.gif" alt=""></p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h1>
 
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>An API key from <a href="http://api.football-data.org/">football-data.org</a> will be required and you can register for one <a href="http://api.football-data.org/register">here</a>.</p>
 
 <h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a id="using-pip" class="anchor" href="#using-pip" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using <code>pip</code>
+</h3>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<div class="highlight highlight-source-shell"><pre>$ pip install soccer-cli</pre></div>
+
+<p>Set your API key in an environment variable <code>SOCCER_CLI_API_TOKEN</code></p>
+
+<p>For example:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-k">export</span> SOCCER_CLI_API_TOKEN=<span class="pl-s"><span class="pl-pds">"</span>&lt;YOUR_API_TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h3>
+<a id="build-from-source" class="anchor" href="#build-from-source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build from source</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ git clone git@github.com:architv/soccer-cli.git
+$ <span class="pl-c1">cd</span> soccer-cli
+$ python setup.py install</pre></div>
+
+<p>You can set the API key using an environment variable as shown above or create a file <code>config.py</code> in the soccer package directory (<code>soccer/config.py</code>) with the single line</p>
+
+<div class="highlight highlight-source-python"><pre>config <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>SOCCER_CLI_API_TOKEN<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>&lt;YOUR_API_TOKEN&gt;<span class="pl-pds">"</span></span>,
+}</pre></div>
+
+<h4>
+<a id="note" class="anchor" href="#note" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Note:</h4>
+
+<p>Currently supports Linux, Mac OS X, NetBSD and FreeBSD.</p>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h1>
+
+<h3>
+<a id="get-standings-for-a-league" class="anchor" href="#get-standings-for-a-league" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get standings for a league</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ soccer --standings --league=EPL <span class="pl-c"># EPL is the league code for English Premier League</span></pre></div>
+
+<h3>
+<a id="get-scores-for-a-particular-team" class="anchor" href="#get-scores-for-a-particular-team" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get scores for a particular team</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ soccer --team=MUFC <span class="pl-c"># MUFC is the team code for Manchester United</span>
+$ soccer --team=PSG --<span class="pl-k">time</span>=10 <span class="pl-c"># scores for all the Paris Saint-Germain games over the past 10 days</span></pre></div>
+
+<h3>
+<a id="get-scores-for-live-games" class="anchor" href="#get-scores-for-live-games" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get scores for live games</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ soccer --live</pre></div>
+
+<h3>
+<a id="get-scores-for-a-particular-league" class="anchor" href="#get-scores-for-a-particular-league" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get scores for a particular league</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ soccer --league=BL <span class="pl-c"># BL is the league code for Bundesliga</span>
+$ soccer --league=FL --<span class="pl-k">time</span>=15 <span class="pl-c"># get scores for all the French Ligue games over the past 15 days</span></pre></div>
+
+<h3>
+<a id="get-scores-for-all-seven-leagues-with-a-set-time-period" class="anchor" href="#get-scores-for-all-seven-leagues-with-a-set-time-period" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get scores for all seven leagues with a set time period</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ soccer --<span class="pl-k">time</span>=10 <span class="pl-c"># scores for all the seven leagues over the past 10 days</span></pre></div>
+
+<h3>
+<a id="help" class="anchor" href="#help" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Help</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ soccer --help</pre></div>
+
+<h3>
+<a id="list-of-supported-leagues-and-their-league-codes" class="anchor" href="#list-of-supported-leagues-and-their-league-codes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>List of supported leagues and their league codes</h3>
+
+<ul>
+<li>BL: Bundesliga (German League)</li>
+<li>FL: Ligue 1 (French League)</li>
+<li>EPL: English Premier League</li>
+<li>LLIGA: Liga BBVA (Spanish League)</li>
+<li>SA: Serie A  (Italian League)</li>
+<li>PPL: Primeira Liga (Portuguese League)</li>
+<li>DED: Eredivisie (Dutch League)</li>
+<li>CL: Champions League</li>
+</ul>
+
+<h3>
+<a id="team-and-team-codes" class="anchor" href="#team-and-team-codes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Team and team codes</h3>
+
+<p>For a full list of supported team and team codes <a href="teamcodes.json">see this</a>.</p>
+
+<h1>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h1>
+
+<h3>
+<a id="standings" class="anchor" href="#standings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Standings</h3>
+
+<p><img src="http://i.imgur.com/NURexbN.gif" alt="standings"></p>
+
+<h3>
+<a id="live-scores" class="anchor" href="#live-scores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Live scores</h3>
+
+<p><img src="http://i.imgur.com/EX9GMAM.gif" alt=""></p>
+
+<h3>
+<a id="team-scores" class="anchor" href="#team-scores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Team scores</h3>
+
+<p><img src="http://i.imgur.com/QfvH8QL.png" alt=""></p>
+
+<h1>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Todo</h1>
+
+<ul>
+<li>[ ] Enable cache</li>
+<li>[ ] Add more test cases</li>
+<li>[x] Add fixtures for UEFA Champions League</li>
+<li>[ ] Add league filter for live scores</li>
+<li>[x] Color coding for Europa league and differentiation between straight CL and CL playoff spots, and the same for EL spots</li>
+<li>[ ] Add support for team line up</li>
+</ul>
+
+<h1>
+<a id="licence" class="anchor" href="#licence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Licence</h1>
+
+<p>Open sourced under <a href="LICENSE">MIT License</a></p>
+
+<h1>
+<a id="support" class="anchor" href="#support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support</h1>
+
+<p>If you like my work, please support the project by donating.</p>
+
+<ul>
+<li><a href="https://gratipay.com/%7Earchitv">https://gratipay.com/~architv</a></li>
+</ul>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
