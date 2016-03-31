@@ -67,6 +67,13 @@ $ soccer --team=MUFC # MUFC is the team code for Manchester United
 $ soccer --team=PSG --time=10 # scores for all the Paris Saint-Germain games over the past 10 days
 ```
 
+### Get upcoming fixtures
+
+```bash
+$ soccer --time 5 --upcoming # get upcoming fixtures for next 5 days
+$ soccer --time 5 --upcoming --use12hour # upcoming fixture for next 5 days with timings in 12 hour format
+```
+
 ### Get scores for live games
 
 ```bash
@@ -80,10 +87,29 @@ $ soccer --league=BL # BL is the league code for Bundesliga
 $ soccer --league=FL --time=15 # get scores for all the French Ligue games over the past 15 days
 ```
 
+### Get information about players of a team
+
+```bash
+$ soccer --team=JUVE --players
+```
+
 ### Get scores for all seven leagues with a set time period
 
 ```bash
 $ soccer --time=10 # scores for all the seven leagues over the past 10 days
+```
+
+### Get the output in csv or json
+
+```bash
+$ soccer --league EPL --standings --csv # prints the output in csv format
+$ soccer --league EPL --standings --json # prints the output in json format
+```
+
+### Store the ouput in a file
+
+```bash
+$ soccer --league EPL --standings --csv -o 'standings.csv' # stores the ouput in scv format in `standings.csv`
 ```
 
 ### Help

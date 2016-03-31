@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 
 from setuptools import setup
-import sys
+import os, sys
+
+# if you are not using vagrant, just delete os.link directly,
+# The hard link only saves a little disk space, so you should not care
+if os.environ.get('USER','') == 'vagrant':
+    del os.link
 
 setup(
     name='soccer-cli',
