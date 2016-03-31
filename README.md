@@ -143,6 +143,9 @@ Demo
 ### Team scores
 ![](http://i.imgur.com/QfvH8QL.png)
 
+### Output in json format
+![](http://i.imgur.com/jqGhLia.gif)
+
 Todo
 ====
 - [ ] Enable cache
@@ -150,7 +153,8 @@ Todo
 - [x] Add fixtures for UEFA Champions League
 - [ ] Add league filter for live scores
 - [x] Color coding for Europa league and differentiation between straight CL and CL playoff spots, and the same for EL spots
-- [ ] Add support for team line up
+- [x] Add support for team line up
+- [ ] A built in watch feature so you can run once with --live and just leave the program running.
 
 Licence
 ====
