@@ -135,7 +135,7 @@ Demo
 ====
 
 ### Standings
-![standings](http://i.imgur.com/NURexbN.gif)
+![standings](http://i.imgur.com/voyWLQE.gif)
 
 ### Live scores
 ![](http://i.imgur.com/EX9GMAM.gif)
