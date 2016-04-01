@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from setuptools import setup
+from setuptools import setup, find_packages
 import os, sys
 
 # if you are not using vagrant, just delete os.link directly,
@@ -33,7 +33,8 @@ setup(
     keywords="soccer football espn scores live tool cli",
     author_email='architv07@gmail.com',
     url='https://github.com/architv/soccer-cli',
-    packages=['soccer'],
+    packages=find_packages(),
+    include_package_data = True,
     install_requires=[
         "click>=5.0",
         "requests==2.7.0"

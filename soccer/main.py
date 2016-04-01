@@ -2,6 +2,7 @@ import click
 import os
 import requests
 import sys
+import json
 
 from soccer import leagueids, teamnames
 from soccer.exceptions import IncorrectParametersException, APIErrorException
@@ -150,6 +151,20 @@ def get_team_players(team, writer):
                     fg="red", bold=True)
 
 
+def map_team_id(code):
+    """Take in team ID, read JSON file to map ID to name"""
+    # so app can actually find json file
+    here = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(here, "teamcodes.json")) as jfile:
+        data = json.load(jfile)
+    for key, value in data.iteritems():
+        if value == code:
+            print(key)
+            break
+    else:
+        click.secho("No team found for this code", fg="red", bold=True)
+
+
 @click.command()
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
 @click.option('--use12hour', is_flag=True, default=False, help="Displays the time using 12 hour format instead of 24 (default).")
@@ -161,6 +176,7 @@ def get_team_players(team, writer):
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
               help=("Choose the team whose fixtures you want to see. "
                     "See team codes listed in README."))
+@click.option('--lookup', is_flag=True, help="Get team name from team code when used with --team command.")
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
 @click.option('--upcoming', is_flag=True, default=False, help="Displays upcoming games when used with --time command.")
@@ -172,7 +188,7 @@ def get_team_players(team, writer):
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming):
+def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup):
     """A CLI for live and past football scores from various football leagues"""
     try:
         if output_format == 'stdout' and output_file:
@@ -192,6 +208,9 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
             return
 
         if team:
+            if lookup:
+                map_team_id(team)
+                return
             if players:
                 get_team_players(team, writer)
                 return
