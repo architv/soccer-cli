@@ -1,3 +1,4 @@
+from __future__ import print_function
 import click
 import os
 import requests
@@ -14,16 +15,45 @@ LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
 TEAM_NAMES = teamnames.team_names
 
+
+def write_config_file():
+    """Write API key to config.py file"""
+    print("No API key found!")
+    print("Please visit {0} and get an API token.".format(BASE_URL))
+    while True:
+        confkey = raw_input("Please enter API key: ")
+        if len(confkey) == 32:  # 32 chars
+            try:
+                int(confkey, 16)  # hexadecimal
+            except ValueError:
+                print("Invalid API key, try again")
+            else:
+                break
+        else:
+            print("Invalid API key, try again")
+    here = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(here, "config.py"), "wb") as conffile:
+        conffile.write('config = {\r\n')
+        conffile.write('    "SOCCER_CLI_API_TOKEN": "{0}",\r\n'.format(confkey))
+        conffile.write('}\r\n')
+    print("Config file written! Please restart Soccer CLI.")
+    sys.exit(2)
+
+
 try:
     api_token = os.environ['SOCCER_CLI_API_TOKEN']
 except KeyError:
-    from soccer.config import config
-    api_token = config.get('SOCCER_CLI_API_TOKEN')
+    try:
+        from soccer.config import config
+    except ImportError:
+        write_config_file()
+    else:
+        api_token = config.get('SOCCER_CLI_API_TOKEN')
 
 if not api_token:
-    print ('No API Token detected. Please visit {0} and get an API Token, '
-           'which will be used by the Soccer CLI to get access to the data'
-           .format(BASE_URL))
+    print('No API Token detected. Please visit {0} and get an API Token, '
+    'which will be used by the Soccer CLI to get access to the data'
+    .format(BASE_URL))
     sys.exit(1)
 
 headers = {
