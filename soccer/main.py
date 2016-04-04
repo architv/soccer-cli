@@ -32,12 +32,17 @@ def write_config_file():
         else:
             print("Invalid API key, try again")
     here = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(here, "config.py"), "wb") as conffile:
-        conffile.write('config = {\r\n')
-        conffile.write('    "SOCCER_CLI_API_TOKEN": "{0}",\r\n'.format(confkey))
-        conffile.write('}\r\n')
-    print("Config file written! Please restart Soccer CLI.")
-    sys.exit(2)
+    try:
+        with open(os.path.join(here, "config.py"), "wb") as conffile:
+            conffile.write('config = {\r\n')
+            conffile.write('    "SOCCER_CLI_API_TOKEN": "{0}",\r\n'.format(confkey))
+            conffile.write('}\r\n')
+    except IOError:  # IOError 13: Permission denied
+        print("Could not write config file, please try again with root privileges.")
+        sys.exit(3)
+    else:
+        print("Config file written! Please restart Soccer CLI.")
+        sys.exit(2)
 
 
 try:
