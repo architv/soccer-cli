@@ -111,17 +111,11 @@ class Stdout(BaseWriter):
         click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" %
                     ("N.",  "NAME", "POSITION", "NATIONALITY", "BIRTHDAY",
                      "MARKET VALUE"), bold=True, fg=self.colors.MISC)
+        fmt = ("{jerseyNumber:4} {name:28} {position:23} {nationality:23}"
+               " {dateOfBirth:18} {marketValue}")
         for player in players:
             click.echo()
-            click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" % (
-                        player["jerseyNumber"],
-                        player["name"],
-                        player["position"],
-                        player["nationality"],
-                        player["dateOfBirth"],
-                        player["marketValue"]),
-                        bold=True
-                        )
+            click.secho(fmt.format(**player), bold=True)
 
     def standings(self, league_table, league):
         """ Prints the league standings in a pretty way """
@@ -135,49 +129,20 @@ class Stdout(BaseWriter):
             # Define the upper and lower bounds for Champions League,
             # Europa League and Relegation places.
             # This is so we can highlight them appropriately.
-            cl_upper = LEAGUE_PROPERTIES[league]['cl'][0]
-            cl_lower = LEAGUE_PROPERTIES[league]['cl'][1]
-            el_upper = LEAGUE_PROPERTIES[league]['el'][0]
-            el_lower = LEAGUE_PROPERTIES[league]['el'][1]
-            rl_upper = LEAGUE_PROPERTIES[league]['rl'][0]
-            rl_lower = LEAGUE_PROPERTIES[league]['rl'][1]
+            cl_upper, cl_lower = LEAGUE_PROPERTIES[league]['cl']
+            el_upper, el_lower = LEAGUE_PROPERTIES[league]['el']
+            rl_upper, rl_lower = LEAGUE_PROPERTIES[league]['rl']
 
+            team_str = ("{position:7} {teamName:33} {playedGames:12}"
+               " {goalDifference:14} {points}").format(**team)
             if cl_upper <= team["position"] <= cl_lower:
-                click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" % (
-                            team["position"],
-                            team["teamName"],
-                            team["playedGames"],
-                            team["goalDifference"],
-                            team["points"]
-                            ),
-                            bold=True, fg=self.colors.CL_POSITION)
+                click.secho(team_str, bold=True, fg=self.colors.CL_POSITION)
             elif el_upper <= team["position"] <= el_lower:
-                click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" % (
-                            team["position"],
-                            team["teamName"],
-                            team["playedGames"],
-                            team["goalDifference"],
-                            team["points"]
-                            ),
-                            fg=self.colors.EL_POSITION)
+                click.secho(team_str, fg=self.colors.EL_POSITION)
             elif rl_upper <= team["position"] <= rl_lower:
-                click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" % (
-                            team["position"],
-                            team["teamName"],
-                            team["playedGames"],
-                            team["goalDifference"],
-                            team["points"]
-                            ),
-                            fg=self.colors.RL_POSITION)
+                click.secho(team_str, fg=self.colors.RL_POSITION)
             else:
-                click.secho("%-6s  %-30s    %-9s    %-11s    %-10s" % (
-                           team["position"],
-                           team["teamName"],
-                           team["playedGames"],
-                           team["goalDifference"],
-                           team["points"]
-                           ),
-                           fg=self.colors.POSITION)
+                click.secho(team_str, fg=self.colors.POSITION)
 
     def league_scores(self, total_data, time, show_datetime, use_12_hour_format):
         """Prints the data in a pretty format"""
@@ -385,16 +350,10 @@ class Json(BaseWriter):
 
     def team_players(self, team):
         """Store output of team players to a JSON file"""
-        data = []
-        for player in team['players']:
-            item = {'jerseyNumber': player['jerseyNumber'],
-                    'name': player['name'],
-                    'position': player['position'],
-                    'nationality': player['nationality'],
-                    'dateOfBirth': player['dateOfBirth'],
-                    'marketValue': player['marketValue']}
-            data.append(item)
+        keys = 'jerseyNumber name position nationality dateOfBirth marketValue'.split()
+        data = [{key: player[key] for key in keys} for player in team['players']]
         self.generate_output({'players': data})
+
 
     def league_scores(self, total_data, time):
         """Store output of fixtures based on league and time to a JSON file"""
