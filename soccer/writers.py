@@ -111,8 +111,8 @@ class Stdout(BaseWriter):
         click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" %
                     ("N.",  "NAME", "POSITION", "NATIONALITY", "BIRTHDAY",
                      "MARKET VALUE"), bold=True, fg=self.colors.MISC)
-        fmt = ("{jerseyNumber:4} {name:28} {position:23} {nationality:23}"
-               " {dateOfBirth:18} {marketValue}")
+        fmt = (u"{jerseyNumber:4} {name:28} {position:23} {nationality:23}"
+               u" {dateOfBirth:18} {marketValue}")
         for player in players:
             click.echo()
             click.secho(fmt.format(**player), bold=True)
@@ -133,8 +133,8 @@ class Stdout(BaseWriter):
             el_upper, el_lower = LEAGUE_PROPERTIES[league]['el']
             rl_upper, rl_lower = LEAGUE_PROPERTIES[league]['rl']
 
-            team_str = ("{position:7} {teamName:33} {playedGames:12}"
-               " {goalDifference:14} {points}").format(**team)
+            team_str = (u"{position:7} {teamName:33} {playedGames:12}"
+                        u" {goalDifference:14} {points}").format(**team)
             if cl_upper <= team["position"] <= cl_lower:
                 click.secho(team_str, bold=True, fg=self.colors.CL_POSITION)
             elif el_upper <= team["position"] <= el_lower:
