@@ -1,5 +1,6 @@
 LEAGUE_IDS = {
     "BL": 394,
+    "BL2": 395,
     "FL": 396,
     "EPL": 398,
     "LLIGA": 399,

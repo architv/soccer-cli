@@ -197,8 +197,25 @@ def map_team_id(code):
         click.secho("No team found for this code", fg="red", bold=True)
 
 
+def list_team_codes():
+    """List team names in alphabetical order of team ID."""
+    teamcodes = sorted(TEAM_NAMES.keys())
+    here = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(here, "teamcodes.json")) as jfile:
+        data = json.load(jfile)
+    for code in teamcodes:
+        for key, value in data.iteritems():
+            if value == code:
+                print(u"{0}: {1}".format(value, key))
+                break
+
+
 @click.command()
+<<<<<<< HEAD
 @click.option('--apikey', default=load_config_key)
+=======
+@click.option('--list', 'listcodes', is_flag=True, help="List all valid team code/team name pairs")
+>>>>>>> upstream/master
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
 @click.option('--use12hour', is_flag=True, default=False, help="Displays the time using 12 hour format instead of 24 (default).")
 @click.option('--standings', is_flag=True, help="Standings for a particular league")
@@ -221,7 +238,11 @@ def map_team_id(code):
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
+<<<<<<< HEAD
 def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, apikey):
+=======
+def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes):
+>>>>>>> upstream/master
     """A CLI for live and past football scores from various football leagues"""
     global headers
     headers = {
@@ -232,6 +253,10 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
             raise IncorrectParametersException('Printing output to stdout and '
                                                'saving to a file are mutually exclusive')
         writer = get_writer(output_format, output_file)
+
+        if listcodes:
+            list_team_codes()
+            return
 
         if live:
             get_live_scores(writer, use12hour)
