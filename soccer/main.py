@@ -211,11 +211,8 @@ def list_team_codes():
 
 
 @click.command()
-<<<<<<< HEAD
 @click.option('--apikey', default=load_config_key)
-=======
 @click.option('--list', 'listcodes', is_flag=True, help="List all valid team code/team name pairs")
->>>>>>> upstream/master
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
 @click.option('--use12hour', is_flag=True, default=False, help="Displays the time using 12 hour format instead of 24 (default).")
 @click.option('--standings', is_flag=True, help="Standings for a particular league")
@@ -238,11 +235,7 @@ def list_team_codes():
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-<<<<<<< HEAD
-def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, apikey):
-=======
 def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes):
->>>>>>> upstream/master
     """A CLI for live and past football scores from various football leagues"""
     global headers
     headers = {
