@@ -235,7 +235,7 @@ def list_team_codes():
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes):
+def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes, apikey):
     """A CLI for live and past football scores from various football leagues"""
     global headers
     headers = {
