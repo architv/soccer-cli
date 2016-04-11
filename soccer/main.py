@@ -14,21 +14,53 @@ LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
 TEAM_NAMES = teamnames.team_names
 
-try:
-    api_token = os.environ['SOCCER_CLI_API_TOKEN']
-except KeyError:
-    from soccer.config import config
-    api_token = config.get('SOCCER_CLI_API_TOKEN')
 
-if not api_token:
-    print ('No API Token detected. Please visit {0} and get an API Token, '
-           'which will be used by the Soccer CLI to get access to the data'
-           .format(BASE_URL))
-    sys.exit(1)
+def get_input_key():
+    """Input API key and validate"""
+    click.secho("No API key found!", fg="yellow", bold=True)
+    click.secho("Please visit {0} and get an API token.".format(BASE_URL),
+                fg="yellow", bold=True)
+    while True:
+        confkey = click.prompt(click.style("Enter API key",
+                                           fg="yellow", bold=True))
+        if len(confkey) == 32:  # 32 chars
+            try:
+                int(confkey, 16)  # hexadecimal
+            except ValueError:
+                click.secho("Invalid API key", fg="red", bold=True)
+            else:
+                break
+        else:
+            click.secho("Invalid API key", fg="red", bold=True)
+    return confkey
 
-headers = {
-    'X-Auth-Token': api_token
-}
+
+def load_config_key():
+    """Load API key from config file, write if needed"""
+    global api_token
+    try:
+        api_token = os.environ['SOCCER_CLI_API_TOKEN']
+    except KeyError:
+        home = os.path.expanduser("~")
+        config = os.path.join(home, "soccer-cli.ini")
+        if not os.path.exists(config):
+            with open(config, "w") as cfile:
+                key = get_input_key()
+                cfile.write(key)
+        else:
+            with open(config, "r") as cfile:
+                key = cfile.read()
+        if key:
+            api_token = key
+        else:
+            os.remove(config)  # remove 0-byte file
+            click.secho('No API Token detected. '
+                        'Please visit {0} and get an API Token, '
+                        'which will be used by Soccer CLI '
+                        'to get access to the data.'
+                        .format(BASE_URL), fg="red", bold=True)
+            sys.exit(1)
+    return api_token
 
 
 def _get(url):
@@ -159,7 +191,7 @@ def map_team_id(code):
         data = json.load(jfile)
     for key, value in data.iteritems():
         if value == code:
-            print(key)
+            click.secho(key)
             break
     else:
         click.secho("No team found for this code", fg="red", bold=True)
@@ -179,6 +211,7 @@ def list_team_codes():
 
 
 @click.command()
+@click.option('--apikey', default=load_config_key)
 @click.option('--list', 'listcodes', is_flag=True, help="List all valid team code/team name pairs")
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
 @click.option('--use12hour', is_flag=True, default=False, help="Displays the time using 12 hour format instead of 24 (default).")
@@ -202,8 +235,12 @@ def list_team_codes():
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes):
+def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes, apikey):
     """A CLI for live and past football scores from various football leagues"""
+    global headers
+    headers = {
+        'X-Auth-Token': apikey
+    }
     try:
         if output_format == 'stdout' and output_file:
             raise IncorrectParametersException('Printing output to stdout and '
