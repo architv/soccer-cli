@@ -40,7 +40,7 @@ $ cd soccer-cli
 $ python setup.py install
 ```
 
-You can set the API key using an environment variable as shown above or create a file `soccer-cli.ini` in your home folder (`/home/username/soccer-cli.ini`) that contains only your API token, like so
+You can set the API key using an environment variable as shown above or create a file `soccer-cli.ini` in your home folder (`/home/username/soccer-cli.ini`) that contains only your API token, such that:
 
 ```bash
 $ cat /home/username/soccer-cli.ini
@@ -48,7 +48,9 @@ $ cat /home/username/soccer-cli.ini
 ```
 
 #### Note:
-Currently supports Linux, Mac OS X, NetBSD and FreeBSD.
+Currently supports Linux, Mac OS X, NetBSD, FreeBSD and Windows.
+
+To get colorized terminal output on Windows, make sure to install [ansicon](https://github.com/adoxa/ansicon/releases/latest) and [colorama](https://pypi.python.org/pypi/colorama).
 
 Usage
 ====
