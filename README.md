@@ -117,14 +117,27 @@ $ soccer --help
 ```
 ### List of supported leagues and their league codes
 
-- BL: Bundesliga (German League)
-- FL: Ligue 1 (French League)
-- EPL: English Premier League
-- LLIGA: Liga BBVA (Spanish League)
-- SA: Serie A  (Italian League)
-- PPL: Primeira Liga (Portuguese League)
-- DED: Eredivisie (Dutch League)
-- CL: Champions League
+- Europe:
+  - CL: Champions League
+- England:
+  - EPL: Premier League
+  - EL1: League One
+- France:
+  - FL: Ligue 1
+  - FL2: Ligue 2
+- Germany:
+  - BL: Bundesliga
+  - BL2: 2. Bundesliga
+  - BL3: 3. Liga
+- Italy:
+  - SA: Serie A 
+- Netherlands:
+  - DED: Eredivisie
+- Portugal:
+  - PPL: Primeira Liga
+- Spain:
+  - LLIGA: La Liga
+  - SD: Segunda Division
 
 ### Team and team codes
 
