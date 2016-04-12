@@ -40,16 +40,17 @@ $ cd soccer-cli
 $ python setup.py install
 ```
 
-You can set the API key using an environment variable as shown above or create a file `config.py` in the soccer package directory (`soccer/config.py`) with the single line
+You can set the API key using an environment variable as shown above or create a file `soccer-cli.ini` in your home folder (`/home/username/soccer-cli.ini`) that contains only your API token, such that:
 
-```python
-config = {
-    "SOCCER_CLI_API_TOKEN": "<YOUR_API_TOKEN>",
-}
+```bash
+$ cat /home/username/soccer-cli.ini
+<YOUR_API_TOKEN>
 ```
 
 #### Note:
-Currently supports Linux, Mac OS X, NetBSD and FreeBSD.
+Currently supports Linux, Mac OS X, NetBSD, FreeBSD and Windows.
+
+To get colorized terminal output on Windows, make sure to install [ansicon](https://github.com/adoxa/ansicon/releases/latest) and [colorama](https://pypi.python.org/pypi/colorama).
 
 Usage
 ====
@@ -118,14 +119,27 @@ $ soccer --help
 ```
 ### List of supported leagues and their league codes
 
-- BL: Bundesliga (German League)
-- FL: Ligue 1 (French League)
-- EPL: English Premier League
-- LLIGA: Liga BBVA (Spanish League)
-- SA: Serie A  (Italian League)
-- PPL: Primeira Liga (Portuguese League)
-- DED: Eredivisie (Dutch League)
-- CL: Champions League
+- Europe:
+  - CL: Champions League
+- England:
+  - EPL: Premier League
+  - EL1: League One
+- France:
+  - FL: Ligue 1
+  - FL2: Ligue 2
+- Germany:
+  - BL: Bundesliga
+  - BL2: 2. Bundesliga
+  - BL3: 3. Liga
+- Italy:
+  - SA: Serie A 
+- Netherlands:
+  - DED: Eredivisie
+- Portugal:
+  - PPL: Primeira Liga
+- Spain:
+  - LLIGA: La Liga
+  - SD: Segunda Division
 
 ### Team and team codes
 
