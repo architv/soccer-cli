@@ -4,7 +4,7 @@ import requests
 import sys
 import json
 
-from soccer import leagueids, teamnames
+from soccer import leagueids
 from soccer.exceptions import IncorrectParametersException, APIErrorException
 from soccer.writers import get_writer
 
@@ -12,7 +12,15 @@ from soccer.writers import get_writer
 BASE_URL = 'http://api.football-data.org/alpha/'
 LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
-TEAM_NAMES = teamnames.team_names
+
+
+def team_names():
+    """Load JSON, return team code:team ID dict"""
+    here = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(here, "teams.json")) as jfile:
+        data = json.load(jfile)["teams"]
+    names = {team["code"]: team["id"] for team in data}
+    return names
 
 
 def get_input_key():
@@ -98,7 +106,7 @@ def get_live_scores(writer, use_12_hour_format):
 
 def get_team_scores(team, time, writer, show_upcoming, use_12_hour_format):
     """Queries the API and gets the particular team scores"""
-    team_id = TEAM_NAMES.get(team, None)
+    team_id = team_names().get(team, None)
     time_frame = 'n' if show_upcoming else 'p'
     if team_id:
         try:
@@ -169,7 +177,7 @@ def get_team_players(team, writer):
     Queries the API and fetches the players
     for a particular team
     """
-    team_id = TEAM_NAMES.get(team, None)
+    team_id = team_names().get(team, None)
     try:
         req = _get('teams/{team_id}/players'.format(
                    team_id=team_id))
@@ -187,31 +195,36 @@ def map_team_id(code):
     """Take in team ID, read JSON file to map ID to name"""
     # so app can actually find json file
     here = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(here, "teamcodes.json")) as jfile:
-        data = json.load(jfile)
-    for key, value in data.iteritems():
-        if value == code:
-            click.secho(key)
+    with open(os.path.join(here, "teams.json")) as jfile:
+        data = json.load(jfile)["teams"]
+    for team in data:
+        if team["code"] == code:
+            click.secho(team["name"], fg="green")
             break
     else:
         click.secho("No team found for this code", fg="red", bold=True)
 
 
 def list_team_codes():
-    """List team names in alphabetical order of team ID."""
-    teamcodes = sorted(TEAM_NAMES.keys())
+    """List team names in alphabetical order of team ID, per league."""
     here = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(here, "teamcodes.json")) as jfile:
-        data = json.load(jfile)
-    for code in teamcodes:
-        for key, value in data.iteritems():
-            if value == code:
-                print(u"{0}: {1}".format(value, key))
-                break
+    with open(os.path.join(here, "teams.json")) as jfile:
+        data = json.load(jfile)["teams"]
+    # Sort teams by league, then alphabetical by code
+    cleanlist = sorted(data, key=lambda k: (k["league"]["name"], k["code"]))
+    # Get league names
+    leaguenames = sorted(list(set([team["league"]["name"] for team in cleanlist])))
+    for league in leaguenames:
+        teams = [team for team in cleanlist if team["league"]["name"] == league]
+        click.secho(league, fg="green", bold=True)
+        for team in teams:
+            if team["code"] != "null":
+                click.secho(u"{0}: {1}".format(team["code"], team["name"]), fg="yellow")
+        click.secho("")
 
 
 @click.command()
-@click.option('--apikey', default=load_config_key)
+@click.option('--apikey', default=load_config_key, help="API key to use")
 @click.option('--list', 'listcodes', is_flag=True, help="List all valid team code/team name pairs")
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
 @click.option('--use12hour', is_flag=True, default=False, help="Displays the time using 12 hour format instead of 24 (default).")
@@ -220,7 +233,7 @@ def list_team_codes():
               help=("Choose the league whose fixtures you want to see. "
                     "See league codes listed in README."))
 @click.option('--players', is_flag=True, help="Shows players for a particular team")
-@click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
+@click.option('--team', type=click.Choice(team_names().keys()),
               help=("Choose the team whose fixtures you want to see. "
                     "See team codes listed in README."))
 @click.option('--lookup', is_flag=True, help="Get team name from team code when used with --team command.")
