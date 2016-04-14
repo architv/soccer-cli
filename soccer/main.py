@@ -14,13 +14,16 @@ LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
 
 
-def team_names():
-    """Load JSON, return team code:team ID dict"""
+def load_json(file):
+    """Load JSON file at app start"""
     here = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(here, "teams.json")) as jfile:
-        data = json.load(jfile)["teams"]
-    names = {team["code"]: team["id"] for team in data}
-    return names
+    with open(os.path.join(here, file)) as jfile:
+        data = json.load(jfile)
+    return data
+
+
+TEAM_DATA = load_json("teams.json")["teams"]
+TEAM_NAMES = {team["code"]: team["id"] for team in TEAM_DATA}
 
 
 def get_input_key():
@@ -106,7 +109,7 @@ def get_live_scores(writer, use_12_hour_format):
 
 def get_team_scores(team, time, writer, show_upcoming, use_12_hour_format):
     """Queries the API and gets the particular team scores"""
-    team_id = team_names().get(team, None)
+    team_id = TEAM_NAMES.get(team, None)
     time_frame = 'n' if show_upcoming else 'p'
     if team_id:
         try:
@@ -177,7 +180,7 @@ def get_team_players(team, writer):
     Queries the API and fetches the players
     for a particular team
     """
-    team_id = team_names().get(team, None)
+    team_id = TEAM_NAMES.get(team, None)
     try:
         req = _get('teams/{team_id}/players'.format(
                    team_id=team_id))
@@ -193,11 +196,7 @@ def get_team_players(team, writer):
 
 def map_team_id(code):
     """Take in team ID, read JSON file to map ID to name"""
-    # so app can actually find json file
-    here = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(here, "teams.json")) as jfile:
-        data = json.load(jfile)["teams"]
-    for team in data:
+    for team in TEAM_DATA:
         if team["code"] == code:
             click.secho(team["name"], fg="green")
             break
@@ -207,11 +206,8 @@ def map_team_id(code):
 
 def list_team_codes():
     """List team names in alphabetical order of team ID, per league."""
-    here = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(here, "teams.json")) as jfile:
-        data = json.load(jfile)["teams"]
     # Sort teams by league, then alphabetical by code
-    cleanlist = sorted(data, key=lambda k: (k["league"]["name"], k["code"]))
+    cleanlist = sorted(TEAM_DATA, key=lambda k: (k["league"]["name"], k["code"]))
     # Get league names
     leaguenames = sorted(list(set([team["league"]["name"] for team in cleanlist])))
     for league in leaguenames:
@@ -233,7 +229,7 @@ def list_team_codes():
               help=("Choose the league whose fixtures you want to see. "
                     "See league codes listed in README."))
 @click.option('--players', is_flag=True, help="Shows players for a particular team")
-@click.option('--team', type=click.Choice(team_names().keys()),
+@click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
               help=("Choose the team whose fixtures you want to see. "
                     "See team codes listed in README."))
 @click.option('--lookup', is_flag=True, help="Get team name from team code when used with --team command.")
