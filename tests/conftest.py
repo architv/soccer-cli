@@ -7,7 +7,7 @@ from betamax_serializers import pretty_json
 betamax.Betamax.register_serializer(pretty_json.PrettyJSONSerializer)
 
 with betamax.Betamax.configure() as config:
-    record_mode = 'all'
+    record_mode = 'once'
 
     config.cassette_library_dir = 'tests/cassettes'
     config.default_cassette_options['record_mode'] = record_mode
