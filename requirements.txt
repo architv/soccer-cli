@@ -2,3 +2,6 @@ argparse==1.2.1
 click==5.0
 requests==2.7.0
 wsgiref==0.1.2
+betamax==0.6.0
+betamax-serializers==0.2.0
+pytest==2.9.1
