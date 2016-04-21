@@ -143,7 +143,7 @@ $ soccer --help
 
 ### Team and team codes
 
-For a full list of supported team and team codes [see this](soccer/teamcodes.json).
+For a full list of supported team and team codes [see this](soccer/teams.json).
 
 Demo
 ====
