@@ -8,10 +8,7 @@ from abc import ABCMeta, abstractmethod
 from itertools import groupby
 from collections import namedtuple
 
-from soccer import leagueids, leagueproperties
-
-LEAGUE_PROPERTIES = leagueproperties.LEAGUE_PROPERTIES
-LEAGUE_IDS = leagueids.LEAGUE_IDS
+from soccer.jsonhandler import LEAGUE_IDS, LEAGUE_PROPERTIES
 
 
 def get_writer(output_format='stdout', output_file=None):

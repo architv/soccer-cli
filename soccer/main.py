@@ -2,28 +2,16 @@ import click
 import os
 import requests
 import sys
-import json
 
-from soccer import leagueids
+
 from soccer.exceptions import IncorrectParametersException, APIErrorException
 from soccer.writers import get_writer
+from soccer.jsonhandler import TEAM_NAMES, TEAM_DATA, LEAGUE_DATA, LEAGUE_IDS, LEAGUE_PROPERTIES
 
 
 BASE_URL = 'http://api.football-data.org/alpha/'
 LIVE_URL = 'http://soccer-cli.appspot.com/'
-LEAGUE_IDS = leagueids.LEAGUE_IDS
 
-
-def load_json(file):
-    """Load JSON file at app start"""
-    here = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(here, file)) as jfile:
-        data = json.load(jfile)
-    return data
-
-
-TEAM_DATA = load_json("teams.json")["teams"]
-TEAM_NAMES = {team["code"]: team["id"] for team in TEAM_DATA}
 
 
 def get_input_key():
@@ -204,15 +192,26 @@ def map_team_id(code):
         click.secho("No team found for this code", fg="red", bold=True)
 
 
+def map_league_id(code):
+    """Take in league ID, read JSON file to map ID to name"""
+    for league in LEAGUE_DATA:
+        if league["code"] == code:
+            click.secho(league["name"], fg="green")
+            break
+    else:
+        click.secho("No league found for this code", fg="red", bold=True)
+
+
 def list_team_codes():
     """List team names in alphabetical order of team ID, per league."""
     # Sort teams by league, then alphabetical by code
     cleanlist = sorted(TEAM_DATA, key=lambda k: (k["league"]["name"], k["code"]))
     # Get league names
     leaguenames = sorted(list(set([team["league"]["name"] for team in cleanlist])))
+    leaguecodes = {league["name"]: league["code"] for league in LEAGUE_DATA}
     for league in leaguenames:
         teams = [team for team in cleanlist if team["league"]["name"] == league]
-        click.secho(league, fg="green", bold=True)
+        click.secho(u"{0}: {1}".format(leaguecodes[league], league), fg="green", bold=True)
         for team in teams:
             if team["code"] != "null":
                 click.secho(u"{0}: {1}".format(team["code"], team["name"]), fg="yellow")
@@ -229,10 +228,10 @@ def list_team_codes():
               help=("Choose the league whose fixtures you want to see. "
                     "See league codes listed in README."))
 @click.option('--players', is_flag=True, help="Shows players for a particular team")
-@click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
+@click.option('--team', type=click.Choice([team for team in TEAM_NAMES.keys() if team != "null"]),
               help=("Choose the team whose fixtures you want to see. "
                     "See team codes listed in README."))
-@click.option('--lookup', is_flag=True, help="Get team name from team code when used with --team command.")
+@click.option('--lookup', is_flag=True, help="Get name from code when used with --league or --team command.")
 @click.option('--time', default=6,
               help="The number of days in the past for which you want to see the scores")
 @click.option('--upcoming', is_flag=True, default=False, help="Displays upcoming games when used with --time command.")
@@ -271,10 +270,15 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
             get_standings(league, writer)
             return
 
-        if team:
-            if lookup:
+        if lookup:
+            if league:
+                map_league_id(league)
+                return
+            elif team:
                 map_team_id(team)
                 return
+
+        if team:
             if players:
                 get_team_players(team, writer)
                 return
