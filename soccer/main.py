@@ -3,6 +3,7 @@ import os
 import requests
 import sys
 import json
+import time as python_time
 
 from soccer import leagueids
 from soccer.exceptions import IncorrectParametersException, APIErrorException
@@ -223,7 +224,9 @@ def list_team_codes():
 @click.option('--apikey', default=load_config_key, help="API key to use")
 @click.option('--list', 'listcodes', is_flag=True, help="List all valid team code/team name pairs")
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
-@click.option('--use12hour', is_flag=True, default=False, help="Displays the time using 12 hour format instead of 24 (default).")
+@click.option('--watch', '-w', default=None, help="Shows live scores after a time interval")
+@click.option('--use12hour', is_flag=True, default=False,
+              help="Displays the time using 12 hour format instead of 24 (default).")
 @click.option('--standings', is_flag=True, help="Standings for a particular league")
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()),
               help=("Choose the league whose fixtures you want to see. "
@@ -244,7 +247,8 @@ def list_team_codes():
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes, apikey):
+def main(league, time, standings, team, live, watch, use12hour, players, output_format, output_file, upcoming, lookup,
+         listcodes, apikey):
     """A CLI for live and past football scores from various football leagues"""
     global headers
     headers = {
@@ -262,6 +266,13 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
 
         if live:
             get_live_scores(writer, use12hour)
+            return
+
+        if watch:
+            while True:
+                get_live_scores(writer, use12hour)
+                python_time.sleep(int(watch))
+                print(chr(27) + "[2J")
             return
 
         if standings:
