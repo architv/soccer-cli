@@ -53,7 +53,7 @@ def load_config_key():
         api_token = os.environ['SOCCER_CLI_API_TOKEN']
     except KeyError:
         home = os.path.expanduser("~")
-        config = os.path.join(home, "soccer-cli.ini")
+        config = os.path.join(home, ".soccer-cli.ini")
         if not os.path.exists(config):
             with open(config, "w") as cfile:
                 key = get_input_key()

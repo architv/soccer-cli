@@ -40,10 +40,10 @@ $ cd soccer-cli
 $ python setup.py install
 ```
 
-You can set the API key using an environment variable as shown above or create a file `soccer-cli.ini` in your home folder (`/home/username/soccer-cli.ini`) that contains only your API token, such that:
+You can set the API key using an environment variable as shown above or create a file `.soccer-cli.ini` in your home folder (`/home/username/.soccer-cli.ini`) that contains only your API token, such that:
 
 ```bash
-$ cat /home/username/soccer-cli.ini
+$ cat /home/username/.soccer-cli.ini
 <YOUR_API_TOKEN>
 ```
 
