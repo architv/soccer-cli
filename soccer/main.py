@@ -9,7 +9,6 @@ from soccer import leagueids
 from soccer.exceptions import IncorrectParametersException, APIErrorException
 from soccer.writers import get_writer
 
-
 BASE_URL = 'http://api.football-data.org/alpha/'
 LIVE_URL = 'http://soccer-cli.appspot.com/'
 LEAGUE_IDS = leagueids.LEAGUE_IDS
@@ -77,7 +76,7 @@ def load_config_key():
 
 def _get(url):
     """Handles api.football-data.org requests"""
-    req = requests.get(BASE_URL+url, headers=headers)
+    req = requests.get(BASE_URL + url, headers=headers)
 
     if req.status_code == requests.codes.ok:
         return req
@@ -115,7 +114,7 @@ def get_team_scores(team, time, writer, show_upcoming, use_12_hour_format):
     if team_id:
         try:
             req = _get('teams/{team_id}/fixtures?timeFrame={time_frame}{time}'.format(
-                        team_id=team_id, time_frame=time_frame, time=time))
+                team_id=team_id, time_frame=time_frame, time=time))
             team_scores = req.json()
             if len(team_scores["fixtures"]) == 0:
                 click.secho("No action during past week. Change the time "
@@ -135,7 +134,7 @@ def get_standings(league, writer):
     league_id = LEAGUE_IDS[league]
     try:
         req = _get('soccerseasons/{id}/leagueTable'.format(
-                    id=league_id))
+            id=league_id))
         writer.standings(req.json(), league)
     except APIErrorException:
         # Click handles incorrect League codes so this will only come up
@@ -145,7 +144,6 @@ def get_standings(league, writer):
 
 
 def get_league_scores(league, time, writer, show_upcoming, use_12_hour_format):
-
     """
     Queries the API and fetches the scores for fixtures
     based upon the league and time parameter
@@ -155,7 +153,7 @@ def get_league_scores(league, time, writer, show_upcoming, use_12_hour_format):
         try:
             league_id = LEAGUE_IDS[league]
             req = _get('soccerseasons/{id}/fixtures?timeFrame={time_frame}{time}'.format(
-                 id=league_id, time_frame=time_frame, time=str(time)))
+                id=league_id, time_frame=time_frame, time=str(time)))
             fixtures_results = req.json()
             # no fixtures in the past week. display a help message and return
             if len(fixtures_results["fixtures"]) == 0:
@@ -169,7 +167,7 @@ def get_league_scores(league, time, writer, show_upcoming, use_12_hour_format):
         # When no league specified. Print all available in time frame.
         try:
             req = _get('fixtures?timeFrame={time_frame}{time}'.format(
-                 time_frame=time_frame, time=str(time)))
+                time_frame=time_frame, time=str(time)))
             fixtures_results = req.json()
             writer.league_scores(fixtures_results, time, show_upcoming, use_12_hour_format)
         except APIErrorException:
@@ -184,7 +182,7 @@ def get_team_players(team, writer):
     team_id = TEAM_NAMES.get(team, None)
     try:
         req = _get('teams/{team_id}/players'.format(
-                   team_id=team_id))
+            team_id=team_id))
         team_players = req.json()
         if int(team_players["count"]) == 0:
             click.secho("No players found for this team", fg="red", bold=True)
@@ -220,11 +218,14 @@ def list_team_codes():
         click.secho("")
 
 
-@click.command()
+@click.command(context_settings=dict(
+    ignore_unknown_options=True,
+    allow_extra_args=True,
+    help_option_names=['-h', '--help'],
+))
 @click.option('--apikey', default=load_config_key, help="API key to use")
 @click.option('--list', 'listcodes', is_flag=True, help="List all valid team code/team name pairs")
 @click.option('--live', is_flag=True, help="Shows live scores from various leagues")
-@click.option('--watch', '-w', default=None, help="Shows live scores after a time interval")
 @click.option('--use12hour', is_flag=True, default=False,
               help="Displays the time using 12 hour format instead of 24 (default).")
 @click.option('--standings', is_flag=True, help="Standings for a particular league")
@@ -247,9 +248,11 @@ def list_team_codes():
               help='Output in JSON format')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, watch, use12hour, players, output_format, output_file, upcoming, lookup,
+@click.pass_context
+def main(ctx, league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup,
          listcodes, apikey):
-    """A CLI for live and past football scores from various football leagues"""
+    """A CLI for live and past football scores from various football leagues\n
+    [Option]-w/--watch time: Refreshes screen after a given time interval in sec (default = 120 sec)"""
     global headers
     headers = {
         'X-Auth-Token': apikey
@@ -259,7 +262,6 @@ def main(league, time, standings, team, live, watch, use12hour, players, output_
             raise IncorrectParametersException('Printing output to stdout and '
                                                'saving to a file are mutually exclusive')
         writer = get_writer(output_format, output_file)
-
         if listcodes:
             list_team_codes()
             return
@@ -267,11 +269,23 @@ def main(league, time, standings, team, live, watch, use12hour, players, output_
         if live:
             get_live_scores(writer, use12hour)
             return
-
-        if watch:
+        if len(ctx.args):
+            sleep_time = 120  # Default watch time
+            flag_watch = False
+            for var in ctx.args:
+                if "--watch" == var or "--watch" == var.split("=")[0]:
+                    flag_watch = True
+                if "-w" == var or "-w" == var.split("=")[0]:
+                    flag_watch = True
+                if '=' in var:
+                    sleep_time = int(var.split("=")[1])
+                if type(var) == int:
+                    sleep_time = int(var)
+            if not flag_watch:
+                return
             while True:
                 get_live_scores(writer, use12hour)
-                python_time.sleep(int(watch))
+                python_time.sleep(sleep_time)
                 print(chr(27) + "[2J")
             return
 
@@ -296,6 +310,7 @@ def main(league, time, standings, team, live, watch, use12hour, players, output_
         get_league_scores(league, time, writer, upcoming, use12hour)
     except IncorrectParametersException as e:
         click.secho(e.message, fg="red", bold=True)
+
 
 if __name__ == '__main__':
     main()
