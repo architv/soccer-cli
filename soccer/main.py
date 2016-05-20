@@ -25,6 +25,10 @@ def load_json(file):
 TEAM_DATA = load_json("teams.json")["teams"]
 TEAM_NAMES = {team["code"]: team["id"] for team in TEAM_DATA}
 
+session = requests.Session()
+headers = {
+    'X-Auth-Token': ''
+}
 
 def get_input_key():
     """Input API key and validate"""
@@ -52,6 +56,7 @@ def load_config_key():
     try:
         api_token = os.environ['SOCCER_CLI_API_TOKEN']
     except KeyError:
+
         home = os.path.expanduser("~")
         config = os.path.join(home, ".soccer-cli.ini")
         if not os.path.exists(config):
@@ -76,7 +81,7 @@ def load_config_key():
 
 def _get(url):
     """Handles api.football-data.org requests"""
-    req = requests.get(BASE_URL+url, headers=headers)
+    req = session.get(BASE_URL+url, headers=headers)
 
     if req.status_code == requests.codes.ok:
         return req
@@ -96,7 +101,7 @@ def _get(url):
 
 def get_live_scores(writer, use_12_hour_format):
     """Gets the live scores"""
-    req = requests.get(LIVE_URL)
+    req = session.get(LIVE_URL)
     if req.status_code == requests.codes.ok:
         scores = req.json()
         if len(scores["games"]) == 0:
@@ -246,11 +251,9 @@ def list_team_codes():
               help="Save output to a file (only if csv or json option is provided)")
 def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes, apikey):
     """A CLI for live and past football scores from various football leagues"""
-    global headers
-    headers = {
-        'X-Auth-Token': apikey
-    }
     try:
+        headers['X-Auth-Token'] = apikey
+
         if output_format == 'stdout' and output_file:
             raise IncorrectParametersException('Printing output to stdout and '
                                                'saving to a file are mutually exclusive')
