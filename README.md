@@ -145,6 +145,12 @@ $ soccer --help
 
 For a full list of supported team and team codes [see this](soccer/teams.json).
 
+A list of league and team codes is also available with:
+
+```bash
+$ soccer --list
+```
+
 Demo
 ====
 
