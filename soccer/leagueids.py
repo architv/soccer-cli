@@ -12,5 +12,5 @@ LEAGUE_IDS = {
     "PPL": 402,
     "DED": 404,
     "CL": 405,
-    "EURO": 424,
+    "EURO": 424
 }
