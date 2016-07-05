@@ -220,36 +220,61 @@ def list_team_codes():
 
 
 @click.command()
-@click.option('--apikey', default=load_config_key, help="API key to use")
-@click.option('--list', 'listcodes', is_flag=True, help="List all valid team code/team name pairs")
-@click.option('--live', is_flag=True, help="Shows live scores from various leagues")
-@click.option('--use12hour', is_flag=True, default=False, help="Displays the time using 12 hour format instead of 24 (default).")
-@click.option('--standings', is_flag=True, help="Standings for a particular league")
+@click.option('--apikey', default=load_config_key,
+              help="API key to use.")
+@click.option('--list', 'listcodes', is_flag=True,
+              help="List all valid team code/team name pairs.")
+@click.option('--live', is_flag=True,
+              help="Shows live scores from various leagues.")
+@click.option('--use12hour', is_flag=True, default=False,
+              help="Displays the time using 12 hour format instead of 24 (default).")
+@click.option('--standings', is_flag=True,
+              help="Standings for a particular league.")
 @click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()),
-              help=("Choose the league whose fixtures you want to see. "
-                    "See league codes listed in README."))
-@click.option('--players', is_flag=True, help="Shows players for a particular team")
+              help=("Select fixtures from a particular league."))
+@click.option('--players', is_flag=True,
+              help="Shows players for a particular team.")
 @click.option('--team', type=click.Choice(TEAM_NAMES.keys()),
-              help=("Choose the team whose fixtures you want to see. "
-                    "See team codes listed in README."))
-@click.option('--lookup', is_flag=True, help="Get team name from team code when used with --team command.")
+              help=("Choose a particular team's fixtures."))
+@click.option('--lookup', is_flag=True,
+              help="Get full team name from team code when used with --team command.")
 @click.option('--time', default=6,
-              help="The number of days in the past for which you want to see the scores")
-@click.option('--upcoming', is_flag=True, default=False, help="Displays upcoming games when used with --time command.")
-@click.option('--stdout', 'output_format', flag_value='stdout',
-              default=True, help="Print to stdout")
+              help="The number of days in the past for which you want to see the scores.")
+@click.option('--upcoming', is_flag=True, default=False,
+              help="Displays upcoming games when used with --time command.")
+@click.option('--stdout', 'output_format', flag_value='stdout', default=True,
+              help="Print to stdout.")
 @click.option('--csv', 'output_format', flag_value='csv',
-              help='Output in CSV format')
+              help='Output in CSV format.')
 @click.option('--json', 'output_format', flag_value='json',
-              help='Output in JSON format')
+              help='Output in JSON format.')
 @click.option('-o', '--output-file', default=None,
-              help="Save output to a file (only if csv or json option is provided)")
-def main(league, time, standings, team, live, use12hour, players, output_format, output_file, upcoming, lookup, listcodes, apikey):
-    """A CLI for live and past football scores from various football leagues"""
+              help="Save output to a file (only if csv or json option is provided).")
+def main(league, time, standings, team, live, use12hour, players, output_format,
+         output_file, upcoming, lookup, listcodes, apikey):
+    """
+    A CLI for live and past football scores from various football leagues.
+
+    League codes:
+
+    \b
+    - CL: Champions League
+    - EPL: Premier League
+    - EL1: League One
+    - FL: Ligue 1
+    - FL2: Ligue 2
+    - BL: Bundesliga
+    - BL2: 2. Bundesliga
+    - BL3: 3. Liga
+    - SA: Serie A
+    - DED: Eredivisie
+    - PPL: Primeira Liga
+    - LLIGA: La Liga
+    - SD: Segunda Division
+    """
     global headers
-    headers = {
-        'X-Auth-Token': apikey
-    }
+    headers = {'X-Auth-Token': apikey}
+
     try:
         if output_format == 'stdout' and output_file:
             raise IncorrectParametersException('Printing output to stdout and '
