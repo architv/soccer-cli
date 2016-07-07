@@ -2249,6 +2249,222 @@
       },
       "code":"null",
       "name":"Acad\u00e9mica de Coimbra"
+    },
+    {  
+      "id":"1065",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"ALB",
+      "name":"Albania"
+    },
+    {  
+      "id":"816",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"AUT",
+      "name":"Austria"
+    },
+    {  
+      "id":"Belgium",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"BEL",
+      "name":"805"
+    },
+    {  
+      "id":"799",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"CRO",
+      "name":"Croatia"
+    },
+    {  
+      "id":"798",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"CZE",
+      "name":"Czech Republic"
+    },
+    {  
+      "id":"770",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"ENG",
+      "name":"England"
+    },
+    {  
+      "id":"773",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"FRA",
+      "name":"France"
+    },
+    {  
+      "id":"759",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"GER",
+      "name":"Germany"
+    },
+    {  
+      "id":"827",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"HUN",
+      "name":"Hungary"
+    },
+    {  
+      "id":"1066",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"ISL",
+      "name":"Iceland"
+    },
+    {  
+      "id":"784",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"ITA",
+      "name":"Italy"
+    },
+    {  
+      "id":"829",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"NIR",
+      "name":"Northern Ireland"
+    },
+    {  
+      "id":"794",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"POL",
+      "name":"Poland"
+    },
+    {  
+      "id":"765",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"POR",
+      "name":"Portugal"
+    },
+    {  
+      "id":"806",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"IRL",
+      "name":"Republic of Ireland"
+    },
+    {  
+      "id":"811",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"ROU",
+      "name":"Romania"
+    },
+    {  
+      "id":"808",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"RUS",
+      "name":"Russia"
+    },
+    {  
+      "id":"768",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"SVK",
+      "name":"Slovakia"
+    },
+    {  
+      "id":"760",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"ESP",
+      "name":"Spain"
+    },
+    {  
+      "id":"792",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"SWE",
+      "name":"Sweden"
+    },
+    {  
+      "id":"788",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"SUI",
+      "name":"Switzerland"
+    },
+    {  
+      "id":"803",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"TUR",
+      "name":"Turkey"
+    },
+    {  
+      "id":"790",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"UKR",
+      "name":"Ukraine"
+    },
+    {  
+      "id":"833",
+      "league":{  
+        "id":424,
+        "name":"Euro 2016"
+      },
+      "code":"WAL",
+      "name":"Wales"
     }
   ]
 }
