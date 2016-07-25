@@ -227,7 +227,7 @@ def list_team_codes():
               help="List all valid team code/team name pairs.")
 @click.option('--live', is_flag=True,
               help="Shows live scores from various leagues.")
-@click.option('--watch', '-w', default=None, help="Shows live scores after a time interval")
+@click.option('--watch', '-w', default=None, help="Refreshes screen after a given time interval in sec (in seconds)")
 @click.option('--use12hour', is_flag=True, default=False,
               help="Displays the time using 12 hour format instead of 24 (default).")
 @click.option('--standings', is_flag=True,
