@@ -35,7 +35,7 @@ export SOCCER_CLI_API_TOKEN="<YOUR_API_TOKEN>"
 ### Build from source
 
 ```bash
-$ git clone git@github.com:architv/soccer-cli.git
+$ git clone git@github.com/architv/soccer-cli.git
 $ cd soccer-cli
 $ python setup.py install
 ```
