@@ -259,17 +259,17 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
 
     \b
     - CL: Champions League
-    - EPL: Premier League
-    - EL1: League One
-    - FL: Ligue 1
-    - FL2: Ligue 2
-    - BL: Bundesliga
+    - PL: England Premier League
+    - EL1: England League One
+    - ELC: England Championship
+    - FL1: French Ligue 1
+    - FL2: French Ligue 2
+    - BL: German Bundesliga
     - BL2: 2. Bundesliga
-    - BL3: 3. Liga
     - SA: Serie A
     - DED: Eredivisie
     - PPL: Primeira Liga
-    - LLIGA: La Liga
+    - PD: Primera Division
     - SD: Segunda Division
     """
     global headers
