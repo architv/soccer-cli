@@ -239,7 +239,7 @@ def list_team_codes():
 @click.option('--lookup', is_flag=True,
               help="Get full team name from team code when used with --team command.")
 @click.option('--time', default=6,
-              help="The number of days in the past for which you want to see the scores.")
+              help="The number of days in the past for which you want to see the scores, or the number of days in the future when used with --upcoming")
 @click.option('--upcoming', is_flag=True, default=False,
               help="Displays upcoming games when used with --time command.")
 @click.option('--stdout', 'output_format', flag_value='stdout', default=True,
@@ -259,17 +259,17 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
 
     \b
     - CL: Champions League
-    - EPL: Premier League
-    - EL1: League One
-    - FL: Ligue 1
-    - FL2: Ligue 2
-    - BL: Bundesliga
+    - PL: England Premier League
+    - EL1: England League One
+    - ELC: England Championship
+    - FL1: French Ligue 1
+    - FL2: French Ligue 2
+    - BL: German Bundesliga
     - BL2: 2. Bundesliga
-    - BL3: 3. Liga
     - SA: Serie A
     - DED: Eredivisie
     - PPL: Primeira Liga
-    - LLIGA: La Liga
+    - PD: Primera Division
     - SD: Segunda Division
     """
     global headers
