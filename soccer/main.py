@@ -90,7 +90,7 @@ def _get(url):
     if req.status_code == requests.codes.not_found:
         raise APIErrorException('This resource does not exist. Check parameters')
 
-    if req.status_codes == requests.codes.too_many_requests:
+    if req.status_code == requests.codes.too_many_requests:
         raise APIErrorException('You have exceeded your allowed requests per minute/day')
 
 
