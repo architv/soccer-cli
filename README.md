@@ -58,7 +58,7 @@ Usage
 ### Get standings for a league
 
 ```bash
-$ soccer --standings --league=EPL # EPL is the league code for English Premier League
+$ soccer --standings --league=PL # PL is the league code for English Premier League
 ```
 
 ### Get scores for a particular team
