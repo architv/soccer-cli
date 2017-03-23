@@ -3,7 +3,7 @@ import sys
 sys.path.append('soccer')
 import leagueproperties
 import leagueids
-import main
+from main import load_json
 
 class TestLoadData(unittest.TestCase):
 
@@ -18,7 +18,7 @@ class TestLoadData(unittest.TestCase):
     def test_load_team_data(self):
         raised = False
         try:
-            main.load_json(TestLoadData.TEAMS_INFO_FILENAME)["teams"]
+            load_json(TestLoadData.TEAMS_INFO_FILENAME)["teams"]
         except IOError:
             raised = True
         self.assertFalse(raised)
