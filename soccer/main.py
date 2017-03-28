@@ -3,6 +3,7 @@ import os
 import requests
 import sys
 import json
+import time as python_time
 
 from soccer import leagueids
 from soccer.exceptions import IncorrectParametersException, APIErrorException
@@ -103,6 +104,7 @@ def list_team_codes():
               help="List all valid team code/team name pairs.")
 @click.option('--live', is_flag=True,
               help="Shows live scores from various leagues.")
+@click.option('--watch', '-w', default=None, help="Refreshes screen after a given time interval in sec (in seconds)")
 @click.option('--use12hour', is_flag=True, default=False,
               help="Displays the time using 12 hour format instead of 24 (default).")
 @click.option('--standings', is_flag=True,
@@ -127,7 +129,7 @@ def list_team_codes():
               help='Output in JSON format.')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided).")
-def main(league, time, standings, team, live, use12hour, players, output_format,
+def main(league, time, standings, team, live, watch, use12hour, players, output_format,
          output_file, upcoming, lookup, listcodes, apikey):
     """
     A CLI for live and past football scores from various football leagues.
@@ -164,6 +166,13 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
 
         if live:
             rh.get_live_scores(use12hour)
+            return
+
+        if watch:
+            while True:
+                get_live_scores(writer, use12hour)
+                python_time.sleep(int(watch))
+                print(chr(27) + "[2J")
             return
 
         if standings:
