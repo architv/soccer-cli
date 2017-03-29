@@ -1,9 +1,12 @@
 import unittest
 import sys
+
 sys.path.append('soccer')
-import leagueproperties
-import leagueids
-from main import load_json
+
+from soccer import leagueproperties
+from soccer import leagueids
+from soccer.main import load_json
+
 
 class TestLoadData(unittest.TestCase):
 
@@ -40,6 +43,7 @@ class TestLoadData(unittest.TestCase):
         except AttributeError:
             raised = True
         self.assertFalse(raised)
+
 
 if __name__ == '__main__':
     unittest.main()

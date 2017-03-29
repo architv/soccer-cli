@@ -1,6 +1,7 @@
 import requests
 import click
-from soccer.exceptions import IncorrectParametersException, APIErrorException
+from soccer.exceptions import APIErrorException
+
 
 class RequestHandler(object):
 
@@ -32,7 +33,6 @@ class RequestHandler(object):
         if req.status_code == requests.codes.too_many_requests:
             raise APIErrorException('You have exceeded your allowed requests per minute/day')
 
-
     def get_live_scores(self, use_12_hour_format):
         """Gets the live scores"""
         req = requests.get(RequestHandler.LIVE_URL)
@@ -44,7 +44,6 @@ class RequestHandler(object):
             self.writer.live_scores(scores, use_12_hour_format)
         else:
             click.secho("There was problem getting live scores", fg="red", bold=True)
-
 
     def get_team_scores(self, team, time, show_upcoming, use_12_hour_format):
         """Queries the API and gets the particular team scores"""
@@ -67,7 +66,6 @@ class RequestHandler(object):
             click.secho("Team code is not correct.",
                         fg="red", bold=True)
 
-
     def get_standings(self, league):
         """Queries the API and gets the standings for a particular league"""
         league_id = self.league_ids[league]
@@ -80,7 +78,6 @@ class RequestHandler(object):
             # if that league does not have standings available. ie. Champions League
             click.secho("No standings availble for {league}.".format(league=league),
                         fg="red", bold=True)
-
 
     def get_league_scores(self, league, time, show_upcoming, use_12_hour_format):
 
@@ -100,7 +97,9 @@ class RequestHandler(object):
                     click.secho("No {league} matches in the past week.".format(league=league),
                                 fg="red", bold=True)
                     return
-                self.writer.league_scores(fixtures_results, time, show_upcoming, use_12_hour_format)
+                self.writer.league_scores(fixtures_results,
+                                          time, show_upcoming,
+                                          use_12_hour_format)
             except APIErrorException:
                 click.secho("No data for the given league.", fg="red", bold=True)
         else:
@@ -109,10 +108,12 @@ class RequestHandler(object):
                 req = self._get('fixtures?timeFrame={time_frame}{time}'.format(
                      time_frame=time_frame, time=str(time)))
                 fixtures_results = req.json()
-                self.writer.league_scores(fixtures_results, time, show_upcoming, use_12_hour_format)
+                self.writer.league_scores(fixtures_results,
+                                          time,
+                                          show_upcoming,
+                                          use_12_hour_format)
             except APIErrorException:
                 click.secho("No data available.", fg="red", bold=True)
-
 
     def get_team_players(self, team):
         """
@@ -131,4 +132,3 @@ class RequestHandler(object):
         except APIErrorException:
             click.secho("No data for the team. Please check the team code.",
                         fg="red", bold=True)
-

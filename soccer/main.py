@@ -1,16 +1,14 @@
-import click
 import os
-import requests
 import sys
 import json
 
+import click
+
 from soccer import leagueids
-from soccer.exceptions import IncorrectParametersException, APIErrorException
+from soccer.exceptions import IncorrectParametersException
 from soccer.writers import get_writer
+from soccer.request_handler import RequestHandler
 
-from request_handler import RequestHandler
-
-LEAGUE_IDS = leagueids.LEAGUE_IDS
 
 def load_json(file):
     """Load JSON file at app start"""
@@ -20,6 +18,7 @@ def load_json(file):
     return data
 
 
+LEAGUE_IDS = leagueids.LEAGUE_IDS
 TEAM_DATA = load_json("teams.json")["teams"]
 TEAM_NAMES = {team["code"]: team["id"] for team in TEAM_DATA}
 
@@ -71,6 +70,7 @@ def load_config_key():
             sys.exit(1)
     return api_token
 
+
 def map_team_id(code):
     """Take in team ID, read JSON file to map ID to name"""
     for team in TEAM_DATA:
@@ -116,7 +116,9 @@ def list_team_codes():
 @click.option('--lookup', is_flag=True,
               help="Get full team name from team code when used with --team command.")
 @click.option('--time', default=6,
-              help="The number of days in the past for which you want to see the scores, or the number of days in the future when used with --upcoming")
+              help=("The number of days in the past for which you "
+                    "want to see the scores, or the number of days "
+                    "in the future when used with --upcoming"))
 @click.option('--upcoming', is_flag=True, default=False,
               help="Displays upcoming games when used with --time command.")
 @click.option('--stdout', 'output_format', flag_value='stdout', default=True,
@@ -127,8 +129,8 @@ def list_team_codes():
               help='Output in JSON format.')
 @click.option('-o', '--output-file', default=None,
               help="Save output to a file (only if csv or json option is provided).")
-def main(league, time, standings, team, live, use12hour, players, output_format,
-         output_file, upcoming, lookup, listcodes, apikey):
+def main(league, time, standings, team, live, use12hour, players,
+         output_format, output_file, upcoming, lookup, listcodes, apikey):
     """
     A CLI for live and past football scores from various football leagues.
 
@@ -187,6 +189,7 @@ def main(league, time, standings, team, live, use12hour, players, output_format,
         rh.get_league_scores(league, time, upcoming, use12hour)
     except IncorrectParametersException as e:
         click.secho(e.message, fg="red", bold=True)
+
 
 if __name__ == '__main__':
     main()
