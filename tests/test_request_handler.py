@@ -46,60 +46,49 @@ class TestRequestHandler(unittest.TestCase):
         mock_call.return_value = mock.MagicMock(
                 status_code=requests.codes.ok,
                 response=json.dumps({'key': 'value'}))
-        raised = False
         try:
             self.rq._get(self.dummy_url)
         except APIErrorException:
-            raised = True
-        self.assertFalse(raised is True)
+            self.fail("Threw exception erroneously")
 
     @mock.patch('requests.get')
     def test_bad_code(self, mock_call):
         mock_call.return_value = mock.MagicMock(
                 status_code=requests.codes.bad,
                 response=json.dumps({'key': 'value'}))
-        raised = False
-        try:
+        with self.assertRaises(APIErrorException) as context:
             self.rq._get(self.dummy_url)
-        except APIErrorException:
-            raised = True
-        self.assertTrue(raised is True)
+        self.assertTrue("Invalid request. "
+                        "Check parameters." in context.exception)
 
     @mock.patch('requests.get')
     def test_forbidden_code(self, mock_call):
         mock_call.return_value = mock.MagicMock(
                 status_code=requests.codes.forbidden,
                 response=json.dumps({'key': 'value'}))
-        raised = False
-        try:
+        with self.assertRaises(APIErrorException) as context:
             self.rq._get(self.dummy_url)
-        except APIErrorException:
-            raised = True
-        self.assertTrue(raised is True)
+        self.assertTrue('This resource is restricted' in context.exception)
 
     @mock.patch('requests.get')
     def test_not_found_code(self, mock_call):
         mock_call.return_value = mock.MagicMock(
                 status_code=requests.codes.not_found,
                 response=json.dumps({'key': 'value'}))
-        raised = False
-        try:
+        with self.assertRaises(APIErrorException) as context:
             self.rq._get(self.dummy_url)
-        except APIErrorException:
-            raised = True
-        self.assertTrue(raised is True)
+        self.assertTrue("This resource does not exist. "
+                        "Check parameters" in context.exception)
 
     @mock.patch('requests.get')
     def test_too_many_requests_code(self, mock_call):
         mock_call.return_value = mock.MagicMock(
                 status_code=requests.codes.too_many_requests,
                 response=json.dumps({'key': 'value'}))
-        raised = False
-        try:
+        with self.assertRaises(APIErrorException) as context:
             self.rq._get(self.dummy_url)
-        except APIErrorException:
-            raised = True
-        self.assertTrue(raised is True)
+        self.assertTrue("You have exceeded your allowed "
+                        "requests per minute/day" in context.exception)
 
     @mock.patch('test_request_handler.Stdout.live_scores')
     @mock.patch('requests.get')
@@ -118,7 +107,8 @@ class TestRequestHandler(unittest.TestCase):
         mock_request_call.side_effect = [mocked_requests_get({'games': []}, 200)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_live_scores(True)
-        mock_click.assert_called_with("No live action currently", fg="red", bold=True)
+        mock_click.assert_called_with("No live action "
+                                      "currently", fg="red", bold=True)
 
     @mock.patch('test_request_handler.click.secho')
     @mock.patch('test_request_handler.Stdout.live_scores')
@@ -129,7 +119,8 @@ class TestRequestHandler(unittest.TestCase):
         mock_request_call.side_effect = [mocked_requests_get({'games': [1, 2]}, 400)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_live_scores(True)
-        mock_click.assert_called_with("There was problem getting live scores", fg="red", bold=True)
+        mock_click.assert_called_with("There was problem getting "
+                                      "live scores", fg="red", bold=True)
 
     @mock.patch('test_request_handler.Stdout.team_scores')
     @mock.patch('requests.get')
@@ -149,8 +140,10 @@ class TestRequestHandler(unittest.TestCase):
         mock_request_call.side_effect = [mocked_requests_get({'fixtures': []}, 200)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_team_scores("AFC", 6, True, True)
-        mock_click.assert_called_with("No action during past week. Change the time "
-         "parameter to get more fixtures.", fg="red", bold=True)
+        mock_click.assert_called_with("No action during"
+                                      " past week. Change the time "
+                                      "parameter to get "
+                                      "more fixtures.", fg="red", bold=True)
 
     @mock.patch('test_request_handler.click.secho')
     @mock.patch('test_request_handler.Stdout.team_scores')
@@ -161,7 +154,8 @@ class TestRequestHandler(unittest.TestCase):
         mock_request_call.side_effect = [mocked_requests_get({'fixtures': [1, 2]}, 200)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_team_scores("AdkljdfkljkdlFC", 6, True, True)
-        mock_click.assert_called_with("Team code is not correct.", fg="red", bold=True)
+        mock_click.assert_called_with("Team code is not "
+                                      "correct.", fg="red", bold=True)
 
 
 if __name__ == '__main__':
