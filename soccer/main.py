@@ -172,6 +172,9 @@ def main(league, time, standings, team, live, use12hour, players,
             if not league:
                 raise IncorrectParametersException('Please specify a league. '
                                                    'Example --standings --league=EPL')
+            if league == 'CL':
+                raise IncorrectParametersException('Standings for CL - '
+                                                   'Champions League not supported')
             rh.get_standings(league)
             return
 
@@ -188,7 +191,7 @@ def main(league, time, standings, team, live, use12hour, players,
 
         rh.get_league_scores(league, time, upcoming, use12hour)
     except IncorrectParametersException as e:
-        click.secho(e.message, fg="red", bold=True)
+        click.secho(str(e), fg="red", bold=True)
 
 
 if __name__ == '__main__':
