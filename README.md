@@ -103,14 +103,14 @@ $ soccer --time=10 # scores for all the seven leagues over the past 10 days
 ### Get the output in csv or json
 
 ```bash
-$ soccer --league EPL --standings --csv # prints the output in csv format
-$ soccer --league EPL --standings --json # prints the output in json format
+$ soccer --league PL --standings --csv # prints the output in csv format
+$ soccer --league PL --standings --json # prints the output in json format
 ```
 
 ### Store the ouput in a file
 
 ```bash
-$ soccer --league EPL --standings --csv -o 'standings.csv' # stores the ouput in scv format in `standings.csv`
+$ soccer --league PL --standings --csv -o 'standings.csv' # stores the ouput in scv format in `standings.csv`
 ```
 
 ### Help
@@ -122,7 +122,7 @@ $ soccer --help
 - Europe:
   - CL: Champions League
 - England:
-  - EPL: Premier League
+  - PL: Premier League
   - EL1: League One
 - France:
   - FL: Ligue 1
