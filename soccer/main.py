@@ -138,9 +138,9 @@ def main(league, time, standings, team, live, use12hour, players,
 
     \b
     - CL: Champions League
-    - PL: England Premier League
-    - EL1: England League One
-    - ELC: England Championship
+    - PL: English Premier League
+    - ELC: English Championship
+    - EL1: English League One
     - FL1: French Ligue 1
     - FL2: French Ligue 2
     - BL: German Bundesliga
