@@ -6,13 +6,10 @@ import requests
 import unittest
 import leagueids
 import mock
-import click
-from main import load_json
 from mock_response import MockResponse
 from soccer.exceptions import APIErrorException
 from request_handler import RequestHandler
 from soccer.writers import get_writer
-from soccer.writers import Stdout
 
 
 def mocked_requests_get(*args, **kwargs):
@@ -90,54 +87,59 @@ class TestRequestHandler(unittest.TestCase):
         self.assertTrue("You have exceeded your allowed "
                         "requests per minute/day" in context.exception)
 
-    @mock.patch('test_request_handler.Stdout.live_scores')
+    @mock.patch('soccer.writers.Stdout.live_scores')
     @mock.patch('requests.get')
     def test_get_live_scores_ok(self, mock_request_call, mock_writer):
-        mock_request_call.side_effect = [mocked_requests_get({'games': [1, 2]}, 200)]
+        mock_request_call.side_effect = \
+            [mocked_requests_get({'games': [1, 2]}, 200)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_live_scores(True)
         mock_writer.assert_called_once()
 
-    @mock.patch('test_request_handler.click.secho')
-    @mock.patch('test_request_handler.Stdout.live_scores')
+    @mock.patch('click.secho')
+    @mock.patch('soccer.writers.Stdout.live_scores')
     @mock.patch('requests.get')
     def test_get_live_scores_0_games(self,
                                      mock_request_call, mock_writer,
                                      mock_click):
-        mock_request_call.side_effect = [mocked_requests_get({'games': []}, 200)]
+        mock_request_call.side_effect = \
+            [mocked_requests_get({'games': []}, 200)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_live_scores(True)
         mock_click.assert_called_with("No live action "
                                       "currently", fg="red", bold=True)
 
-    @mock.patch('test_request_handler.click.secho')
-    @mock.patch('test_request_handler.Stdout.live_scores')
+    @mock.patch('click.secho')
+    @mock.patch('soccer.writers.Stdout.live_scores')
     @mock.patch('requests.get')
     def test_get_live_scores_error(self,
                                    mock_request_call, mock_writer,
                                    mock_click):
-        mock_request_call.side_effect = [mocked_requests_get({'games': [1, 2]}, 400)]
+        mock_request_call.side_effect = \
+            [mocked_requests_get({'games': [1, 2]}, 400)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_live_scores(True)
         mock_click.assert_called_with("There was problem getting "
                                       "live scores", fg="red", bold=True)
 
-    @mock.patch('test_request_handler.Stdout.team_scores')
+    @mock.patch('soccer.writers.Stdout.team_scores')
     @mock.patch('requests.get')
     def test_get_team_scores_ok(self,
                                 mock_request_call, mock_writer):
-        mock_request_call.side_effect = [mocked_requests_get({'fixtures': [1, 2]}, 200)]
+        mock_request_call.side_effect = \
+            [mocked_requests_get({'fixtures': [1, 2]}, 200)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_team_scores("AFC", 6, True, True)
         mock_writer.assert_called_once()
 
-    @mock.patch('test_request_handler.click.secho')
-    @mock.patch('test_request_handler.Stdout.team_scores')
+    @mock.patch('click.secho')
+    @mock.patch('soccer.writers.Stdout.team_scores')
     @mock.patch('requests.get')
     def test_get_team_scores_0_fixtures(self,
                                         mock_request_call,
                                         mock_writer, mock_click):
-        mock_request_call.side_effect = [mocked_requests_get({'fixtures': []}, 200)]
+        mock_request_call.side_effect = \
+            [mocked_requests_get({'fixtures': []}, 200)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_team_scores("AFC", 6, True, True)
         mock_click.assert_called_with("No action during"
@@ -145,13 +147,14 @@ class TestRequestHandler(unittest.TestCase):
                                       "parameter to get "
                                       "more fixtures.", fg="red", bold=True)
 
-    @mock.patch('test_request_handler.click.secho')
-    @mock.patch('test_request_handler.Stdout.team_scores')
+    @mock.patch('click.secho')
+    @mock.patch('soccer.writers.Stdout.team_scores')
     @mock.patch('requests.get')
     def test_get_team_scores_bad_id(self,
                                     mock_request_call,
                                     mock_writer, mock_click):
-        mock_request_call.side_effect = [mocked_requests_get({'fixtures': [1, 2]}, 200)]
+        mock_request_call.side_effect = \
+            [mocked_requests_get({'fixtures': [1, 2]}, 200)]
         mock_writer.return_value = mock.Mock()
         self.rq.get_team_scores("AdkljdfkljkdlFC", 6, True, True)
         mock_click.assert_called_with("Team code is not "
