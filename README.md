@@ -143,6 +143,20 @@ $ soccer --help
 
 For a full list of supported team and team codes [see this](soccer/teams.json).
 
+### Tests
+
+To run testing suite from root of repo
+
+```bash
+$ python -m unittest discover tests
+```
+
+To run specific test file (in this case the tests in test_request_handler.py)
+
+```bash
+$ python -m unittest tests.test_request_handler
+```
+
 Demo
 ====
 
