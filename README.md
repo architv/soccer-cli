@@ -95,7 +95,7 @@ $ soccer --team=JUVE --players
 ### Get scores for all seven leagues with a set time period
 
 ```bash
-$ soccer --time=10 # scores for all the seven leagues over the past 10 days
+$ soccer --time=10 # get scores for all the seven leagues over the past 10 days
 ```
 
 ### Get the output in csv or json
