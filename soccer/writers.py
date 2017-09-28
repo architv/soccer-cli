@@ -114,7 +114,7 @@ class Stdout(BaseWriter):
         fmt = (u"{jerseyNumber:<4} {name:<28} {position:<23} {nationality:<23}"
                u" {dateOfBirth:<18} {marketValue}")
         for player in players:
-            click.echo()
+            #click.echo()
             click.secho(fmt.format(**player), bold=True)
 
     def standings(self, league_table, league):
