@@ -93,12 +93,12 @@ class Stdout(BaseWriter):
         """Prints the teams scores in a pretty format"""
         for score in team_scores["fixtures"]:
             if score["status"] == "FINISHED":
-                click.echo()
+                #click.echo()
                 click.secho("%s\t" % score["date"].split('T')[0],
                             fg=self.colors.TIME, nl=False)
                 self.scores(self.parse_result(score))
             elif show_datetime:
-                click.echo()
+                #click.echo()
                 self.scores(self.parse_result(score), add_new_line=False)
                 click.secho('   %s' % Stdout.convert_utc_to_local_time(score["date"], 
                                         use_12_hour_format, show_datetime),
