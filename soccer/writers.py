@@ -93,12 +93,12 @@ class Stdout(BaseWriter):
         """Prints the teams scores in a pretty format"""
         for score in team_scores["fixtures"]:
             if score["status"] == "FINISHED":
-                click.echo()
+                #click.echo()
                 click.secho("%s\t" % score["date"].split('T')[0],
                             fg=self.colors.TIME, nl=False)
                 self.scores(self.parse_result(score))
             elif show_datetime:
-                click.echo()
+                #click.echo()
                 self.scores(self.parse_result(score), add_new_line=False)
                 click.secho('   %s' % Stdout.convert_utc_to_local_time(score["date"], 
                                         use_12_hour_format, show_datetime),
@@ -114,7 +114,7 @@ class Stdout(BaseWriter):
         fmt = (u"{jerseyNumber:<4} {name:<28} {position:<23} {nationality:<23}"
                u" {dateOfBirth:<18} {marketValue}")
         for player in players:
-            click.echo()
+            #click.echo()
             click.secho(fmt.format(**player), bold=True)
 
     def standings(self, league_table, league):
