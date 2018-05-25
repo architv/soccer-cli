@@ -48,7 +48,7 @@ $ cat /home/username/.soccer-cli.ini
 #### Note:
 Currently supports Linux, Mac OS X, NetBSD, FreeBSD and Windows.
 
-To get colorized terminal output on Windows, make sure to install [ansicon](https://github.com/adoxa/ansicon/releases/latest) and [colorama](https://pypi.python.org/pypi/colorama).
+To get colorized terminal output on Windows, make sure to install [ansicon](https://github.com/adoxa/ansicon/releases/latest) and [colorama](https://pypi.org/project/colorama/).
 
 Usage
 ====
