@@ -171,7 +171,7 @@ def main(league, time, standings, team, live, use12hour, players,
         if standings:
             if not league:
                 raise IncorrectParametersException('Please specify a league. '
-                                                   'Example --standings --league=EPL')
+                                                   'Example --standings --league=PL')
             if league == 'CL':
                 raise IncorrectParametersException('Standings for CL - '
                                                    'Champions League not supported')
