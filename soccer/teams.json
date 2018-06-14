@@ -1,5 +1,293 @@
 {  
   "teams":[  
+    {
+      "id": "808",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"RUS",
+      "name":"Russia"
+    },
+    {
+      "id": "801",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"KSA",
+      "name":"Saudi Arabia"
+    },
+    {
+      "id": "825",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"EGY",
+      "name":"Egypt"
+    },
+    {
+      "id": "758",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"URU",
+      "name":"Uruguay"
+    },
+    {
+      "id": "815",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"MAR",
+      "name":"Morocco"
+    },
+    {
+      "id": "840",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"IRN",
+      "name":"Iran"
+    },
+    {
+      "id": "765",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"POR",
+      "name":"Portugal"
+    },
+    {
+      "id": "760",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"ESP",
+      "name":"Spain"
+    },
+    {
+      "id": "773",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"FRA",
+      "name":"France"
+    },
+    {
+      "id": "779",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"AUS",
+      "name":"Australia"
+    },
+    {
+      "id": "762",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"ARG",
+      "name":"Argentina"
+    },
+    {
+      "id": "1066",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"ISL",
+      "name":"Iceland"
+    },
+    {
+      "id": "832",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"PER",
+      "name":"Peru"
+    },
+    {
+      "id": "782",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"DEN",
+      "name":"Denmark"
+    },
+    {
+      "id": "799",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"CRO",
+      "name":"Croatia"
+    },
+    {
+      "id": "776",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"NGA",
+      "name":"Nigeria"
+    },
+    {
+      "id": "793",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"CRC",
+      "name":"Costa Rica"
+    },
+    {
+      "id": "780",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"SRB",
+      "name":"Serbia"
+    },
+    {
+      "id": "759",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"GER",
+      "name":"Germany"
+    },
+    {
+      "id": "769",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"MEX",
+      "name":"Mexico"
+    },
+    {
+      "id": "764",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"BRA",
+      "name":"Brazil"
+    },
+    {
+      "id": "788",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"SUI",
+      "name":"Switzerland"
+    },
+    {
+      "id": "792",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"SWE",
+      "name":"Sweden"
+    },
+    {
+      "id": "772",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"KOR",
+      "name":"Korea Republic"
+    },
+    {
+      "id": "805",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"BEL",
+      "name":"Belgium"
+    },
+    {
+      "id": "1836",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"PAN",
+      "name":"Panama"
+    },
+    {
+      "id": "802",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"TUN",
+      "name":"Tunisia"
+    },
+    {
+      "id": "770",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"ENG",
+      "name":"England"
+    },
+    {
+      "id": "818",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"COL",
+      "name":"Colombia"
+    },
+    {
+      "id": "766",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"JPN",
+      "name":"Japan"
+    },
+    {
+      "id": "794",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"POL",
+      "name":"Poland"
+    },
+    {
+      "id": "804",
+      "league":{
+        "id": "467",
+        "name":"World Cup"
+      },
+      "code":"SEN",
+      "name":"Senegal"
+    },
     {  
       "id":"5",
       "league":{  
