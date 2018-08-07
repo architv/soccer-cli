@@ -5,7 +5,7 @@ from soccer.exceptions import APIErrorException
 
 class RequestHandler(object):
 
-    BASE_URL = 'http://api.football-data.org/alpha/'
+    BASE_URL = 'http://api.football-data.org/v1/'
     LIVE_URL = 'http://soccer-cli.appspot.com/'
 
     def __init__(self, headers, league_ids, team_names, writer):
