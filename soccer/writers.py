@@ -45,20 +45,6 @@ class BaseWriter(object):
     def league_scores(self, total_data, time):
         pass
 
-    def supported_leagues(self, total_data):
-        """Filters out scores of unsupported leagues"""
-        supported_leagues = {val: key for key, val in LEAGUE_IDS.items()}
-        get_league_id = lambda x: int(x["_links"]["soccerseason"]["href"].split("/")[-1])
-        fixtures = (fixture for fixture in total_data["fixtures"]
-                    if get_league_id(fixture) in supported_leagues)
-
-        # Sort the scores by league to make it easier to read
-        fixtures = sorted(fixtures, key=get_league_id)
-        for league, scores in groupby(fixtures, key=get_league_id):
-            league = supported_leagues[league]
-            for score in scores:
-                yield league, score
-
 
 class Stdout(BaseWriter):
 
@@ -119,7 +105,7 @@ class Stdout(BaseWriter):
         """ Prints the league standings in a pretty way """
         click.secho("%-6s  %-30s    %-10s    %-10s    %-10s" %
                     ("POS", "CLUB", "PLAYED", "GOAL DIFF", "POINTS"))
-        for team in league_table["standing"]:
+        for team in league_table["standings"][0]["table"]:
             if team["goalDifference"] >= 0:
                 team["goalDifference"] = ' ' + str(team["goalDifference"])
 
@@ -129,7 +115,7 @@ class Stdout(BaseWriter):
             cl_upper, cl_lower = LEAGUE_PROPERTIES[league]['cl']
             el_upper, el_lower = LEAGUE_PROPERTIES[league]['el']
             rl_upper, rl_lower = LEAGUE_PROPERTIES[league]['rl']
-
+            team['teamName'] = team['team']['name']
             team_str = (u"{position:<7} {teamName:<33} {playedGames:<12}"
                         u" {goalDifference:<14} {points}").format(**team)
             if cl_upper <= team["position"] <= cl_lower:
@@ -144,12 +130,8 @@ class Stdout(BaseWriter):
     def league_scores(self, total_data, time, show_datetime,
                       use_12_hour_format):
         """Prints the data in a pretty format"""
-        seen = set()
-        for league, data in self.supported_leagues(total_data):
-            if league not in seen:
-                seen.add(league)
-                self.league_header(league)
-            self.scores(self.parse_result(data), add_new_line=not show_datetime)
+        for match in total_data['matches']:
+            self.scores(self.parse_result(match), add_new_line=not show_datetime)
             if show_datetime:
                 click.secho('   %s' % Stdout.utc_to_local(data["date"],
                                                           use_12_hour_format,
@@ -182,22 +164,13 @@ class Stdout(BaseWriter):
     def parse_result(self, data):
         """Parses the results and returns a Result namedtuple"""
         def valid_score(score):
-            return "-" if score == -1 else score
+            return "" if score == None else score
 
-        if "result" in data:
-            result = self.Result(
-                data["homeTeamName"],
-                valid_score(data["result"]["goalsHomeTeam"]),
-                data["awayTeamName"],
-                valid_score(data["result"]["goalsAwayTeam"]))
-        else:
-            result = self.Result(
-                data["homeTeamName"],
-                valid_score(data["goalsHomeTeam"]),
-                data["awayTeamName"],
-                valid_score(data["goalsAwayTeam"]))
-
-        return result
+        return self.Result(
+            data["homeTeam"]["name"],
+            valid_score(data["score"]["fullTime"]["homeTeam"]),
+            data["awayTeam"]["name"],
+            valid_score(data["score"]["fullTime"]["awayTeam"]))
 
     @staticmethod
     def utc_to_local(time_str, use_12_hour_format, show_datetime=False):
