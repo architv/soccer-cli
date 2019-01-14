@@ -7,7 +7,7 @@ Soccer CLI
 
 [![PyPI version](https://badge.fury.io/py/soccer-cli.svg)](http://badge.fury.io/py/soccer-cli) [![Join the chat at https://gitter.im/architv/soccer-cli](https://badges.gitter.im/architv/soccer-cli.svg)](https://gitter.im/architv/soccer-cli?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Soccer for Hackers - a CLI for all the football scores. 
+Soccer for Hackers - a CLI for all the football scores.
 
 ![](http://i.imgur.com/9QbcUrj.gif)
 
@@ -120,24 +120,20 @@ $ soccer --help
 - Europe:
   - CL: Champions League
 - England:
-  - PL: Premier League
-  - EL1: League One
+  - PL: English Premier League
+  - ELC: English Championship
 - France:
   - FL: Ligue 1
-  - FL2: Ligue 2
 - Germany:
   - BL: Bundesliga
-  - BL2: 2. Bundesliga
-  - BL3: 3. Liga
 - Italy:
-  - SA: Serie A 
+  - SA: Serie A
 - Netherlands:
   - DED: Eredivisie
 - Portugal:
   - PPL: Primeira Liga
 - Spain:
   - LLIGA: La Liga
-  - SD: Segunda Division
 
 ### Team and team codes
 
@@ -174,13 +170,14 @@ Demo
 
 Todo
 ====
-- [ ] Enable cache
-- [ ] Add more test cases
-- [x] Add fixtures for UEFA Champions League
-- [ ] Add league filter for live scores
-- [x] Color coding for Europa league and differentiation between straight CL and CL playoff spots, and the same for EL spots
-- [x] Add support for team line up
+- [ ] Enable cache.
+- [ ] Add more test cases.
+- [x] Add fixtures for UEFA Champions League.
+- [ ] Add league filter for live scores.
+- [x] Color coding for Europa league and differentiation between straight CL and CL playoff spots, and the same for EL spots.
+- [x] Add support for team line up.
 - [ ] A built in watch feature so you can run once with --live and just leave the program running.
+- [ ] Python 3 support.
 
 Licence
 ====

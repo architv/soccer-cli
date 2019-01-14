@@ -5,7 +5,7 @@ from soccer.exceptions import APIErrorException
 
 class RequestHandler(object):
 
-    BASE_URL = 'http://api.football-data.org/v1/'
+    BASE_URL = 'http://api.football-data.org/v2/'
     LIVE_URL = 'http://soccer-cli.appspot.com/'
 
     def __init__(self, headers, league_ids, team_names, writer):
@@ -33,11 +33,23 @@ class RequestHandler(object):
         """Gets the live scores"""
         req = requests.get(RequestHandler.LIVE_URL)
         if req.status_code == requests.codes.ok:
+            scores_data = []
             scores = req.json()
             if len(scores["games"]) == 0:
                 click.secho("No live action currently", fg="red", bold=True)
                 return
-            self.writer.live_scores(scores, use_12_hour_format)
+
+            for score in scores['games']:
+                # match football-data api structure
+                d = {}
+                d['homeTeam'] = {'name': score['homeTeamName']}
+                d['awayTeam'] = {'name': score['awayTeamName']}
+                d['score'] = {'fullTime': {'homeTeam': score['goalsHomeTeam'],
+                                           'awayTeam': score['goalsAwayTeam']}}
+                d['league'] = score['league']
+                d['time'] = score['time']
+                scores_data.append(d)
+            self.writer.live_scores(scores_data)
         else:
             click.secho("There was problem getting live scores", fg="red", bold=True)
 
@@ -47,14 +59,14 @@ class RequestHandler(object):
         time_frame = 'n' if show_upcoming else 'p'
         if team_id:
             try:
-                req = self._get('teams/{team_id}/fixtures?timeFrame={time_frame}{time}'.format(
+                req = self._get('teams/{team_id}/matches?timeFrame={time_frame}{time}'.format(
                             team_id=team_id, time_frame=time_frame, time=time))
                 team_scores = req.json()
-                if len(team_scores["fixtures"]) == 0:
+                if len(team_scores["matches"]) == 0:
                     click.secho("No action during past week. Change the time "
                                 "parameter to get more fixtures.", fg="red", bold=True)
                 else:
-                    self.writer.team_scores(team_scores, time, show_upcoming, use_12_hour_format)
+                    self.writer.team_scores(team_scores, time)
             except APIErrorException as e:
                 click.secho(e.args[0],
                             fg="red", bold=True)
@@ -66,7 +78,7 @@ class RequestHandler(object):
         """Queries the API and gets the standings for a particular league"""
         league_id = self.league_ids[league]
         try:
-            req = self._get('soccerseasons/{id}/leagueTable'.format(
+            req = self._get('competitions/{id}/standings'.format(
                         id=league_id))
             self.writer.standings(req.json(), league)
         except APIErrorException:
@@ -85,11 +97,11 @@ class RequestHandler(object):
         if league:
             try:
                 league_id = self.league_ids[league]
-                req = self._get('soccerseasons/{id}/fixtures?timeFrame={time_frame}{time}'.format(
+                req = self._get('competitions/{id}/matches?timeFrame={time_frame}{time}'.format(
                      id=league_id, time_frame=time_frame, time=str(time)))
                 fixtures_results = req.json()
                 # no fixtures in the past week. display a help message and return
-                if len(fixtures_results["fixtures"]) == 0:
+                if len(fixtures_results["matches"]) == 0:
                     click.secho("No {league} matches in the past week.".format(league=league),
                                 fg="red", bold=True)
                     return
@@ -101,7 +113,7 @@ class RequestHandler(object):
         else:
             # When no league specified. Print all available in time frame.
             try:
-                req = self._get('fixtures?timeFrame={time_frame}{time}'.format(
+                req = self._get('matches?timeFrame={time_frame}{time}'.format(
                      time_frame=time_frame, time=str(time)))
                 fixtures_results = req.json()
                 self.writer.league_scores(fixtures_results,
@@ -118,10 +130,9 @@ class RequestHandler(object):
         """
         team_id = self.team_names.get(team, None)
         try:
-            req = self._get('teams/{team_id}/players'.format(
-                       team_id=team_id))
-            team_players = req.json()
-            if int(team_players["count"]) == 0:
+            req = self._get('teams/{}/'.format(team_id))
+            team_players = req.json()['squad']
+            if not team_players:
                 click.secho("No players found for this team", fg="red", bold=True)
             else:
                 self.writer.team_players(team_players)
