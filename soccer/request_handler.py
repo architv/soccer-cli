@@ -54,7 +54,7 @@ class RequestHandler(object):
                     click.secho("No action during past week. Change the time "
                                 "parameter to get more fixtures.", fg="red", bold=True)
                 else:
-                    self.writer.team_scores(team_scores, time, show_upcoming, use_12_hour_format)
+                    self.writer.team_scores(team_scores, time)
             except APIErrorException as e:
                 click.secho(e.args[0],
                             fg="red", bold=True)

@@ -302,13 +302,13 @@ class Json(BaseWriter):
     def team_scores(self, team_scores, time):
         """Store output of team scores to a JSON file"""
         data = []
-        for score in team_scores['fixtures']:
+        for score in team_scores['matches']:
             if score['status'] == 'FINISHED':
-                item = {'date': score["date"].split('T')[0],
-                        'homeTeamName': score['homeTeamName'],
-                        'goalsHomeTeam': score['result']['goalsHomeTeam'],
-                        'goalsAwayTeam': score['result']['goalsAwayTeam'],
-                        'awayTeamName': score['awayTeamName']}
+                item = {'date': score["utcDate"].split('T')[0],
+                        'homeTeamName': score['homeTeam']['name'],
+                        'goalsHomeTeam': score['score']['fullTime']['homeTeam'],
+                        'goalsAwayTeam': score['score']['fullTime']['awayTeam'],
+                        'awayTeamName': score['awayTeam']['name']}
                 data.append(item)
         self.generate_output({'team_scores': data})
 
