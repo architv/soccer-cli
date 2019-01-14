@@ -1,2254 +1,2254 @@
-{  
-  "teams":[  
-    {  
-      "id":"5",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"BAY",
-      "name":"FC Bayern M\u00fcnchen"
-    },
-    {  
-      "id":"7",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"HSV",
-      "name":"Hamburger SV"
-    },
-    {  
-      "id":"16",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"FCA",
-      "name":"FC Augsburg"
-    },
-    {  
-      "id":"9",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"BSC",
-      "name":"Hertha BSC"
-    },
-    {  
-      "id":"3",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"B04",
-      "name":"Bayer Leverkusen"
-    },
-    {  
-      "id":"2",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"TSG",
-      "name":"TSG 1899 Hoffenheim"
-    },
-    {  
-      "id":"55",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"DAR",
-      "name":"SV Darmstadt 98"
-    },
-    {  
-      "id":"8",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"H96",
-      "name":"Hannover 96"
-    },
-    {  
-      "id":"15",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"M05",
-      "name":"1. FSV Mainz 05"
-    },
-    {  
-      "id":"31",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"FCI",
-      "name":"FC Ingolstadt 04"
-    },
-    {  
-      "id":"12",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"SVW",
-      "name":"Werder Bremen"
-    },
-    {  
-      "id":"6",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"S04",
-      "name":"FC Schalke 04"
-    },
-    {  
-      "id":"4",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"BVB",
-      "name":"Borussia Dortmund"
-    },
-    {  
-      "id":"18",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"BMG",
-      "name":"Bor. M\u00f6nchengladbach"
-    },
-    {  
-      "id":"11",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"WOB",
-      "name":"VfL Wolfsburg"
-    },
-    {  
-      "id":"19",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"SGE",
-      "name":"Eintracht Frankfurt"
-    },
-    {  
-      "id":"10",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"VFB",
-      "name":"VfB Stuttgart"
-    },
-    {  
-      "id":"1",
-      "league":{  
-        "id":394,
-        "name":"Bundesliga"
-      },
-      "code":"FCK",
-      "name":"1. FC K\u00f6ln"
-    },
-    {  
-      "id":"510",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"Ajaccio AC"
-    },
-    {  
-      "id":"528",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"Dijon FCO"
-    },
-    {  
-      "id":"1045",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"PFC",
-      "name":"Paris FC"
-    },
-    {  
-      "id":"540",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"FC Stade Lavallois Mayenne"
-    },
-    {  
-      "id":"557",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"Chamois Niortais FC"
-    },
-    {  
-      "id":"515",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"FC Valenciennes"
-    },
-    {  
-      "id":"556",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"N\u00eemes Olympique"
-    },
-    {  
-      "id":"513",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"EVA",
-      "name":"\u00c9vian Thonon Gaillard FC"
-    },
-    {  
-      "id":"567",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"Red Star 93"
-    },
-    {  
-      "id":"573",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"US Cr\u00e9teil"
-    },
-    {  
-      "id":"541",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"Clermont Foot Auvergne"
-    },
-    {  
-      "id":"517",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"Sochaux FC"
-    },
-    {  
-      "id":"1042",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"FC Bourg-en-Bresse P\u00e9ronnas"
-    },
-    {  
-      "id":"533",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"Le Havre AC"
-    },
-    {  
-      "id":"519",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"AJ Auxerre"
-    },
-    {  
-      "id":"512",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"Stade Brestois"
-    },
-    {  
-      "id":"545",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"FCM",
-      "name":"FC Metz"
-    },
-    {  
-      "id":"546",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"RCL",
-      "name":"RC Lens"
-    },
-    {  
-      "id":"520",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"AS Nancy"
-    },
-    {  
-      "id":"544",
-      "league":{  
-        "id":397,
-        "name":"Ligue 2"
-      },
-      "code":"null",
-      "name":"RC Tours"
-    },
-    {  
-      "id":"363",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Chesterfield FC"
-    },
-    {  
-      "id":"357",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Barnsley FC"
-    },
-    {  
-      "id":"1079",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Swindon Town FC"
-    },
-    {  
-      "id":"1067",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Bradford City AFC"
-    },
-    {  
-      "id":"1080",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Shrewsbury Town FC"
-    },
-    {  
-      "id":"384",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Millwall FC"
-    },
-    {  
-      "id":"361",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Rochdale AFC"
-    },
-    {  
-      "id":"1077",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Peterborough United FC"
-    },
-    {  
-      "id":"1073",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Fleetwood Town FC"
-    },
-    {  
-      "id":"1069",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Southend United FC"
-    },
-    {  
-      "id":"1071",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Doncaster Rovers FC"
-    },
-    {  
-      "id":"1068",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Bury FC"
-    },
-    {  
-      "id":"1074",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Crewe Alexandra FC"
-    },
-    {  
-      "id":"393",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Port Vale FC"
-    },
-    {  
-      "id":"1076",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Coventry City FC"
-    },
-    {  
-      "id":"75",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Wigan Athletic FC"
-    },
-    {  
-      "id":"1070",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Colchester United FC"
-    },
-    {  
-      "id":"336",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Blackpool FC"
-    },
-    {  
-      "id":"1072",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Burton Albion FC"
-    },
-    {  
-      "id":"1078",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Scunthorpe United FC"
-    },
-    {  
-      "id":"370",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Gillingham FC"
-    },
-    {  
-      "id":"356",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"SUSFC",
-      "name":"Sheffield United FC"
-    },
-    {  
-      "id":"369",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Walsall FC"
-    },
-    {  
-      "id":"1075",
-      "league":{  
-        "id":425,
-        "name":"League One"
-      },
-      "code":"null",
-      "name":"Oldham Athletic AFC"
-    },
-    {  
-      "id":"665",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"Roda JC Kerkrade"
-    },
-    {  
-      "id":"671",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"Heracles Almelo"
-    },
-    {  
-      "id":"675",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"Feyenoord Rotterdam"
-    },
-    {  
-      "id":"676",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"FC Utrecht"
-    },
-    {  
-      "id":"682",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"AZ Alkmaar"
-    },
-    {  
-      "id":"678",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"Ajax Amsterdam"
-    },
-    {  
-      "id":"672",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"Willem II"
-    },
-    {  
-      "id":"679",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"Vitesse Arnhem"
-    },
-    {  
-      "id":"680",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"ADO Den Haag"
-    },
-    {  
-      "id":"674",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"PSV",
-      "name":"PSV Eindhoven"
-    },
-    {  
-      "id":"673",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"SC Heerenveen"
-    },
-    {  
-      "id":"669",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"De Graafschap"
-    },
-    {  
-      "id":"677",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"FC Groningen"
-    },
-    {  
-      "id":"666",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"FC Twente Enschede"
-    },
-    {  
-      "id":"684",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"PEC Zwolle"
-    },
-    {  
-      "id":"717",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"SC Cambuur-Leeuwarden"
-    },
-    {  
-      "id":"667",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"NEC Nijmegen"
-    },
-    {  
-      "id":"670",
-      "league":{  
-        "id":404,
-        "name":"Eredivisie"
-      },
-      "code":"null",
-      "name":"Excelsior"
-    },
-    {  
-      "id":"450",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"null",
-      "name":"Hellas Verona FC"
-    },
-    {  
-      "id":"100",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"ROM",
-      "name":"AS Roma"
-    },
-    {  
-      "id":"109",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"JUVE",
-      "name":"Juventus Turin"
-    },
-    {  
-      "id":"115",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"null",
-      "name":"Udinese Calcio"
-    },
-    {  
-      "id":"114",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"PAL",
-      "name":"US Citt\u00e1 di Palermo"
-    },
-    {  
-      "id":"107",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"GEN",
-      "name":"Genoa CFC"
-    },
-    {  
-      "id":"471",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"SASS",
-      "name":"US Sassuolo Calcio"
-    },
-    {  
-      "id":"113",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"SSC",
-      "name":"SSC Napoli"
-    },
-    {  
-      "id":"584",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"null",
-      "name":"UC Sampdoria"
-    },
-    {  
-      "id":"713",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"null",
-      "name":"Carpi FC"
-    },
-    {  
-      "id":"110",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"LAZ",
-      "name":"SS Lazio"
-    },
-    {  
-      "id":"103",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"null",
-      "name":"Bologna FC"
-    },
-    {  
-      "id":"108",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"INT",
-      "name":"FC Internazionale Milano"
-    },
-    {  
-      "id":"102",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"null",
-      "name":"Atalanta BC"
-    },
-    {  
-      "id":"470",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"null",
-      "name":"Frosinone Calcio"
-    },
-    {  
-      "id":"586",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"FCT",
-      "name":"Torino FC"
-    },
-    {  
-      "id":"99",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"FIO",
-      "name":"ACF Fiorentina"
-    },
-    {  
-      "id":"98",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"ACM",
-      "name":"AC Milan"
-    },
-    {  
-      "id":"445",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"EMP",
-      "name":"Empoli FC"
-    },
-    {  
-      "id":"106",
-      "league":{  
-        "id":401,
-        "name":"Serie A"
-      },
-      "code":"null",
-      "name":"AC Chievo Verona"
-    },
-    {  
-      "id":"25",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"null",
-      "name":"MSV Duisburg"
-    },
-    {  
-      "id":"13",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"KAI",
-      "name":"1. FC Kaiserslautern"
-    },
-    {  
-      "id":"33",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"EBS",
-      "name":"Eintracht Braunschweig"
-    },
-    {  
-      "id":"46",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"SVS",
-      "name":"SV Sandhausen"
-    },
-    {  
-      "id":"17",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"SCF",
-      "name":"SC Freiburg"
-    },
-    {  
-      "id":"14",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"FCN",
-      "name":"1. FC N\u00fcrnberg"
-    },
-    {  
-      "id":"30",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"FSV",
-      "name":"FSV Frankfurt"
-    },
-    {  
-      "id":"721",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"RBL",
-      "name":"Red Bull Leipzig"
-    },
-    {  
-      "id":"21",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"GRE",
-      "name":"SpVgg Greuther F\u00fcrth"
-    },
-    {  
-      "id":"32",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"KAR",
-      "name":"Karlsruher SC"
-    },
-    {  
-      "id":"44",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"HEI",
-      "name":"1. FC Heidenheim 1846"
-    },
-    {  
-      "id":"26",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"1860",
-      "name":"TSV 1860 M\u00fcnchen"
-    },
-    {  
-      "id":"29",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"PAD",
-      "name":"SC Paderborn 07"
-    },
-    {  
-      "id":"36",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"VFL",
-      "name":"VfL Bochum"
-    },
-    {  
-      "id":"20",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"FCP",
-      "name":"FC St. Pauli"
-    },
-    {  
-      "id":"38",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"null",
-      "name":"Arminia Bielefeld"
-    },
-    {  
-      "id":"28",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"FCU",
-      "name":"1. FC Union Berlin"
-    },
-    {  
-      "id":"24",
-      "league":{  
-        "id":395,
-        "name":"2. Bundesliga"
-      },
-      "code":"FOR",
-      "name":"Fortuna D\u00fcsseldorf"
-    },
-    {  
-      "id":"66",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"MUFC",
-      "name":"Manchester United FC"
-    },
-    {  
-      "id":"73",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"THFC",
-      "name":"Tottenham Hotspur FC"
-    },
-    {  
-      "id":"1044",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"AFCB",
-      "name":"AFC Bournemouth"
-    },
-    {  
-      "id":"58",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"AVFC",
-      "name":"Aston Villa FC"
-    },
-    {  
-      "id":"62",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"EFC",
-      "name":"Everton FC"
-    },
-    {  
-      "id":"346",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"WAT",
-      "name":"Watford FC"
-    },
-    {  
-      "id":"338",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"LCFC",
-      "name":"Leicester City FC"
-    },
-    {  
-      "id":"71",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"SUN",
-      "name":"Sunderland AFC"
-    },
-    {  
-      "id":"68",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"NCFC",
-      "name":"Norwich City FC"
-    },
-    {  
-      "id":"354",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"CRY",
-      "name":"Crystal Palace FC"
-    },
-    {  
-      "id":"61",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"CFC",
-      "name":"Chelsea FC"
-    },
-    {  
-      "id":"72",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"SWA",
-      "name":"Swansea City FC"
-    },
-    {  
-      "id":"67",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"NUFC",
-      "name":"Newcastle United FC"
-    },
-    {  
-      "id":"340",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"SFC",
-      "name":"Southampton FC"
-    },
-    {  
-      "id":"57",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"AFC",
-      "name":"Arsenal FC"
-    },
-    {  
-      "id":"563",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"WHU",
-      "name":"West Ham United FC"
-    },
-    {  
-      "id":"70",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"SCFC",
-      "name":"Stoke City FC"
-    },
-    {  
-      "id":"64",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"LFC",
-      "name":"Liverpool FC"
-    },
-    {  
-      "id":"74",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"WBA",
-      "name":"West Bromwich Albion FC"
-    },
-    {  
-      "id":"65",
-      "league":{  
-        "id":398,
-        "name":"Premier League"
-      },
-      "code":"MCFC",
-      "name":"Manchester City FC"
-    },
-    {  
-      "id":"749",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"MFF",
-      "name":"Malm\u00f6 FF"
-    },
-    {  
-      "id":"1056",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"ASTA",
-      "name":"FC Astana"
-    },
-    {  
-      "id":"610",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"GSK",
-      "name":"Galatasaray SK"
-    },
-    {  
-      "id":"751",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"CSK",
-      "name":"CSKA Moscow"
-    },
-    {  
-      "id":"724",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"SHA",
-      "name":"Shakhtar Donetsk"
-    },
-    {  
-      "id":"731",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"ZEN",
-      "name":"FC Zenit St. Petersburg"
-    },
-    {  
-      "id":"842",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"DYK",
-      "name":"Dynamo Kyiv"
-    },
-    {  
-      "id":"971",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"MTA",
-      "name":"Maccabi Tel Aviv"
-    },
-    {  
-      "id":"654",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"OLA",
-      "name":"Olympiacos F.C."
-    },
-    {  
-      "id":"755",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"DIN",
-      "name":"GNK Dinamo Zagreb"
-    },
-    {  
-      "id":"748",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"null",
-      "name":"FK BATE Baryssau"
-    },
-    {  
-      "id":"1057",
-      "league":{  
-        "id":405,
-        "name":"Champions League"
-      },
-      "code":"null",
-      "name":"KAA Gent"
-    },
-    {  
-      "id":"1054",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"1. FC Magdeburg"
-    },
-    {  
-      "id":"40",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Rot-Wei\u00df Erfurt"
-    },
-    {  
-      "id":"39",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"SV Wehen Wiesbaden"
-    },
-    {  
-      "id":"1055",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"W\u00fcrzburger Kickers"
-    },
-    {  
-      "id":"34",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"FC Hansa Rostock"
-    },
-    {  
-      "id":"56",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Werder Bremen II"
-    },
-    {  
-      "id":"202",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Stuttgarter Kickers"
-    },
-    {  
-      "id":"204",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Fortuna K\u00f6ln"
-    },
-    {  
-      "id":"51",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Preu\u00dfen M\u00fcnster"
-    },
-    {  
-      "id":"741",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"SG Sonnenhof Gro\u00dfaspach"
-    },
-    {  
-      "id":"720",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Holstein Kiel"
-    },
-    {  
-      "id":"740",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Mainz 05 II"
-    },
-    {  
-      "id":"22",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"AUE",
-      "name":"Erzgebirge Aue"
-    },
-    {  
-      "id":"52",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"VfL Osnabr\u00fcck"
-    },
-    {  
-      "id":"35",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Dynamo Dresden"
-    },
-    {  
-      "id":"45",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"VfB Stuttgart II"
-    },
-    {  
-      "id":"50",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"VFR",
-      "name":"VfR Aalen"
-    },
-    {  
-      "id":"54",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Chemnitzer FC"
-    },
-    {  
-      "id":"23",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Energie Cottbus"
-    },
-    {  
-      "id":"554",
-      "league":{  
-        "id":403,
-        "name":"3. Liga"
-      },
-      "code":"null",
-      "name":"Hallescher FC"
-    },
-    {  
-      "id":"521",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"OSC",
-      "name":"OSC Lille"
-    },
-    {  
-      "id":"524",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"PSG",
-      "name":"Paris Saint-Germain"
-    },
-    {  
-      "id":"531",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"null",
-      "name":"ES Troyes AC"
-    },
-    {  
-      "id":"555",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"null",
-      "name":"Gaz\u00e9lec Ajaccio"
-    },
-    {  
-      "id":"516",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"MAR",
-      "name":"Olympique de Marseille"
-    },
-    {  
-      "id":"514",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"SMC",
-      "name":"SM Caen"
-    },
-    {  
-      "id":"522",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"NIC",
-      "name":"OGC Nice"
-    },
-    {  
-      "id":"548",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"MON",
-      "name":"AS Monaco FC"
-    },
-    {  
-      "id":"543",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"NAN",
-      "name":"FC Nantes"
-    },
-    {  
-      "id":"538",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"GUI",
-      "name":"EA Guingamp"
-    },
-    {  
-      "id":"518",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"MHSC",
-      "name":"Montpellier H\u00e9rault SC"
-    },
-    {  
-      "id":"532",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"null",
-      "name":"Angers SCO"
-    },
-    {  
-      "id":"536",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"SCB",
-      "name":"SC Bastia"
-    },
-    {  
-      "id":"529",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"REN",
-      "name":"Stade Rennais FC"
-    },
-    {  
-      "id":"526",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"BOR",
-      "name":"FC Girondins de Bordeaux"
-    },
-    {  
-      "id":"547",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"REI",
-      "name":"Stade de Reims"
-    },
-    {  
-      "id":"511",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"TOU",
-      "name":"Toulouse FC"
-    },
-    {  
-      "id":"527",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"ETI",
-      "name":"AS Saint-\u00c9tienne"
-    },
-    {  
-      "id":"523",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"OLY",
-      "name":"Olympique Lyonnais"
-    },
-    {  
-      "id":"525",
-      "league":{  
-        "id":396,
-        "name":"Ligue 1"
-      },
-      "code":"LOR",
-      "name":"FC Lorient"
-    },
-    {  
-      "id":"595",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"CD Mirandes"
-    },
-    {  
-      "id":"91",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Real Zaragoza"
-    },
-    {  
-      "id":"1048",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Real Oviedo"
-    },
-    {  
-      "id":"596",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"CD Lugo"
-    },
-    {  
-      "id":"286",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"SD Ponferradina"
-    },
-    {  
-      "id":"285",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"CFE",
-      "name":"Elche FC"
-    },
-    {  
-      "id":"260",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"CD Numancia de Soria"
-    },
-    {  
-      "id":"254",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"CD Tenerife"
-    },
-    {  
-      "id":"304",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"AD Alcorc\u00f3n"
-    },
-    {  
-      "id":"89",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"RCD Mallorca"
-    },
-    {  
-      "id":"744",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"UE Llagostera"
-    },
-    {  
-      "id":"79",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"CA Osasuna"
-    },
-    {  
-      "id":"299",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Huesca"
-    },
-    {  
-      "id":"263",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Deportivo Alav\u00e9s"
-    },
-    {  
-      "id":"267",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"UDA",
-      "name":"UD Almeria"
-    },
-    {  
-      "id":"745",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"CD Leganes"
-    },
-    {  
-      "id":"265",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Gimn\u00e0stic de Tarragona"
-    },
-    {  
-      "id":"237",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Albacete Balompi\u00e9"
-    },
-    {  
-      "id":"295",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"CCF",
-      "name":"C\u00f3rdoba CF"
-    },
-    {  
-      "id":"250",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Real Valladolid"
-    },
-    {  
-      "id":"1046",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Athletic Bilbao B"
-    },
-    {  
-      "id":"298",
-      "league":{  
-        "id":400,
-        "name":"Segunda Division"
-      },
-      "code":"null",
-      "name":"Girona FC"
-    },
-    {  
-      "id":"560",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"LAC",
-      "name":"RC Deportivo La Coruna"
-    },
-    {  
-      "id":"92",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"RSS",
-      "name":"Real Sociedad de F\u00fatbol"
-    },
-    {  
-      "id":"80",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"ESP",
-      "name":"RCD Espanyol"
-    },
-    {  
-      "id":"82",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"FCG",
-      "name":"Getafe CF"
-    },
-    {  
-      "id":"78",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"ATM",
-      "name":"Club Atl\u00e9tico de Madrid"
-    },
-    {  
-      "id":"275",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"null",
-      "name":"UD Las Palmas"
-    },
-    {  
-      "id":"87",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"RAY",
-      "name":"Rayo Vallecano de Madrid"
-    },
-    {  
-      "id":"95",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"VAL",
-      "name":"Valencia CF"
-    },
-    {  
-      "id":"84",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"MAL",
-      "name":"M\u00e1laga CF"
-    },
-    {  
-      "id":"559",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"SEV",
-      "name":"Sevilla FC"
-    },
-    {  
-      "id":"77",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"BIL",
-      "name":"Athletic Club"
-    },
-    {  
-      "id":"81",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"FCB",
-      "name":"FC Barcelona"
-    },
-    {  
-      "id":"96",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"null",
-      "name":"Sporting Gij\u00f3n"
-    },
-    {  
-      "id":"86",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"MAD",
-      "name":"Real Madrid CF"
-    },
-    {  
-      "id":"88",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"LUD",
-      "name":"Levante UD"
-    },
-    {  
-      "id":"558",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"VIG",
-      "name":"RC Celta de Vigo"
-    },
-    {  
-      "id":"90",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"BET",
-      "name":"Real Betis"
-    },
-    {  
-      "id":"94",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"VCF",
-      "name":"Villarreal CF"
-    },
-    {  
-      "id":"83",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"GCF",
-      "name":"Granada CF"
-    },
-    {  
-      "id":"278",
-      "league":{  
-        "id":399,
-        "name":"La Liga"
-      },
-      "code":"EIB",
-      "name":"SD Eibar"
-    },
-    {  
-      "id":"1049",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"CD Tondela"
-    },
-    {  
-      "id":"498",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"SCP",
-      "name":"Sporting CP"
-    },
-    {  
-      "id":"711",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Belenenses Lissabon"
-    },
-    {  
-      "id":"496",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"FC Rio Ave"
-    },
-    {  
-      "id":"503",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"FCP",
-      "name":"FC Porto"
-    },
-    {  
-      "id":"502",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Vitoria Guimaraes"
-    },
-    {  
-      "id":"506",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Vitoria Setubal"
-    },
-    {  
-      "id":"810",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Boavista Porto FC"
-    },
-    {  
-      "id":"1052",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Uni\u00e3o Madeira"
-    },
-    {  
-      "id":"504",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Maritimo Funchal"
-    },
-    {  
-      "id":"583",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Moreirense FC"
-    },
-    {  
-      "id":"712",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"FC Arouca"
-    },
-    {  
-      "id":"497",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Sporting Braga"
-    },
-    {  
-      "id":"501",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Nacional Funchal"
-    },
-    {  
-      "id":"495",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"SLB",
-      "name":"SL Benfica"
-    },
-    {  
-      "id":"582",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"GD Estoril Praia"
-    },
-    {  
-      "id":"507",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"FC Pa\u00e7os de Ferreira"
-    },
-    {  
-      "id":"509",
-      "league":{  
-        "id":402,
-        "name":"Primeira Liga"
-      },
-      "code":"null",
-      "name":"Acad\u00e9mica de Coimbra"
+{
+  "teams": [
+    {
+      "id": "5",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "BAY",
+      "name": "FC Bayern München"
+    },
+    {
+      "id": "7",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "HSV",
+      "name": "Hamburger SV"
+    },
+    {
+      "id": "16",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "FCA",
+      "name": "FC Augsburg"
+    },
+    {
+      "id": "9",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "BSC",
+      "name": "Hertha BSC"
+    },
+    {
+      "id": "3",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "B04",
+      "name": "Bayer Leverkusen"
+    },
+    {
+      "id": "2",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "TSG",
+      "name": "TSG 1899 Hoffenheim"
+    },
+    {
+      "id": "55",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "DAR",
+      "name": "SV Darmstadt 98"
+    },
+    {
+      "id": "8",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "H96",
+      "name": "Hannover 96"
+    },
+    {
+      "id": "15",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "M05",
+      "name": "1. FSV Mainz 05"
+    },
+    {
+      "id": "31",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "FCI",
+      "name": "FC Ingolstadt 04"
+    },
+    {
+      "id": "12",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "SVW",
+      "name": "Werder Bremen"
+    },
+    {
+      "id": "6",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "S04",
+      "name": "FC Schalke 04"
+    },
+    {
+      "id": "4",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "BVB",
+      "name": "Borussia Dortmund"
+    },
+    {
+      "id": "18",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "BMG",
+      "name": "Bor. Mönchengladbach"
+    },
+    {
+      "id": "11",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "WOB",
+      "name": "VfL Wolfsburg"
+    },
+    {
+      "id": "19",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "SGE",
+      "name": "Eintracht Frankfurt"
+    },
+    {
+      "id": "10",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "VFB",
+      "name": "VfB Stuttgart"
+    },
+    {
+      "id": "1",
+      "league": {
+        "id": 394,
+        "name": "Bundesliga"
+      },
+      "code": "FCK",
+      "name": "1. FC Köln"
+    },
+    {
+      "id": "510",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Ajaccio AC"
+    },
+    {
+      "id": "528",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Dijon FCO"
+    },
+    {
+      "id": "1045",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "PFC",
+      "name": "Paris FC"
+    },
+    {
+      "id": "540",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "FC Stade Lavallois Mayenne"
+    },
+    {
+      "id": "557",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Chamois Niortais FC"
+    },
+    {
+      "id": "515",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "FC Valenciennes"
+    },
+    {
+      "id": "556",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Nîmes Olympique"
+    },
+    {
+      "id": "513",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "EVA",
+      "name": "Évian Thonon Gaillard FC"
+    },
+    {
+      "id": "567",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Red Star 93"
+    },
+    {
+      "id": "573",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "US Créteil"
+    },
+    {
+      "id": "541",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Clermont Foot Auvergne"
+    },
+    {
+      "id": "517",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Sochaux FC"
+    },
+    {
+      "id": "1042",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "FC Bourg-en-Bresse Péronnas"
+    },
+    {
+      "id": "533",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Le Havre AC"
+    },
+    {
+      "id": "519",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "AJ Auxerre"
+    },
+    {
+      "id": "512",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "Stade Brestois"
+    },
+    {
+      "id": "545",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "FCM",
+      "name": "FC Metz"
+    },
+    {
+      "id": "546",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "RCL",
+      "name": "RC Lens"
+    },
+    {
+      "id": "520",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "AS Nancy"
+    },
+    {
+      "id": "544",
+      "league": {
+        "id": 397,
+        "name": "Ligue 2"
+      },
+      "code": "null",
+      "name": "RC Tours"
+    },
+    {
+      "id": "363",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Chesterfield FC"
+    },
+    {
+      "id": "357",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Barnsley FC"
+    },
+    {
+      "id": "1079",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Swindon Town FC"
+    },
+    {
+      "id": "1067",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Bradford City AFC"
+    },
+    {
+      "id": "1080",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Shrewsbury Town FC"
+    },
+    {
+      "id": "384",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Millwall FC"
+    },
+    {
+      "id": "361",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Rochdale AFC"
+    },
+    {
+      "id": "1077",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Peterborough United FC"
+    },
+    {
+      "id": "1073",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Fleetwood Town FC"
+    },
+    {
+      "id": "1069",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Southend United FC"
+    },
+    {
+      "id": "1071",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Doncaster Rovers FC"
+    },
+    {
+      "id": "1068",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Bury FC"
+    },
+    {
+      "id": "1074",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Crewe Alexandra FC"
+    },
+    {
+      "id": "393",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Port Vale FC"
+    },
+    {
+      "id": "1076",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Coventry City FC"
+    },
+    {
+      "id": "75",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Wigan Athletic FC"
+    },
+    {
+      "id": "1070",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Colchester United FC"
+    },
+    {
+      "id": "336",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Blackpool FC"
+    },
+    {
+      "id": "1072",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Burton Albion FC"
+    },
+    {
+      "id": "1078",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Scunthorpe United FC"
+    },
+    {
+      "id": "370",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Gillingham FC"
+    },
+    {
+      "id": "356",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "SUSFC",
+      "name": "Sheffield United FC"
+    },
+    {
+      "id": "369",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Walsall FC"
+    },
+    {
+      "id": "1075",
+      "league": {
+        "id": 425,
+        "name": "League One"
+      },
+      "code": "null",
+      "name": "Oldham Athletic AFC"
+    },
+    {
+      "id": "665",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "Roda JC Kerkrade"
+    },
+    {
+      "id": "671",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "Heracles Almelo"
+    },
+    {
+      "id": "675",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "Feyenoord Rotterdam"
+    },
+    {
+      "id": "676",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "FC Utrecht"
+    },
+    {
+      "id": "682",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "AZ Alkmaar"
+    },
+    {
+      "id": "678",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "Ajax Amsterdam"
+    },
+    {
+      "id": "672",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "Willem II"
+    },
+    {
+      "id": "679",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "Vitesse Arnhem"
+    },
+    {
+      "id": "680",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "ADO Den Haag"
+    },
+    {
+      "id": "674",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "PSV",
+      "name": "PSV Eindhoven"
+    },
+    {
+      "id": "673",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "SC Heerenveen"
+    },
+    {
+      "id": "669",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "De Graafschap"
+    },
+    {
+      "id": "677",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "FC Groningen"
+    },
+    {
+      "id": "666",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "FC Twente Enschede"
+    },
+    {
+      "id": "684",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "PEC Zwolle"
+    },
+    {
+      "id": "717",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "SC Cambuur-Leeuwarden"
+    },
+    {
+      "id": "667",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "NEC Nijmegen"
+    },
+    {
+      "id": "670",
+      "league": {
+        "id": 404,
+        "name": "Eredivisie"
+      },
+      "code": "null",
+      "name": "Excelsior"
+    },
+    {
+      "id": "450",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "null",
+      "name": "Hellas Verona FC"
+    },
+    {
+      "id": "100",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "ROM",
+      "name": "AS Roma"
+    },
+    {
+      "id": "109",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "JUVE",
+      "name": "Juventus Turin"
+    },
+    {
+      "id": "115",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "null",
+      "name": "Udinese Calcio"
+    },
+    {
+      "id": "114",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "PAL",
+      "name": "US Cittá di Palermo"
+    },
+    {
+      "id": "107",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "GEN",
+      "name": "Genoa CFC"
+    },
+    {
+      "id": "471",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "SASS",
+      "name": "US Sassuolo Calcio"
+    },
+    {
+      "id": "113",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "SSC",
+      "name": "SSC Napoli"
+    },
+    {
+      "id": "584",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "null",
+      "name": "UC Sampdoria"
+    },
+    {
+      "id": "713",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "null",
+      "name": "Carpi FC"
+    },
+    {
+      "id": "110",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "LAZ",
+      "name": "SS Lazio"
+    },
+    {
+      "id": "103",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "null",
+      "name": "Bologna FC"
+    },
+    {
+      "id": "108",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "INT",
+      "name": "FC Internazionale Milano"
+    },
+    {
+      "id": "102",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "null",
+      "name": "Atalanta BC"
+    },
+    {
+      "id": "470",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "null",
+      "name": "Frosinone Calcio"
+    },
+    {
+      "id": "586",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "FCT",
+      "name": "Torino FC"
+    },
+    {
+      "id": "99",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "FIO",
+      "name": "ACF Fiorentina"
+    },
+    {
+      "id": "98",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "ACM",
+      "name": "AC Milan"
+    },
+    {
+      "id": "445",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "EMP",
+      "name": "Empoli FC"
+    },
+    {
+      "id": "106",
+      "league": {
+        "id": 401,
+        "name": "Serie A"
+      },
+      "code": "null",
+      "name": "AC Chievo Verona"
+    },
+    {
+      "id": "25",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "null",
+      "name": "MSV Duisburg"
+    },
+    {
+      "id": "13",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "KAI",
+      "name": "1. FC Kaiserslautern"
+    },
+    {
+      "id": "33",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "EBS",
+      "name": "Eintracht Braunschweig"
+    },
+    {
+      "id": "46",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "SVS",
+      "name": "SV Sandhausen"
+    },
+    {
+      "id": "17",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "SCF",
+      "name": "SC Freiburg"
+    },
+    {
+      "id": "14",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "FCN",
+      "name": "1. FC Nürnberg"
+    },
+    {
+      "id": "30",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "FSV",
+      "name": "FSV Frankfurt"
+    },
+    {
+      "id": "721",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "RBL",
+      "name": "Red Bull Leipzig"
+    },
+    {
+      "id": "21",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "GRE",
+      "name": "SpVgg Greuther Fürth"
+    },
+    {
+      "id": "32",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "KAR",
+      "name": "Karlsruher SC"
+    },
+    {
+      "id": "44",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "HEI",
+      "name": "1. FC Heidenheim 1846"
+    },
+    {
+      "id": "26",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "1860",
+      "name": "TSV 1860 München"
+    },
+    {
+      "id": "29",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "PAD",
+      "name": "SC Paderborn 07"
+    },
+    {
+      "id": "36",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "VFL",
+      "name": "VfL Bochum"
+    },
+    {
+      "id": "20",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "FCP",
+      "name": "FC St. Pauli"
+    },
+    {
+      "id": "38",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "null",
+      "name": "Arminia Bielefeld"
+    },
+    {
+      "id": "28",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "FCU",
+      "name": "1. FC Union Berlin"
+    },
+    {
+      "id": "24",
+      "league": {
+        "id": 395,
+        "name": "2. Bundesliga"
+      },
+      "code": "FOR",
+      "name": "Fortuna Düsseldorf"
+    },
+    {
+      "id": "66",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "MUFC",
+      "name": "Manchester United FC"
+    },
+    {
+      "id": "73",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "THFC",
+      "name": "Tottenham Hotspur FC"
+    },
+    {
+      "id": "1044",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "AFCB",
+      "name": "AFC Bournemouth"
+    },
+    {
+      "id": "58",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "AVFC",
+      "name": "Aston Villa FC"
+    },
+    {
+      "id": "62",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "EFC",
+      "name": "Everton FC"
+    },
+    {
+      "id": "346",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "WAT",
+      "name": "Watford FC"
+    },
+    {
+      "id": "338",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "LCFC",
+      "name": "Leicester City FC"
+    },
+    {
+      "id": "71",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "SUN",
+      "name": "Sunderland AFC"
+    },
+    {
+      "id": "68",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "NCFC",
+      "name": "Norwich City FC"
+    },
+    {
+      "id": "354",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "CRY",
+      "name": "Crystal Palace FC"
+    },
+    {
+      "id": "61",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "CFC",
+      "name": "Chelsea FC"
+    },
+    {
+      "id": "72",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "SWA",
+      "name": "Swansea City FC"
+    },
+    {
+      "id": "67",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "NUFC",
+      "name": "Newcastle United FC"
+    },
+    {
+      "id": "340",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "SFC",
+      "name": "Southampton FC"
+    },
+    {
+      "id": "57",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "AFC",
+      "name": "Arsenal FC"
+    },
+    {
+      "id": "563",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "WHU",
+      "name": "West Ham United FC"
+    },
+    {
+      "id": "70",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "SCFC",
+      "name": "Stoke City FC"
+    },
+    {
+      "id": "64",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "LFC",
+      "name": "Liverpool FC"
+    },
+    {
+      "id": "74",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "WBA",
+      "name": "West Bromwich Albion FC"
+    },
+    {
+      "id": "65",
+      "league": {
+        "id": 398,
+        "name": "Premier League"
+      },
+      "code": "MCFC",
+      "name": "Manchester City FC"
+    },
+    {
+      "id": "749",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "MFF",
+      "name": "Malmö FF"
+    },
+    {
+      "id": "1056",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "ASTA",
+      "name": "FC Astana"
+    },
+    {
+      "id": "610",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "GSK",
+      "name": "Galatasaray SK"
+    },
+    {
+      "id": "751",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "CSK",
+      "name": "CSKA Moscow"
+    },
+    {
+      "id": "724",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "SHA",
+      "name": "Shakhtar Donetsk"
+    },
+    {
+      "id": "731",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "ZEN",
+      "name": "FC Zenit St. Petersburg"
+    },
+    {
+      "id": "842",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "DYK",
+      "name": "Dynamo Kyiv"
+    },
+    {
+      "id": "971",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "MTA",
+      "name": "Maccabi Tel Aviv"
+    },
+    {
+      "id": "654",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "OLA",
+      "name": "Olympiacos F.C."
+    },
+    {
+      "id": "755",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "DIN",
+      "name": "GNK Dinamo Zagreb"
+    },
+    {
+      "id": "748",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "null",
+      "name": "FK BATE Baryssau"
+    },
+    {
+      "id": "1057",
+      "league": {
+        "id": 405,
+        "name": "Champions League"
+      },
+      "code": "null",
+      "name": "KAA Gent"
+    },
+    {
+      "id": "1054",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "1. FC Magdeburg"
+    },
+    {
+      "id": "40",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Rot-Weiß Erfurt"
+    },
+    {
+      "id": "39",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "SV Wehen Wiesbaden"
+    },
+    {
+      "id": "1055",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Würzburger Kickers"
+    },
+    {
+      "id": "34",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "FC Hansa Rostock"
+    },
+    {
+      "id": "56",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Werder Bremen II"
+    },
+    {
+      "id": "202",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Stuttgarter Kickers"
+    },
+    {
+      "id": "204",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Fortuna Köln"
+    },
+    {
+      "id": "51",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Preußen Münster"
+    },
+    {
+      "id": "741",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "SG Sonnenhof Großaspach"
+    },
+    {
+      "id": "720",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Holstein Kiel"
+    },
+    {
+      "id": "740",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Mainz 05 II"
+    },
+    {
+      "id": "22",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "AUE",
+      "name": "Erzgebirge Aue"
+    },
+    {
+      "id": "52",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "VfL Osnabrück"
+    },
+    {
+      "id": "35",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Dynamo Dresden"
+    },
+    {
+      "id": "45",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "VfB Stuttgart II"
+    },
+    {
+      "id": "50",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "VFR",
+      "name": "VfR Aalen"
+    },
+    {
+      "id": "54",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Chemnitzer FC"
+    },
+    {
+      "id": "23",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Energie Cottbus"
+    },
+    {
+      "id": "554",
+      "league": {
+        "id": 403,
+        "name": "3. Liga"
+      },
+      "code": "null",
+      "name": "Hallescher FC"
+    },
+    {
+      "id": "521",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "OSC",
+      "name": "OSC Lille"
+    },
+    {
+      "id": "524",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "PSG",
+      "name": "Paris Saint-Germain"
+    },
+    {
+      "id": "531",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "null",
+      "name": "ES Troyes AC"
+    },
+    {
+      "id": "555",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "null",
+      "name": "Gazélec Ajaccio"
+    },
+    {
+      "id": "516",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "MAR",
+      "name": "Olympique de Marseille"
+    },
+    {
+      "id": "514",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "SMC",
+      "name": "SM Caen"
+    },
+    {
+      "id": "522",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "NIC",
+      "name": "OGC Nice"
+    },
+    {
+      "id": "548",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "MON",
+      "name": "AS Monaco FC"
+    },
+    {
+      "id": "543",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "NAN",
+      "name": "FC Nantes"
+    },
+    {
+      "id": "538",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "GUI",
+      "name": "EA Guingamp"
+    },
+    {
+      "id": "518",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "MHSC",
+      "name": "Montpellier Hérault SC"
+    },
+    {
+      "id": "532",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "null",
+      "name": "Angers SCO"
+    },
+    {
+      "id": "536",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "SCB",
+      "name": "SC Bastia"
+    },
+    {
+      "id": "529",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "REN",
+      "name": "Stade Rennais FC"
+    },
+    {
+      "id": "526",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "BOR",
+      "name": "FC Girondins de Bordeaux"
+    },
+    {
+      "id": "547",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "REI",
+      "name": "Stade de Reims"
+    },
+    {
+      "id": "511",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "TOU",
+      "name": "Toulouse FC"
+    },
+    {
+      "id": "527",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "ETI",
+      "name": "AS Saint-Étienne"
+    },
+    {
+      "id": "523",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "OLY",
+      "name": "Olympique Lyonnais"
+    },
+    {
+      "id": "525",
+      "league": {
+        "id": 396,
+        "name": "Ligue 1"
+      },
+      "code": "LOR",
+      "name": "FC Lorient"
+    },
+    {
+      "id": "595",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "CD Mirandes"
+    },
+    {
+      "id": "91",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Real Zaragoza"
+    },
+    {
+      "id": "1048",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Real Oviedo"
+    },
+    {
+      "id": "596",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "CD Lugo"
+    },
+    {
+      "id": "286",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "SD Ponferradina"
+    },
+    {
+      "id": "285",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "CFE",
+      "name": "Elche FC"
+    },
+    {
+      "id": "260",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "CD Numancia de Soria"
+    },
+    {
+      "id": "254",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "CD Tenerife"
+    },
+    {
+      "id": "304",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "AD Alcorcón"
+    },
+    {
+      "id": "89",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "RCD Mallorca"
+    },
+    {
+      "id": "744",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "UE Llagostera"
+    },
+    {
+      "id": "79",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "CA Osasuna"
+    },
+    {
+      "id": "299",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Huesca"
+    },
+    {
+      "id": "263",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Deportivo Alavés"
+    },
+    {
+      "id": "267",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "UDA",
+      "name": "UD Almeria"
+    },
+    {
+      "id": "745",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "CD Leganes"
+    },
+    {
+      "id": "265",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Gimnàstic de Tarragona"
+    },
+    {
+      "id": "237",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Albacete Balompié"
+    },
+    {
+      "id": "295",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "CCF",
+      "name": "Córdoba CF"
+    },
+    {
+      "id": "250",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Real Valladolid"
+    },
+    {
+      "id": "1046",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Athletic Bilbao B"
+    },
+    {
+      "id": "298",
+      "league": {
+        "id": 400,
+        "name": "Segunda Division"
+      },
+      "code": "null",
+      "name": "Girona FC"
+    },
+    {
+      "id": "560",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "LAC",
+      "name": "RC Deportivo La Coruna"
+    },
+    {
+      "id": "92",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "RSS",
+      "name": "Real Sociedad de Fútbol"
+    },
+    {
+      "id": "80",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "ESP",
+      "name": "RCD Espanyol"
+    },
+    {
+      "id": "82",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "FCG",
+      "name": "Getafe CF"
+    },
+    {
+      "id": "78",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "ATM",
+      "name": "Club Atlético de Madrid"
+    },
+    {
+      "id": "275",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "null",
+      "name": "UD Las Palmas"
+    },
+    {
+      "id": "87",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "RAY",
+      "name": "Rayo Vallecano de Madrid"
+    },
+    {
+      "id": "95",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "VAL",
+      "name": "Valencia CF"
+    },
+    {
+      "id": "84",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "MAL",
+      "name": "Málaga CF"
+    },
+    {
+      "id": "559",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "SEV",
+      "name": "Sevilla FC"
+    },
+    {
+      "id": "77",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "BIL",
+      "name": "Athletic Club"
+    },
+    {
+      "id": "81",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "FCB",
+      "name": "FC Barcelona"
+    },
+    {
+      "id": "96",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "null",
+      "name": "Sporting Gijón"
+    },
+    {
+      "id": "86",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "MAD",
+      "name": "Real Madrid CF"
+    },
+    {
+      "id": "88",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "LUD",
+      "name": "Levante UD"
+    },
+    {
+      "id": "558",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "VIG",
+      "name": "RC Celta de Vigo"
+    },
+    {
+      "id": "90",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "BET",
+      "name": "Real Betis"
+    },
+    {
+      "id": "94",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "VCF",
+      "name": "Villarreal CF"
+    },
+    {
+      "id": "83",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "GCF",
+      "name": "Granada CF"
+    },
+    {
+      "id": "278",
+      "league": {
+        "id": 399,
+        "name": "La Liga"
+      },
+      "code": "EIB",
+      "name": "SD Eibar"
+    },
+    {
+      "id": "1049",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "CD Tondela"
+    },
+    {
+      "id": "498",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "SCP",
+      "name": "Sporting CP"
+    },
+    {
+      "id": "711",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Belenenses Lissabon"
+    },
+    {
+      "id": "496",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "FC Rio Ave"
+    },
+    {
+      "id": "503",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "FCP",
+      "name": "FC Porto"
+    },
+    {
+      "id": "502",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Vitoria Guimaraes"
+    },
+    {
+      "id": "506",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Vitoria Setubal"
+    },
+    {
+      "id": "810",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Boavista Porto FC"
+    },
+    {
+      "id": "1052",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "União Madeira"
+    },
+    {
+      "id": "504",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Maritimo Funchal"
+    },
+    {
+      "id": "583",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Moreirense FC"
+    },
+    {
+      "id": "712",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "FC Arouca"
+    },
+    {
+      "id": "497",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Sporting Braga"
+    },
+    {
+      "id": "501",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Nacional Funchal"
+    },
+    {
+      "id": "495",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "SLB",
+      "name": "SL Benfica"
+    },
+    {
+      "id": "582",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "GD Estoril Praia"
+    },
+    {
+      "id": "507",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "FC Paços de Ferreira"
+    },
+    {
+      "id": "509",
+      "league": {
+        "id": 402,
+        "name": "Primeira Liga"
+      },
+      "code": "null",
+      "name": "Académica de Coimbra"
     }
   ]
 }
