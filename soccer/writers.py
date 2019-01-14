@@ -261,15 +261,18 @@ class Csv(BaseWriter):
                       for team in league_table['standing'])
         self.generate_output(result)
 
-    def league_scores(self, total_data, time):
+    def league_scores(self, total_data, time, show_upcoming, use_12_hour_format):
         """Store output of fixtures based on league and time to a CSV file"""
         headers = ['League', 'Home Team Name', 'Home Team Goals',
                    'Away Team Goals', 'Away Team Name']
         result = [headers]
-        result.extend([league, score['homeTeamName'],
-                       score['result']['goalsHomeTeam'],
-                       score['result']['goalsAwayTeam'], score['awayTeamName']]
-                      for league, score in self.supported_leagues(total_data))
+        league = total_data['competition']['name']
+        result.extend([league,
+                       score['homeTeam']['name'],
+                       score['score']['fullTime']['homeTeam'],
+                       score['score']['fullTime']['awayTeam'],
+                        score['awayTeam']['name']]
+                       for score in total_data['matches'])
         self.generate_output(result)
 
 
