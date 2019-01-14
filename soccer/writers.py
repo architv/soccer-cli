@@ -78,14 +78,15 @@ class Stdout(BaseWriter):
 
     def team_scores(self, team_scores, time, show_datetime, use_12_hour_format):
         """Prints the teams scores in a pretty format"""
-        for score in team_scores["fixtures"]:
+        import ipdb; ipdb.set_trace()
+        for score in team_scores["matches"]:
             if score["status"] == "FINISHED":
-                click.secho("%s\t" % score["date"].split('T')[0],
+                click.secho("%s\t" % score["utcDate"].split('T')[0],
                             fg=self.colors.TIME, nl=False)
                 self.scores(self.parse_result(score))
             elif show_datetime:
                 self.scores(self.parse_result(score), add_new_line=False)
-                click.secho('   %s' % Stdout.utc_to_local(score["date"],
+                click.secho('   %s' % Stdout.utc_to_local(score["utcDate"],
                                                           use_12_hour_format,
                                                           show_datetime),
                             fg=self.colors.TIME)
