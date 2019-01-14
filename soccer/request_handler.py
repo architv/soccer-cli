@@ -16,21 +16,17 @@ class RequestHandler(object):
 
     def _get(self, url):
         """Handles api.football-data.org requests"""
-        req = requests.get(RequestHandler.BASE_URL+url, headers=self.headers)
-
-        if req.status_code == requests.codes.ok:
+        req = requests.get(RequestHandler.BASE_URL + url, headers=self.headers)
+        status_code = req.status_code
+        if status_code == requests.codes.ok:
             return req
-
-        if req.status_code == requests.codes.bad:
+        elif status_code == requests.codes.bad:
             raise APIErrorException('Invalid request. Check parameters.')
-
-        if req.status_code == requests.codes.forbidden:
+        elif status_code == requests.codes.forbidden:
             raise APIErrorException('This resource is restricted')
-
-        if req.status_code == requests.codes.not_found:
+        elif status_code == requests.codes.not_found:
             raise APIErrorException('This resource does not exist. Check parameters')
-
-        if req.status_code == requests.codes.too_many_requests:
+        elif status_code == requests.codes.too_many_requests:
             raise APIErrorException('You have exceeded your allowed requests per minute/day')
 
     def get_live_scores(self, use_12_hour_format):
