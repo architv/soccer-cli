@@ -332,8 +332,8 @@ class Json(BaseWriter):
 
     def team_players(self, team):
         """Store output of team players to a JSON file"""
-        keys = 'jerseyNumber name position nationality dateOfBirth marketValue'.split()
-        data = [{key: player[key] for key in keys} for player in team['players']]
+        keys = 'shirtNumber name position nationality dateOfBirth'.split()
+        data = [{key: player[key] for key in keys} for player in team]
         self.generate_output({'players': data})
 
     def league_scores(self, total_data, time):
