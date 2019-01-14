@@ -232,10 +232,12 @@ class Csv(BaseWriter):
         headers = ['Date', 'Home Team Name', 'Home Team Goals',
                    'Away Team Goals', 'Away Team Name']
         result = [headers]
-        result.extend([score["date"].split('T')[0], score['homeTeamName'],
-                       score['result']['goalsHomeTeam'],
-                       score['result']['goalsAwayTeam'], score['awayTeamName']]
-                      for score in team_scores['fixtures']
+        result.extend([score["utcDate"].split('T')[0],
+                       score['homeTeam']['name'],
+                       score['score']['fullTime']['homeTeam'],
+                       score['score']['fullTime']['awayTeam'],
+                       score['awayTeam']['name']]
+                      for score in team_scores['matches']
                       if score['status'] == 'FINISHED')
         self.generate_output(result)
 
