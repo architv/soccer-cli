@@ -255,10 +255,14 @@ class Csv(BaseWriter):
         headers = ['Position', 'Team Name', 'Games Played', 'Goal For',
                    'Goals Against', 'Goal Difference', 'Points']
         result = [headers]
-        result.extend([team['position'], team['teamName'], team['playedGames'],
-                       team['goals'], team['goalsAgainst'],
-                       team['goalDifference'], team['points']]
-                      for team in league_table['standing'])
+        result.extend([team['position'],
+                       team['team']['name'],
+                       team['playedGames'],
+                       team['goalsFor'],
+                       team['goalsAgainst'],
+                       team['goalDifference'],
+                       team['points']]
+                       for team in league_table['standings'][0]['table'])
         self.generate_output(result)
 
     def league_scores(self, total_data, time, show_upcoming, use_12_hour_format):
