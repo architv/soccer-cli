@@ -37,7 +37,7 @@ class RequestHandler(object):
             if len(scores["games"]) == 0:
                 click.secho("No live action currently", fg="red", bold=True)
                 return
-            self.writer.live_scores(scores, use_12_hour_format)
+            self.writer.live_scores(scores)
         else:
             click.secho("There was problem getting live scores", fg="red", bold=True)
 
