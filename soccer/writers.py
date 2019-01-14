@@ -85,7 +85,7 @@ class Stdout(BaseWriter):
             self.league_header(league)
             for game in games:
                 self.scores(self.parse_result(game), add_new_line=False)
-                click.secho('   %s' % Stdout.convert_utc_to_local_time(game["time"], use_12_hour_format),
+                click.secho('   %s' % Stdout.utc_to_local(game["time"], use_12_hour_format),
                             fg=self.colors.TIME)
                 click.echo()
 
@@ -93,17 +93,15 @@ class Stdout(BaseWriter):
         """Prints the teams scores in a pretty format"""
         for score in team_scores["fixtures"]:
             if score["status"] == "FINISHED":
-                #click.echo()
                 click.secho("%s\t" % score["date"].split('T')[0],
                             fg=self.colors.TIME, nl=False)
                 self.scores(self.parse_result(score))
             elif show_datetime:
-                #click.echo()
                 self.scores(self.parse_result(score), add_new_line=False)
-                click.secho('   %s' % Stdout.convert_utc_to_local_time(score["date"], 
-                                        use_12_hour_format, show_datetime),
-                                fg=self.colors.TIME)
-                
+                click.secho('   %s' % Stdout.utc_to_local(score["date"],
+                                                          use_12_hour_format,
+                                                          show_datetime),
+                            fg=self.colors.TIME)
 
     def team_players(self, team):
         """Prints the team players in a pretty format"""
@@ -114,7 +112,6 @@ class Stdout(BaseWriter):
         fmt = (u"{jerseyNumber:<4} {name:<28} {position:<23} {nationality:<23}"
                u" {dateOfBirth:<18} {marketValue}")
         for player in players:
-            #click.echo()
             click.secho(fmt.format(**player), bold=True)
 
     def standings(self, league_table, league):
@@ -152,9 +149,10 @@ class Stdout(BaseWriter):
                 self.league_header(league)
             self.scores(self.parse_result(data), add_new_line=not show_datetime)
             if show_datetime:
-                click.secho('   %s' % Stdout.convert_utc_to_local_time(data["date"], 
-                                        use_12_hour_format, show_datetime),
-                                fg=self.colors.TIME)
+                click.secho('   %s' % Stdout.utc_to_local(data["date"],
+                                                          use_12_hour_format,
+                                                          show_datetime),
+                            fg=self.colors.TIME)
             click.echo()
 
     def league_header(self, league):
@@ -200,14 +198,14 @@ class Stdout(BaseWriter):
         return result
 
     @staticmethod
-    def convert_utc_to_local_time(time_str, use_12_hour_format, show_datetime=False):
+    def utc_to_local(time_str, use_12_hour_format, show_datetime=False):
         """Converts the API UTC time string to the local user time."""
         if not (time_str.endswith(" UTC") or time_str.endswith("Z")):
-           return time_str
+            return time_str
 
         today_utc = datetime.datetime.utcnow()
         utc_local_diff = today_utc - datetime.datetime.now()
-        
+
         if time_str.endswith(" UTC"):
             time_str, _ = time_str.split(" UTC")
             utc_time = datetime.datetime.strptime(time_str, '%I:%M %p')
@@ -215,14 +213,14 @@ class Stdout(BaseWriter):
                                              utc_time.hour, utc_time.minute)
         else:
             utc_datetime = datetime.datetime.strptime(time_str, '%Y-%m-%dT%H:%M:%SZ')
-            
+
         local_time = utc_datetime - utc_local_diff
-        
+
         if use_12_hour_format:
             date_format = '%I:%M %p' if not show_datetime else '%a %d, %I:%M %p'
         else:
             date_format = '%H:%M' if not show_datetime else '%a %d, %H:%M'
-            
+
         return datetime.datetime.strftime(local_time, date_format)
 
 
@@ -241,10 +239,6 @@ class Csv(BaseWriter):
 
     def live_scores(self, live_scores):
         """Store output of live scores to a CSV file"""
-        today_datetime = datetime.datetime.now()
-        today_date = '_'.join([str(today_datetime.year),
-                               str(today_datetime.month),
-                               str(today_datetime.day)])
         headers = ['League', 'Home Team Name', 'Home Team Goals',
                    'Away Team Goals', 'Away Team Name']
         result = [headers]
@@ -304,8 +298,10 @@ class Json(BaseWriter):
 
     def generate_output(self, result):
         if not self.output_filename:
-            click.echo(json.dumps(result, indent=4, separators=(',', ': '),
-                       ensure_ascii=False))
+            click.echo(json.dumps(result,
+                                  indent=4,
+                                  separators=(',', ': '),
+                                  ensure_ascii=False))
         else:
             with io.open(self.output_filename, 'w', encoding='utf-8') as json_file:
                 data = json.dumps(result, json_file, indent=4,
@@ -314,10 +310,6 @@ class Json(BaseWriter):
 
     def live_scores(self, live_scores):
         """Store output of live scores to a JSON file"""
-        today_datetime = datetime.datetime.now()
-        today_date = '_'.join([str(today_datetime.year),
-                              str(today_datetime.month),
-                              str(today_datetime.day)])
         self.generate_output(live_scores['games'])
 
     def team_scores(self, team_scores, time):
@@ -352,7 +344,6 @@ class Json(BaseWriter):
         keys = 'jerseyNumber name position nationality dateOfBirth marketValue'.split()
         data = [{key: player[key] for key in keys} for player in team['players']]
         self.generate_output({'players': data})
-
 
     def league_scores(self, total_data, time):
         """Store output of fixtures based on league and time to a JSON file"""
