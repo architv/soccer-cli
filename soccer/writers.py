@@ -64,15 +64,15 @@ class Stdout(BaseWriter):
         )
         self.colors = type('Enum', (), enums)
 
-    def live_scores(self, live_scores, use_12_hour_format):
+    def live_scores(self, live_scores):
         """Prints the live scores in a pretty format"""
-        scores = sorted(live_scores["games"], key=lambda x: x["league"])
+        scores = sorted(live_scores, key=lambda x: x["league"])
         for league, games in groupby(scores, key=lambda x: x["league"]):
             self.league_header(league)
             for game in games:
                 self.scores(self.parse_result(game), add_new_line=False)
                 click.secho('   %s' % Stdout.utc_to_local(game["time"],
-                                                          use_12_hour_format),
+                                                          use_12_hour_format=False),
                             fg=self.colors.TIME)
                 click.echo()
 
