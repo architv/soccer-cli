@@ -244,16 +244,15 @@ class Csv(BaseWriter):
     def team_players(self, team):
         """Store output of team players to a CSV file"""
         headers = ['Jersey Number', 'Name', 'Position', 'Nationality',
-                   'Date of Birth', 'Market Value']
+                   'Date of Birth']
         result = [headers]
 
         result.extend([player['shirtNumber'],
                        player['name'],
                        player['position'],
                        player['nationality'],
-                       player['dateOfBirth'],
-                       player['marketValue']]
-                      for player in team['players'])
+                       player['dateOfBirth']]
+                      for player in team)
         self.generate_output(result)
 
     def standings(self, league_table, league):
