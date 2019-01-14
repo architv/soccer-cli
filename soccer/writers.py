@@ -78,7 +78,6 @@ class Stdout(BaseWriter):
 
     def team_scores(self, team_scores, time, show_datetime, use_12_hour_format):
         """Prints the teams scores in a pretty format"""
-        import ipdb; ipdb.set_trace()
         for score in team_scores["matches"]:
             if score["status"] == "FINISHED":
                 click.secho("%s\t" % score["utcDate"].split('T')[0],
@@ -93,12 +92,13 @@ class Stdout(BaseWriter):
 
     def team_players(self, team):
         """Prints the team players in a pretty format"""
-        players = sorted(team['players'], key=lambda d: (d['jerseyNumber']))
-        click.secho("%-4s %-25s    %-20s    %-20s    %-15s    %-10s" %
-                    ("N.",  "NAME", "POSITION", "NATIONALITY", "BIRTHDAY",
-                     "MARKET VALUE"), bold=True, fg=self.colors.MISC)
-        fmt = (u"{jerseyNumber:<4} {name:<28} {position:<23} {nationality:<23}"
-               u" {dateOfBirth:<18} {marketValue}")
+        players = sorted(team, key=lambda d: d['shirtNumber'])
+        click.secho("%-4s %-25s    %-20s    %-20s    %-15s" %
+                    ("N.",  "NAME", "POSITION", "NATIONALITY", "BIRTHDAY"),
+                    bold=True,
+                    fg=self.colors.MISC)
+        fmt = (u"{shirtNumber:<4} {name:<28} {position:<23} {nationality:<23}"
+               u" {dateOfBirth:<18}")
         for player in players:
             click.secho(fmt.format(**player), bold=True)
 
@@ -247,9 +247,12 @@ class Csv(BaseWriter):
                    'Date of Birth', 'Market Value']
         result = [headers]
 
-        result.extend([player['jerseyNumber'], player['name'],
-                       player['position'], player['nationality'],
-                       player['dateOfBirth'], player['marketValue']]
+        result.extend([player['shirtNumber'],
+                       player['name'],
+                       player['position'],
+                       player['nationality'],
+                       player['dateOfBirth'],
+                       player['marketValue']]
                       for player in team['players'])
         self.generate_output(result)
 

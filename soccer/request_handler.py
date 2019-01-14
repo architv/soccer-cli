@@ -118,10 +118,9 @@ class RequestHandler(object):
         """
         team_id = self.team_names.get(team, None)
         try:
-            req = self._get('teams/{team_id}/players'.format(
-                       team_id=team_id))
-            team_players = req.json()
-            if int(team_players["count"]) == 0:
+            req = self._get('teams/{}/'.format(team_id))
+            team_players = req.json()['squad']
+            if not team_players:
                 click.secho("No players found for this team", fg="red", bold=True)
             else:
                 self.writer.team_players(team_players)
