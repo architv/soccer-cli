@@ -106,9 +106,9 @@ def list_team_codes():
               help="Shows live scores from various leagues.")
 @click.option('--use12hour', is_flag=True, default=False,
               help="Displays the time using 12 hour format instead of 24 (default).")
-@click.option('--standings', is_flag=True,
+@click.option('--standings', '-s', is_flag=True,
               help="Standings for a particular league.")
-@click.option('--league', '-league', type=click.Choice(LEAGUE_IDS.keys()),
+@click.option('--league', '-l', type=click.Choice(LEAGUE_IDS.keys()),
               help=("Select fixtures from a particular league."))
 @click.option('--players', is_flag=True,
               help="Shows players for a particular team.")
