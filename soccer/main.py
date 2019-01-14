@@ -26,8 +26,9 @@ TEAM_NAMES = {team["code"]: team["id"] for team in TEAM_DATA}
 def get_input_key():
     """Input API key and validate"""
     click.secho("No API key found!", fg="yellow", bold=True)
-    click.secho("Please visit {0} and get an API token.".format(RequestHandler.BASE_URL),
-                fg="yellow", bold=True)
+    click.secho("Please visit {} and get an API token.".format(RequestHandler.BASE_URL),
+                fg="yellow",
+                bold=True)
     while True:
         confkey = click.prompt(click.style("Enter API key",
                                            fg="yellow", bold=True))

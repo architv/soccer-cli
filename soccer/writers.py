@@ -85,7 +85,8 @@ class Stdout(BaseWriter):
             self.league_header(league)
             for game in games:
                 self.scores(self.parse_result(game), add_new_line=False)
-                click.secho('   %s' % Stdout.utc_to_local(game["time"], use_12_hour_format),
+                click.secho('   %s' % Stdout.utc_to_local(game["time"],
+                                                          use_12_hour_format),
                             fg=self.colors.TIME)
                 click.echo()
 
@@ -140,7 +141,8 @@ class Stdout(BaseWriter):
             else:
                 click.secho(team_str, fg=self.colors.POSITION)
 
-    def league_scores(self, total_data, time, show_datetime, use_12_hour_format):
+    def league_scores(self, total_data, time, show_datetime,
+                      use_12_hour_format):
         """Prints the data in a pretty format"""
         seen = set()
         for league, data in self.supported_leagues(total_data):
@@ -209,10 +211,14 @@ class Stdout(BaseWriter):
         if time_str.endswith(" UTC"):
             time_str, _ = time_str.split(" UTC")
             utc_time = datetime.datetime.strptime(time_str, '%I:%M %p')
-            utc_datetime = datetime.datetime(today_utc.year, today_utc.month, today_utc.day,
-                                             utc_time.hour, utc_time.minute)
+            utc_datetime = datetime.datetime(today_utc.year,
+                                             today_utc.month,
+                                             today_utc.day,
+                                             utc_time.hour,
+                                             utc_time.minute)
         else:
-            utc_datetime = datetime.datetime.strptime(time_str, '%Y-%m-%dT%H:%M:%SZ')
+            utc_datetime = datetime.datetime.strptime(time_str,
+                                                      '%Y-%m-%dT%H:%M:%SZ')
 
         local_time = utc_datetime - utc_local_diff
 
@@ -303,10 +309,10 @@ class Json(BaseWriter):
                                   separators=(',', ': '),
                                   ensure_ascii=False))
         else:
-            with io.open(self.output_filename, 'w', encoding='utf-8') as json_file:
-                data = json.dumps(result, json_file, indent=4,
+            with io.open(self.output_filename, 'w', encoding='utf-8') as f:
+                data = json.dumps(result, f, indent=4,
                                   separators=(',', ': '), ensure_ascii=False)
-                json_file.write(data)
+                f.write(data)
 
     def live_scores(self, live_scores):
         """Store output of live scores to a JSON file"""
