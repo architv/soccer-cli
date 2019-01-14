@@ -307,11 +307,11 @@ class Json(BaseWriter):
     def standings(self, league_table, league):
         """Store output of league standings to a JSON file"""
         data = []
-        for team in league_table['standing']:
+        for team in league_table['standings'][0]['table']:
             item = {'position': team['position'],
-                    'teamName': team['teamName'],
+                    'teamName': team['team'],
                     'playedGames': team['playedGames'],
-                    'goalsFor': team['goals'],
+                    'goalsFor': team['goalsFor'],
                     'goalsAgainst': team['goalsAgainst'],
                     'goalDifference': team['goalDifference'],
                     'points': team['points']}
