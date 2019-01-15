@@ -16,19 +16,6 @@ Install
 
 An API key from [football-data.org](http://api.football-data.org/) will be required and you can register for one [here](http://api.football-data.org/client/register).
 
-### Using `pip`
-
-```bash
-$ pip install soccer-cli
-```
-
-Set your API key in an environment variable `SOCCER_CLI_API_TOKEN`
-
-For example:
-
-```bash
-export SOCCER_CLI_API_TOKEN="<YOUR_API_TOKEN>"
-```
 
 ### Build from source
 
@@ -108,7 +95,7 @@ $ soccer --league PL --standings --json # prints the output in json format
 ### Store the ouput in a file
 
 ```bash
-$ soccer --league PL --standings --csv -o 'standings.csv' # stores the ouput in scv format in `standings.csv`
+$ soccer --league PL --standings --csv -o 'standings.csv' # stores the ouput in csv format in `standings.csv`
 ```
 
 ### Help
