@@ -104,13 +104,18 @@ $ soccer --help
 ```
 ### List of supported leagues and their league codes
 
+- World:
+  - WC: World Cup (if running/active)
 - Europe:
   - CL: Champions League
+  - EC: European Championships (if running/active)
+- Brazil:
+  - BSA: Brazil Serie A
 - England:
   - PL: English Premier League
   - ELC: English Championship
 - France:
-  - FL: Ligue 1
+  - FL1: Ligue 1
 - Germany:
   - BL: Bundesliga
 - Italy:

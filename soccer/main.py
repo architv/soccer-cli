@@ -138,19 +138,18 @@ def main(league, time, standings, team, live, use12hour, players,
     League codes:
 
     \b
+    - WC: World Cup
+    - EC: European Championship
     - CL: Champions League
     - PL: English Premier League
     - ELC: English Championship
-    - EL1: English League One
     - FL1: French Ligue 1
-    - FL2: French Ligue 2
     - BL: German Bundesliga
-    - BL2: 2. Bundesliga
     - SA: Serie A
     - DED: Eredivisie
     - PPL: Primeira Liga
     - PD: Primera Division
-    - SD: Segunda Division
+    - BSA: Brazil Serie A
     """
     headers = {'X-Auth-Token': apikey}
 
