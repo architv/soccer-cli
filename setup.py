@@ -10,7 +10,7 @@ if os.environ.get('USER','') == 'vagrant':
 
 setup(
     name='soccer-cli',
-    version='0.1.0.0',
+    version='0.1.1.0',
     description='Soccer for Hackers.',
     author='Archit Verma',
     license='MIT',
