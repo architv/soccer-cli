@@ -134,7 +134,7 @@ class Stdout(BaseWriter):
         for match in total_data['matches']:
             self.scores(self.parse_result(match), add_new_line=not show_datetime)
             if show_datetime:
-                click.secho('   %s' % Stdout.utc_to_local(data["date"],
+                click.secho('   %s' % Stdout.utc_to_local(match["utcDate"],
                                                           use_12_hour_format,
                                                           show_datetime),
                             fg=self.colors.TIME)
@@ -165,7 +165,7 @@ class Stdout(BaseWriter):
     def parse_result(self, data):
         """Parses the results and returns a Result namedtuple"""
         def valid_score(score):
-            return "" if score == None else score
+            return "" if score is None else score
 
         return self.Result(
             data["homeTeam"]["name"],
