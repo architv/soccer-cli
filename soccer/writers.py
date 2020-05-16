@@ -92,15 +92,15 @@ class Stdout(BaseWriter):
 
     def team_players(self, team):
         """Prints the team players in a pretty format"""
-        players = sorted(team, key=lambda d: d['shirtNumber'])
-        click.secho("%-4s %-25s    %-20s    %-20s    %-15s" %
+        click.secho("%-6s %-25s    %-20s    %-20s    %-15s" %
                     ("N.",  "NAME", "POSITION", "NATIONALITY", "BIRTHDAY"),
                     bold=True,
                     fg=self.colors.MISC)
-        fmt = (u"{shirtNumber:<4} {name:<28} {position:<23} {nationality:<23}"
+        fmt = (u"{shirtNumber!r:<6} {name:<28} {position:<23} {nationality:<23}"
                u" {dateOfBirth:<18}")
-        for player in players:
-            click.secho(fmt.format(**player), bold=True)
+        for player in team:
+            if player["role"] == "PLAYER":
+                click.secho(fmt.format(**player), bold=True)
 
     def standings(self, league_table, league):
         """ Prints the league standings in a pretty way """
