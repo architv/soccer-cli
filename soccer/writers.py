@@ -155,11 +155,11 @@ class Stdout(BaseWriter):
         else:
             homeColor = awayColor = self.colors.TIE
 
-        click.secho('%-25s %2s' % (result.homeTeam, result.goalsHomeTeam),
+        click.secho('%-26s %2s' % (result.homeTeam, result.goalsHomeTeam),
                     fg=homeColor, nl=False)
         click.secho("  vs ", nl=False)
         click.secho('%2s %s' % (result.goalsAwayTeam,
-                                result.awayTeam.rjust(25)), fg=awayColor,
+                                result.awayTeam.rjust(26)), fg=awayColor,
                     nl=add_new_line)
 
     def parse_result(self, data):
