@@ -16,9 +16,13 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
     steps:
-     # check out the pull request's source code
+      # check out the pull request's source code
       - name: Check out source code
         uses: actions/checkout@v2
+
+      #install req
+      - name: install the requirements
+        run: pip install -r requirements.txt
 
       #use python to build
       - name: Build the code
