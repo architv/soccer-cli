@@ -11,6 +11,7 @@ ADD soccer ./soccer
 ADD tests ./tests
 COPY setup.py ./
 COPY requirements.txt ./
+COPY .soccer-cli.ini ./
 
 #Install python environment
 RUN apt-get update -y
@@ -33,6 +34,7 @@ RUN pip -V
 RUN pip install --no-cache-dir -r requirements.txt
 RUN python2 setup.py install
 RUN ln /soccer-cli/soccer/teams.json /usr/local/lib/python2.7/dist-packages/soccer_cli-0.1.1.0-py2.7.egg/soccer/teams.json
+RUN ln /soccer-cli/.soccer-cli.ini ~/.soccer-cli.ini
 
 #COPY . .
 
