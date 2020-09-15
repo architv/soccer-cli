@@ -14,7 +14,7 @@ on:
 jobs:
   #build the programme
   build_and_test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     continue-on-error: true
     steps:
       # check out the pull request's source code
