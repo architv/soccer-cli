@@ -16,6 +16,10 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
     steps:
+     # check out the pull request's source code
+      - name: Check out source code
+        uses: actions/checkout@v2
+
       #use python to build
       - name: Build the code
-        run: pwd
+        run: sudo python3 setup.py install
