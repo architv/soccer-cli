@@ -30,7 +30,7 @@ jobs:
 
   #test the programme
   test:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     need: build
     steps:
       #try the command once
