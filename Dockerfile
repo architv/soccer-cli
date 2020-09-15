@@ -28,6 +28,7 @@ RUN pip -V
 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN python2 setup.py install
+RUN ln /soccer-cli/soccer/teams.json /usr/local/lib/python2.7/dist-packages/soccer_cli-0.1.1.0-py2.7.egg/soccer/teams.json
 
 #COPY . .
 
