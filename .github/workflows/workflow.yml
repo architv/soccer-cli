@@ -50,5 +50,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
           registry: docker.pkg.github.com
-          repository: http://github.com/soccer-cli/soccercicd
+          repository: https://github.com/SachaThillayeduBoullay/soccer-cli
           tag_with_ref: true
