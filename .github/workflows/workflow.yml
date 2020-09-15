@@ -15,6 +15,7 @@ jobs:
   #build the programme
   build and test:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       # check out the pull request's source code
       - name: Check out source code
