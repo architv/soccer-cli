@@ -2,6 +2,7 @@
 FROM ubuntu:latest
 
 #Copy/Add relevant part of the python project
+WORKDIR /soccer-cli
 ADD soccer ./soccer
 ADD tests ./tests
 COPY setup.py ./
