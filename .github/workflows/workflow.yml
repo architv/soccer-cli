@@ -30,9 +30,14 @@ jobs:
       - name: Build the code
         run: sudo python2.7 setup.py install
 
+      #Create .soccer-cli.ini
+      - name: create .soccer-cli.ini
+        run: echo -n "${{ secrets.API }}" > ~/.soccer-cli.ini
+
       #try the command once
       - name: run with api
-        run: soccer --apikey ${{ secrets.API }}
+        run: soccer  
+        #run: soccer --apikey #${{ secrets.API }}
 
       #test the code
       #- name: test the code
