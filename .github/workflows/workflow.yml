@@ -30,7 +30,7 @@ jobs:
 
       #try the command once
       - name: run with api
-        run: soccer --api ${{ secrets.API }}
+        run: soccer --apikey ${{ secrets.API }}
 
       #test the code
       - name: test the code
