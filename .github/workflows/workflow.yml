@@ -13,7 +13,7 @@ on:
 
 jobs:
   #build the programme
-  run-tests:
+  build:
     runs-on: ubuntu-latest
     steps:
       # check out the pull request's source code
@@ -28,6 +28,11 @@ jobs:
       - name: Build the code
         run: sudo python2.7 setup.py install
 
+  #test the programme
+  test:
+    run-on: ubuntu-latest
+    need: build
+    steps:
       #try the command once
       - name: run with api
         run: soccer --apikey ${{ secrets.API }}
