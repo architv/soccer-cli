@@ -26,8 +26,8 @@ jobs:
 
       #use python to build
       - name: Build the code
-        run: sudo python2 setup.py install
+        run: sudo python2.7 setup.py install
 
       #test the code
       - name: test the code
-        run: python2 -m unittest discover tests
+        run: python2.7 -m unittest discover tests
