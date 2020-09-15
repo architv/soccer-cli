@@ -1,7 +1,7 @@
 name: main-worklfow
 
 env: 
-  IMAGE_REPOSITORY: porio/CICD
+  IMAGE_REPOSITORY: porio/cicd
 
 on:
   push:
