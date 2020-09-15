@@ -31,7 +31,8 @@ jobs:
   #test the programme
   test:
     runs-on: ubuntu-latest
-    needs: build
+    needs: 
+      - build
     steps:
       #try the command once
       - name: run with api
