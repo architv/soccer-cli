@@ -1,0 +1,21 @@
+name: main-worklfow
+
+env: {}
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+
+jobs:
+  #build the programme
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      #use python to build
+      - name: Build the code
+        run: python setup.py install
