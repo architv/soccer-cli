@@ -18,4 +18,4 @@ jobs:
     steps:
       #use python to build
       - name: Build the code
-        run: sudo python setup.py install
+        run: pwd
