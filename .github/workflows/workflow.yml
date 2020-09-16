@@ -1,7 +1,7 @@
 name: main-worklfow
 
-env: 
-  IMAGE_REPOSITORY: porio/cicd
+#env: 
+#  IMAGE_REPOSITORY: porio/cicd
 
 on:
   push:
@@ -13,42 +13,54 @@ on:
 
 
 jobs:
-  #build the programme
+  
+       
   build_and_test:
+  
     runs-on: ubuntu-latest
-    continue-on-error: true
+    #continue-on-error: true
     steps:
-      # check out the pull request's source code
-      - name: Check out source code
+      ### BUILD ###
+      - name: _git clone_ the repo here
         uses: actions/checkout@v2
 
-      #install req
-      - name: install the requirements
+      - name: install the python modules from requirements.txt
         run: pip install -r requirements.txt
 
-      #use python to build
-      - name: Build the code
+      - name: Install the soccer cli
         run: sudo python2.7 setup.py install
 
-      #Create .soccer-cli.ini & copyit in home directory
+      #Create .soccer-cli.ini with secret API token from football-data.org
+      #put it in ~ / HOME directory for local run
+      #save it in the master repo for the next job as an artifact
       - name: create .soccer-cli.ini
         run: |
           echo -n "${{ secrets.API }}" > .soccer-cli.ini
           cp .soccer-cli.ini ~/.soccer-cli.ini
-      #Save it (as an artifact) in the repo for the docker build&push
+      
       - uses: actions/upload-artifact@master
         with:
           name: .soccer-cli.ini
           path: ./
 
+      ### TESTS ###
       #try the command once
       - name: run with api
-        run: soccer
-        #run: soccer --apikey #${{ secrets.API }}
+        run: soccer | tee soccer.log
+      
+      - uses: actions/upload-artifact@master
+        with:
+          name: soccer.log
+          path: ./
 
       #test the code
-      #- name: test the code
-      #  run: sudo python2.7 -m unittest discover tests
+      - name: test the code
+        run:  python2.7 -m unittest discover tests | tee unittest.log
+      
+      - uses: action/upload-artifact@master
+        with:
+          name: unittest.log
+          path: ./
 
   deploy:
     runs-on: ubuntu-latest
@@ -68,5 +80,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: sachathillayeduboullay/soccer-cli/soccercicd
+          repository: sachathillayeduboullay/soccer-cli/soccercicd-with-test
           tag_with_ref: true
