@@ -36,7 +36,7 @@ jobs:
 
       #try the command once
       - name: run with api
-        run: soccer  
+        run: soccer
         #run: soccer --apikey #${{ secrets.API }}
 
       #test the code
@@ -50,5 +50,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: https://github.com/SachaThillayeduBoullay/soccer-cli/soccercicd
+          repository: SachaThillayeduBoullay/soccer-cli/soccercicd
           tag_with_ref: true
