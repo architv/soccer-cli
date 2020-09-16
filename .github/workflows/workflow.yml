@@ -1,22 +1,16 @@
 name: main-worklfow
 
-#env: 
-#  IMAGE_REPOSITORY: porio/cicd
-
 on:
   push:
     branches:
       - master
+      - with-test
   pull_request:
     branches:
       - master
 
-
 jobs:
-  
-       
   build_and_test:
-  
     runs-on: ubuntu-latest
     #continue-on-error: true
     steps:
