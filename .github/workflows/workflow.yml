@@ -30,9 +30,11 @@ jobs:
       - name: Build the code
         run: sudo python2.7 setup.py install
 
-      #Create .soccer-cli.ini
+      #Create .soccer-cli.ini & copyit in home directory
       - name: create .soccer-cli.ini
-        run: echo -n "${{ secrets.API }}" > ~/.soccer-cli.ini
+        run: |
+          echo -n "${{ secrets.API }}" > .soccer-cli.ini
+          cp .soccer-cli.ini ~/.soccer-cli.ini
       #Save it (as an artifact) in the repo for the docker build&push
       - uses: actions/upload-artifact@master
         with:
