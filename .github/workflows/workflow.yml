@@ -33,6 +33,11 @@ jobs:
       #Create .soccer-cli.ini
       - name: create .soccer-cli.ini
         run: echo -n "${{ secrets.API }}" > ~/.soccer-cli.ini
+      #Save it (as an artifact) in the repo for the docker build&push
+      - uses: actions/upload-artifact@master
+        with:
+          name: .soccer-cli.ini
+          path: /
 
       #try the command once
       - name: run with api
@@ -43,6 +48,16 @@ jobs:
       #- name: test the code
       #  run: sudo python2.7 -m unittest discover tests
 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Download built-artifact
+        uses: action/download-artifact@master
+        with:
+          name: .soccer-cli.ini
+          path: /
       #build docker file
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
