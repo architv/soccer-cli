@@ -37,7 +37,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: .soccer-cli.ini
-          path: /
+          path: ./
 
       #try the command once
       - name: run with api
@@ -55,10 +55,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Download built-artifact
-        uses: action/download-artifact@master
+        uses: actions/download-artifact@master
         with:
           name: .soccer-cli.ini
-          path: /
+          path: ./
       #build docker file
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
