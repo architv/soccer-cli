@@ -11,8 +11,7 @@ on:
 
 jobs:
   build_and_test:
-    runs-on: ubuntu-latest
-    #continue-on-error: true
+    runs-on: ubuntu-latest    
     steps:
       ### BUILD ###
       - name: _git clone_ the repo here
@@ -40,7 +39,9 @@ jobs:
       ### TESTS ###
       #try the command once
       - name: run with api
-        run: soccer | tee soccer.log
+        run: |
+          soccer
+          soccer | tee soccer.log  #tee changes the return code, hence run twice
       
       - uses: actions/upload-artifact@master
         with:
