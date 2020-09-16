@@ -1,5 +1,5 @@
 # To build it : docker build -t soccer-cli .
-# To run it :  docker run -it --rm --name my-soccer-run my-soccer soccer --standings --league=PL --apikey=693f58c36d5b4bc48b1f8d110d92a5a9
+# To run it :  docker run -it --rm --name my-soccer-run soccer-cli soccer --standings --league=PL
 #
 FROM ubuntu:latest
 
