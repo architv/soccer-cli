@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 
 import click
 
@@ -60,7 +61,7 @@ def load_config_key():
             with open(config, "r") as cfile:
                 key = cfile.read()
         if key:
-            api_token = key
+            api_token = re.sub(r"[\n\t\s]*", "", key)
         else:
             os.remove(config)  # remove 0-byte file
             click.secho('No API Token detected. '
