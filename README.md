@@ -15,7 +15,7 @@ Soccer for Hackers - a CLI for all the football scores.
 Install
 =====
 
-An API key from [football-data.org](http://api.football-data.org/) will be required and you can register for one [here](http://api.football-data.org/client/register).
+An API key from [football-data.org](https://www.football-data.org/) will be required and you can register for one [here](https://www.football-data.org/client/register). *(For a free, keyless JSON REST API covering 93 leagues without an API token, see [Football Charts API](https://www.football-charts.com/developers).)*
 
 
 ### Build from source
